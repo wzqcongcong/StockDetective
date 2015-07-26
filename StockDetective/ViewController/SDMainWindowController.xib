@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SDMainWindowController">
+            <connections>
+                <outlet property="graphView" destination="awK-z4-DP8" id="mgk-kO-JKQ"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="800" height="500"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="SEY-Rw-TPA" userLabel="header">
+                        <rect key="frame" x="0.0" y="452" width="800" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="O7R-U6-MyA"/>
+                        </constraints>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="content" customClass="YBGraphView">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="452"/>
+                        <connections>
+                            <outlet property="dataSource" destination="-2" id="N6k-FP-rlS"/>
+                            <outlet property="delegate" destination="-2" id="uUF-fh-7Gw"/>
+                        </connections>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="awK-z4-DP8" firstAttribute="top" secondItem="SEY-Rw-TPA" secondAttribute="bottom" id="A1W-d2-yp1"/>
+                    <constraint firstItem="SEY-Rw-TPA" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="Edq-Bb-EDO"/>
+                    <constraint firstItem="SEY-Rw-TPA" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="H4X-Ua-p8U"/>
+                    <constraint firstAttribute="bottom" secondItem="awK-z4-DP8" secondAttribute="bottom" id="h6j-Ln-KFP"/>
+                    <constraint firstAttribute="trailing" secondItem="awK-z4-DP8" secondAttribute="trailing" id="jgs-lr-Ytg"/>
+                    <constraint firstItem="awK-z4-DP8" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="w7o-or-beb"/>
+                    <constraint firstAttribute="trailing" secondItem="SEY-Rw-TPA" secondAttribute="trailing" id="yKC-tU-bNo"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="464" y="224"/>
+        </window>
+    </objects>
+</document>

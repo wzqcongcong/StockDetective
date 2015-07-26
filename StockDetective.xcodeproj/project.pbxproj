@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1787E72DD526A2A226460C1C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A93A3B282686A0A247209F /* libPods.a */; };
+		E5F43CC21B632BE5000D2AB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */; };
+		E5F43CC41B632BE5000D2AB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC31B632BE5000D2AB8 /* main.m */; };
+		E5F43CC61B632BE5000D2AB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
+		E5F43CC91B632BE5000D2AB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC71B632BE5000D2AB8 /* MainMenu.xib */; };
+		E5F43CD51B632BE5000D2AB8 /* StockDetectiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CD41B632BE5000D2AB8 /* StockDetectiveTests.m */; };
+		E5F43CE11B63380D000D2AB8 /* SDRefreshDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */; };
+		E5F43DFD1B638AF1000D2AB8 /* Yuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; };
+		E5F43DFE1B638AF1000D2AB8 /* Yuba.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43E1B1B639035000D2AB8 /* SDMainWindowController.m */; };
+		E5F43E1E1B639035000D2AB8 /* SDMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43E1C1B639035000D2AB8 /* SDMainWindowController.xib */; };
+		E5F43E261B63A9BC000D2AB8 /* SDGraphMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43E241B63A9BC000D2AB8 /* SDGraphMarkerViewController.m */; };
+		E5F43E271B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43E251B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E5F43CCF1B632BE5000D2AB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F43CB31B632BE5000D2AB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5F43CBA1B632BE5000D2AB8;
+			remoteInfo = StockDetective;
+		};
+		E5F43DFB1B638AC6000D2AB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = Yuba;
+		};
+		E5F43DFF1B638AF1000D2AB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Yuba;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E5F43E011B638AF1000D2AB8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E5F43DFE1B638AF1000D2AB8 /* Yuba.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		49A93A3B282686A0A247209F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDetective.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5F43CBF1B632BE5000D2AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5F43CC01B632BE5000D2AB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E5F43CC31B632BE5000D2AB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E5F43CC51B632BE5000D2AB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E5F43CC81B632BE5000D2AB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E5F43CCE1B632BE5000D2AB8 /* StockDetectiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockDetectiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5F43CD31B632BE5000D2AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5F43CD41B632BE5000D2AB8 /* StockDetectiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StockDetectiveTests.m; sourceTree = "<group>"; };
+		E5F43CDF1B63380D000D2AB8 /* SDRefreshDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDRefreshDataTask.h; path = Task/SDRefreshDataTask.h; sourceTree = "<group>"; };
+		E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDRefreshDataTask.m; path = Task/SDRefreshDataTask.m; sourceTree = "<group>"; };
+		E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Yuba.xcodeproj; path = ../../Tools/Yuba/Yuba.xcodeproj; sourceTree = "<group>"; };
+		E5F43E1A1B639035000D2AB8 /* SDMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMainWindowController.h; path = ViewController/SDMainWindowController.h; sourceTree = "<group>"; };
+		E5F43E1B1B639035000D2AB8 /* SDMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMainWindowController.m; path = ViewController/SDMainWindowController.m; sourceTree = "<group>"; };
+		E5F43E1C1B639035000D2AB8 /* SDMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SDMainWindowController.xib; path = ViewController/SDMainWindowController.xib; sourceTree = "<group>"; };
+		E5F43E231B63A9BC000D2AB8 /* SDGraphMarkerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDGraphMarkerViewController.h; path = ViewController/SDGraphMarkerViewController.h; sourceTree = "<group>"; };
+		E5F43E241B63A9BC000D2AB8 /* SDGraphMarkerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDGraphMarkerViewController.m; path = ViewController/SDGraphMarkerViewController.m; sourceTree = "<group>"; };
+		E5F43E251B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SDGraphMarkerViewController.xib; path = ViewController/SDGraphMarkerViewController.xib; sourceTree = "<group>"; };
+		E9A5147D3BB3D733DE4A4357 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E5F43CB81B632BE5000D2AB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1787E72DD526A2A226460C1C /* libPods.a in Frameworks */,
+				E5F43DFD1B638AF1000D2AB8 /* Yuba.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F43CCB1B632BE5000D2AB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1BD36D656BDBD9F136BC38C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49A93A3B282686A0A247209F /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E5F43CB21B632BE5000D2AB8 = {
+			isa = PBXGroup;
+			children = (
+				E5F43D5F1B638262000D2AB8 /* 3rdParty */,
+				E5F43CBD1B632BE5000D2AB8 /* StockDetective */,
+				E5F43CD11B632BE5000D2AB8 /* StockDetectiveTests */,
+				E5F43CBC1B632BE5000D2AB8 /* Products */,
+				EA4F27AFF5EDF99923C34D14 /* Pods */,
+				1BD36D656BDBD9F136BC38C2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E5F43CBC1B632BE5000D2AB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */,
+				E5F43CCE1B632BE5000D2AB8 /* StockDetectiveTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E5F43CBD1B632BE5000D2AB8 /* StockDetective */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43CC01B632BE5000D2AB8 /* AppDelegate.h */,
+				E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */,
+				E5F43E191B638FF4000D2AB8 /* ViewController */,
+				E5F43CDE1B6337BB000D2AB8 /* Task */,
+				E5F43CBE1B632BE5000D2AB8 /* Supporting Files */,
+			);
+			path = StockDetective;
+			sourceTree = "<group>";
+		};
+		E5F43CBE1B632BE5000D2AB8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43CC51B632BE5000D2AB8 /* Images.xcassets */,
+				E5F43CC71B632BE5000D2AB8 /* MainMenu.xib */,
+				E5F43CBF1B632BE5000D2AB8 /* Info.plist */,
+				E5F43CC31B632BE5000D2AB8 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E5F43CD11B632BE5000D2AB8 /* StockDetectiveTests */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43CD41B632BE5000D2AB8 /* StockDetectiveTests.m */,
+				E5F43CD21B632BE5000D2AB8 /* Supporting Files */,
+			);
+			path = StockDetectiveTests;
+			sourceTree = "<group>";
+		};
+		E5F43CD21B632BE5000D2AB8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43CD31B632BE5000D2AB8 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E5F43CDE1B6337BB000D2AB8 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43CDF1B63380D000D2AB8 /* SDRefreshDataTask.h */,
+				E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
+		E5F43D5F1B638262000D2AB8 /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */,
+			);
+			name = 3rdParty;
+			sourceTree = "<group>";
+		};
+		E5F43DF81B638AC6000D2AB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E5F43E191B638FF4000D2AB8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E5F43E231B63A9BC000D2AB8 /* SDGraphMarkerViewController.h */,
+				E5F43E241B63A9BC000D2AB8 /* SDGraphMarkerViewController.m */,
+				E5F43E251B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib */,
+				E5F43E1A1B639035000D2AB8 /* SDMainWindowController.h */,
+				E5F43E1B1B639035000D2AB8 /* SDMainWindowController.m */,
+				E5F43E1C1B639035000D2AB8 /* SDMainWindowController.xib */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		EA4F27AFF5EDF99923C34D14 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */,
+				E9A5147D3BB3D733DE4A4357 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E5F43CBA1B632BE5000D2AB8 /* StockDetective */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5F43CD81B632BE5000D2AB8 /* Build configuration list for PBXNativeTarget "StockDetective" */;
+			buildPhases = (
+				C916F81178D28877DDD7C80C /* Check Pods Manifest.lock */,
+				E5F43CB71B632BE5000D2AB8 /* Sources */,
+				E5F43CB81B632BE5000D2AB8 /* Frameworks */,
+				E5F43CB91B632BE5000D2AB8 /* Resources */,
+				DFECC658622C58463942FBC2 /* Copy Pods Resources */,
+				E5F43E011B638AF1000D2AB8 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5F43E001B638AF1000D2AB8 /* PBXTargetDependency */,
+			);
+			name = StockDetective;
+			productName = StockDetective;
+			productReference = E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E5F43CCD1B632BE5000D2AB8 /* StockDetectiveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5F43CDB1B632BE5000D2AB8 /* Build configuration list for PBXNativeTarget "StockDetectiveTests" */;
+			buildPhases = (
+				E5F43CCA1B632BE5000D2AB8 /* Sources */,
+				E5F43CCB1B632BE5000D2AB8 /* Frameworks */,
+				E5F43CCC1B632BE5000D2AB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5F43CD01B632BE5000D2AB8 /* PBXTargetDependency */,
+			);
+			name = StockDetectiveTests;
+			productName = StockDetectiveTests;
+			productReference = E5F43CCE1B632BE5000D2AB8 /* StockDetectiveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E5F43CB31B632BE5000D2AB8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = GoKuStudio;
+				TargetAttributes = {
+					E5F43CBA1B632BE5000D2AB8 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					E5F43CCD1B632BE5000D2AB8 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = E5F43CBA1B632BE5000D2AB8;
+					};
+				};
+			};
+			buildConfigurationList = E5F43CB61B632BE5000D2AB8 /* Build configuration list for PBXProject "StockDetective" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				English,
+			);
+			mainGroup = E5F43CB21B632BE5000D2AB8;
+			productRefGroup = E5F43CBC1B632BE5000D2AB8 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E5F43DF81B638AC6000D2AB8 /* Products */;
+					ProjectRef = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E5F43CBA1B632BE5000D2AB8 /* StockDetective */,
+				E5F43CCD1B632BE5000D2AB8 /* StockDetectiveTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Yuba.framework;
+			remoteRef = E5F43DFB1B638AC6000D2AB8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E5F43CB91B632BE5000D2AB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F43E1E1B639035000D2AB8 /* SDMainWindowController.xib in Resources */,
+				E5F43CC61B632BE5000D2AB8 /* Images.xcassets in Resources */,
+				E5F43E271B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib in Resources */,
+				E5F43CC91B632BE5000D2AB8 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F43CCC1B632BE5000D2AB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C916F81178D28877DDD7C80C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DFECC658622C58463942FBC2 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E5F43CB71B632BE5000D2AB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F43E261B63A9BC000D2AB8 /* SDGraphMarkerViewController.m in Sources */,
+				E5F43CC41B632BE5000D2AB8 /* main.m in Sources */,
+				E5F43CE11B63380D000D2AB8 /* SDRefreshDataTask.m in Sources */,
+				E5F43CC21B632BE5000D2AB8 /* AppDelegate.m in Sources */,
+				E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F43CCA1B632BE5000D2AB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5F43CD51B632BE5000D2AB8 /* StockDetectiveTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5F43CD01B632BE5000D2AB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5F43CBA1B632BE5000D2AB8 /* StockDetective */;
+			targetProxy = E5F43CCF1B632BE5000D2AB8 /* PBXContainerItemProxy */;
+		};
+		E5F43E001B638AF1000D2AB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Yuba;
+			targetProxy = E5F43DFF1B638AF1000D2AB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E5F43CC71B632BE5000D2AB8 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5F43CC81B632BE5000D2AB8 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E5F43CD61B632BE5000D2AB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E5F43CD71B632BE5000D2AB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E5F43CD91B632BE5000D2AB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = StockDetective/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E5F43CDA1B632BE5000D2AB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9A5147D3BB3D733DE4A4357 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = StockDetective/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E5F43CDC1B632BE5000D2AB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = StockDetectiveTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockDetective.app/Contents/MacOS/StockDetective";
+			};
+			name = Debug;
+		};
+		E5F43CDD1B632BE5000D2AB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = StockDetectiveTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockDetective.app/Contents/MacOS/StockDetective";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E5F43CB61B632BE5000D2AB8 /* Build configuration list for PBXProject "StockDetective" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5F43CD61B632BE5000D2AB8 /* Debug */,
+				E5F43CD71B632BE5000D2AB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5F43CD81B632BE5000D2AB8 /* Build configuration list for PBXNativeTarget "StockDetective" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5F43CD91B632BE5000D2AB8 /* Debug */,
+				E5F43CDA1B632BE5000D2AB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5F43CDB1B632BE5000D2AB8 /* Build configuration list for PBXNativeTarget "StockDetectiveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5F43CDC1B632BE5000D2AB8 /* Debug */,
+				E5F43CDD1B632BE5000D2AB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E5F43CB31B632BE5000D2AB8 /* Project object */;
+}
