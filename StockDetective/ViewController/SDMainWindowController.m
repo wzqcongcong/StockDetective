@@ -12,7 +12,8 @@
 
 @interface SDMainWindowController ()
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *stockCode;
+
 @property (nonatomic, strong) NSArray *legend;
 @property (nonatomic, strong) NSArray *series;
 @property (nonatomic, strong) NSArray *values;
@@ -70,12 +71,13 @@
     self.graphView.showMouseOverLineX = YES;
 }
 
-- (void)updateViewWithData:(NSData *)data
+- (void)updateViewWithStockCode:(NSString *)stockCode data:(NSData *)data
 {
     if (!data) {
         return;
     }
 
+    self.stockCode = stockCode;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self parseData:data];
         [self.graphView draw];
@@ -115,9 +117,8 @@
                     bigForce,
                     mediumForce,
                     littleForce];
-    self.title = array[0];
-    
-    self.graphView.info = self.title;
+
+    self.graphView.info = [NSString stringWithFormat:@"%@ %@", self.stockCode, array[0]];
 }
 
 #pragma mark - graph view delegate

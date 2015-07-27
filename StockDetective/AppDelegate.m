@@ -28,14 +28,14 @@
     [self.mainWindowController showWindow:self];
     [self.mainWindowController.window makeKeyAndOrderFront:self];
 
-    self.stockCode = @"000001";
+    self.stockCode = @"大盘"; // 指定具体股票时这里需要修改成相应的股票代码，例如，中国平安：000001
 
     self.refreshDataTaskTimer = [NSTimer scheduledTimerWithTimeInterval:5
                                                                  target:self
                                                                selector:@selector(doRefreshDataTask)
                                                                userInfo:nil
                                                                 repeats:YES];
-    [self.refreshDataTaskTimer fire];
+    [self.refreshDataTaskTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1]];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -60,7 +60,7 @@
         [refreshDataTask refreshDataTask:TaskTypeRealtime
                                stockCode:self.stockCode
                        completionHandler:^(NSData *data) {
-                           [self.mainWindowController updateViewWithData:data];
+                           [self.mainWindowController updateViewWithStockCode:self.stockCode data:data];
                        }];
     });
 }

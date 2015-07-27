@@ -10,6 +10,6 @@
 
 @interface SDMainWindowController : NSWindowController
 
-- (void)updateViewWithData:(NSData *)data;
+- (void)updateViewWithStockCode:(NSString *)stockCode data:(NSData *)data;
 
 @end
