@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1787E72DD526A2A226460C1C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A93A3B282686A0A247209F /* libPods.a */; };
+		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5F43CC21B632BE5000D2AB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */; };
 		E5F43CC41B632BE5000D2AB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC31B632BE5000D2AB8 /* main.m */; };
 		E5F43CC61B632BE5000D2AB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
@@ -63,6 +64,8 @@
 /* Begin PBXFileReference section */
 		49A93A3B282686A0A247209F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E5A6CC3C1B6C96C100FD6565 /* SDColorBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDColorBackgroundView.h; path = View/SDColorBackgroundView.h; sourceTree = "<group>"; };
+		E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDColorBackgroundView.m; path = View/SDColorBackgroundView.m; sourceTree = "<group>"; };
 		E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDetective.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F43CBF1B632BE5000D2AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5F43CC01B632BE5000D2AB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -113,15 +116,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E5A6CC3B1B6C969300FD6565 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E5A6CC3C1B6C96C100FD6565 /* SDColorBackgroundView.h */,
+				E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		E5F43CB21B632BE5000D2AB8 = {
 			isa = PBXGroup;
 			children = (
 				E5F43D5F1B638262000D2AB8 /* 3rdParty */,
 				E5F43CBD1B632BE5000D2AB8 /* StockDetective */,
 				E5F43CD11B632BE5000D2AB8 /* StockDetectiveTests */,
-				E5F43CBC1B632BE5000D2AB8 /* Products */,
 				EA4F27AFF5EDF99923C34D14 /* Pods */,
 				1BD36D656BDBD9F136BC38C2 /* Frameworks */,
+				E5F43CBC1B632BE5000D2AB8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +152,7 @@
 				E5F43CC01B632BE5000D2AB8 /* AppDelegate.h */,
 				E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */,
 				E5F43E191B638FF4000D2AB8 /* ViewController */,
+				E5A6CC3B1B6C969300FD6565 /* View */,
 				E5F43CDE1B6337BB000D2AB8 /* Task */,
 				E5F43CBE1B632BE5000D2AB8 /* Supporting Files */,
 			);
@@ -379,6 +392,7 @@
 				E5F43E261B63A9BC000D2AB8 /* SDGraphMarkerViewController.m in Sources */,
 				E5F43CC41B632BE5000D2AB8 /* main.m in Sources */,
 				E5F43CE11B63380D000D2AB8 /* SDRefreshDataTask.m in Sources */,
+				E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */,
 				E5F43CC21B632BE5000D2AB8 /* AppDelegate.m in Sources */,
 				E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */,
 			);
@@ -506,7 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = StockDetective/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(CONFIGURATION_BUILD_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -519,7 +533,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = StockDetective/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(CONFIGURATION_BUILD_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

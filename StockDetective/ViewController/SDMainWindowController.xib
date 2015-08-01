@@ -24,43 +24,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="SEY-Rw-TPA" userLabel="header">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="SEY-Rw-TPA" userLabel="header" customClass="SDColorBackgroundView">
                         <rect key="frame" x="0.0" y="452" width="800" height="48"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IhB-Ko-hTy">
-                                <rect key="frame" x="263" y="16" width="81" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stock Code:" id="ItU-Uo-CrI">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRY-Ks-vZd">
-                                <rect key="frame" x="350" y="13" width="100" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Swj-9n-wkG"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="大盘" drawsBackground="YES" id="i1V-8W-oIY">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <outlet property="delegate" destination="-2" id="LDF-SQ-Me6"/>
-                                </connections>
-                            </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-Og-7kU">
-                                <rect key="frame" x="578" y="9" width="43" height="29"/>
-                                <buttonCell key="cell" type="bevel" title="Go" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="elA-B4-LnM">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="btnManuallyRefreshDidClick:" target="-2" id="4Yp-d1-nDF"/>
-                                </connections>
-                            </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="nfn-EY-81D" userLabel="Type">
-                                <rect key="frame" x="460" y="9" width="86" height="29"/>
+                                <rect key="frame" x="240" y="9" width="104" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="JLc-WJ-Kyo"/>
+                                </constraints>
                                 <popUpButtonCell key="cell" type="bevel" title="Realtime" bezelStyle="regularSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="bT4-TG-hNS" id="PVm-bw-4jL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -72,33 +43,119 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRY-Ks-vZd">
+                                <rect key="frame" x="350" y="13" width="100" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Swj-9n-wkG"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="股票代码" bezelStyle="round" id="i1V-8W-oIY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="-2" id="LDF-SQ-Me6"/>
+                                </connections>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-Og-7kU" userLabel="Detect">
+                                <rect key="frame" x="456" y="9" width="104" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Fkd-Lk-ocy"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="gr5-M3-2bT"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="elA-B4-LnM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="btnManuallyRefreshDidClick:" target="-2" id="4Yp-d1-nDF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="nRY-Ks-vZd" secondAttribute="centerX" id="1ns-0Q-NuZ"/>
-                            <constraint firstItem="eoQ-Og-7kU" firstAttribute="leading" secondItem="nfn-EY-81D" secondAttribute="trailing" constant="36" id="8Zj-Jd-PJu"/>
+                            <constraint firstItem="nfn-EY-81D" firstAttribute="centerY" secondItem="nRY-Ks-vZd" secondAttribute="centerY" id="Djw-Mu-4WQ"/>
                             <constraint firstItem="nRY-Ks-vZd" firstAttribute="centerY" secondItem="nfn-EY-81D" secondAttribute="centerY" id="IbP-04-2CS"/>
+                            <constraint firstItem="nRY-Ks-vZd" firstAttribute="leading" secondItem="nfn-EY-81D" secondAttribute="trailing" constant="8" symbolic="YES" id="MkW-h6-Buw"/>
                             <constraint firstAttribute="height" constant="48" id="O7R-U6-MyA"/>
                             <constraint firstAttribute="centerY" secondItem="nRY-Ks-vZd" secondAttribute="centerY" id="bte-27-GYF"/>
-                            <constraint firstItem="IhB-Ko-hTy" firstAttribute="centerY" secondItem="nRY-Ks-vZd" secondAttribute="centerY" id="fnk-Nh-GZK"/>
-                            <constraint firstItem="nfn-EY-81D" firstAttribute="leading" secondItem="nRY-Ks-vZd" secondAttribute="trailing" constant="12" id="jXN-RP-9ZE"/>
+                            <constraint firstItem="eoQ-Og-7kU" firstAttribute="leading" secondItem="nRY-Ks-vZd" secondAttribute="trailing" constant="8" symbolic="YES" id="dxv-RI-LyF"/>
                             <constraint firstItem="nRY-Ks-vZd" firstAttribute="centerY" secondItem="eoQ-Og-7kU" secondAttribute="centerY" id="pqo-1f-Dyp"/>
-                            <constraint firstItem="nRY-Ks-vZd" firstAttribute="leading" secondItem="IhB-Ko-hTy" secondAttribute="trailing" constant="8" id="r2c-QX-rGU"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBackgroundColor">
+                                <color key="value" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdBorderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdCornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBorderColor">
+                                <color key="value" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="content" customClass="YBGraphView">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="452"/>
+                        <rect key="frame" x="0.0" y="48" width="800" height="404"/>
                         <connections>
                             <outlet property="dataSource" destination="-2" id="N6k-FP-rlS"/>
                             <outlet property="delegate" destination="-2" id="uUF-fh-7Gw"/>
                         </connections>
                     </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Up3-hX-THf" userLabel="footer" customClass="SDColorBackgroundView">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="48"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OGJ-Ff-Zyr" userLabel="info">
+                                <rect key="frame" x="18" y="16" width="78" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A股资金流向" id="2kq-la-DX4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="unF-e2-Qm7" userLabel="thanks">
+                                <rect key="frame" x="606" y="16" width="176" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Data by crawling 东方财富网" allowsEditingTextAttributes="YES" id="scT-BM-rQ3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="unF-e2-Qm7" secondAttribute="centerY" id="HwE-Am-viU"/>
+                            <constraint firstItem="OGJ-Ff-Zyr" firstAttribute="leading" secondItem="Up3-hX-THf" secondAttribute="leading" constant="20" symbolic="YES" id="e97-Sp-gQm"/>
+                            <constraint firstAttribute="centerY" secondItem="OGJ-Ff-Zyr" secondAttribute="centerY" id="hg8-KE-Uay"/>
+                            <constraint firstAttribute="height" constant="48" id="q9x-b6-xAL"/>
+                            <constraint firstAttribute="trailing" secondItem="unF-e2-Qm7" secondAttribute="trailing" constant="20" symbolic="YES" id="t85-ON-vTJ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBackgroundColor">
+                                <color key="value" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdBorderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdCornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBorderColor">
+                                <color key="value" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Up3-hX-THf" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="2aQ-Qd-eEJ"/>
                     <constraint firstItem="awK-z4-DP8" firstAttribute="top" secondItem="SEY-Rw-TPA" secondAttribute="bottom" id="A1W-d2-yp1"/>
                     <constraint firstItem="SEY-Rw-TPA" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="Edq-Bb-EDO"/>
                     <constraint firstItem="SEY-Rw-TPA" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="H4X-Ua-p8U"/>
-                    <constraint firstAttribute="bottom" secondItem="awK-z4-DP8" secondAttribute="bottom" id="h6j-Ln-KFP"/>
+                    <constraint firstItem="Up3-hX-THf" firstAttribute="top" secondItem="awK-z4-DP8" secondAttribute="bottom" id="h3k-lM-rLX"/>
                     <constraint firstAttribute="trailing" secondItem="awK-z4-DP8" secondAttribute="trailing" id="jgs-lr-Ytg"/>
+                    <constraint firstAttribute="bottom" secondItem="Up3-hX-THf" secondAttribute="bottom" id="k0t-Um-KZB"/>
+                    <constraint firstAttribute="trailing" secondItem="Up3-hX-THf" secondAttribute="trailing" id="rBV-3d-6HL"/>
                     <constraint firstItem="awK-z4-DP8" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="w7o-or-beb"/>
                     <constraint firstAttribute="trailing" secondItem="SEY-Rw-TPA" secondAttribute="trailing" id="yKC-tU-bNo"/>
                 </constraints>
@@ -109,4 +166,7 @@
             <point key="canvasLocation" x="464" y="224"/>
         </window>
     </objects>
+    <resources>
+        <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
+    </resources>
 </document>
