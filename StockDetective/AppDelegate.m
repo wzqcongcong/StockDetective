@@ -33,10 +33,14 @@
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
-    [self.mainWindowController showWindow:self];
-    [self.mainWindowController.window makeKeyAndOrderFront:self];
+    if (!self.mainWindowController.window.isVisible &&
+        !self.mainWindowController.window.isMiniaturized) {
 
-    [self.mainWindowController startStockRefresher];
+        [self.mainWindowController showWindow:self];
+        [self.mainWindowController.window makeKeyAndOrderFront:self];
+
+        [self.mainWindowController startStockRefresher];
+    }
 
     return YES;
 }

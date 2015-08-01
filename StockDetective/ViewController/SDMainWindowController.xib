@@ -6,7 +6,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SDMainWindowController">
             <connections>
+                <outlet property="btnManuallyRefresh" destination="eoQ-Og-7kU" id="7Rk-4W-KNo"/>
                 <outlet property="graphView" destination="awK-z4-DP8" id="mgk-kO-JKQ"/>
+                <outlet property="labelStockCode" destination="nRY-Ks-vZd" id="7wC-hy-IuI"/>
+                <outlet property="popupGraphType" destination="nfn-EY-81D" id="S8o-Pk-Afs"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -23,8 +26,63 @@
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="SEY-Rw-TPA" userLabel="header">
                         <rect key="frame" x="0.0" y="452" width="800" height="48"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IhB-Ko-hTy">
+                                <rect key="frame" x="263" y="16" width="81" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stock Code:" id="ItU-Uo-CrI">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRY-Ks-vZd">
+                                <rect key="frame" x="350" y="13" width="100" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Swj-9n-wkG"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="大盘" drawsBackground="YES" id="i1V-8W-oIY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="-2" id="LDF-SQ-Me6"/>
+                                </connections>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-Og-7kU">
+                                <rect key="frame" x="578" y="9" width="43" height="29"/>
+                                <buttonCell key="cell" type="bevel" title="Go" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="elA-B4-LnM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="btnManuallyRefreshDidClick:" target="-2" id="4Yp-d1-nDF"/>
+                                </connections>
+                            </button>
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="nfn-EY-81D" userLabel="Type">
+                                <rect key="frame" x="460" y="9" width="86" height="29"/>
+                                <popUpButtonCell key="cell" type="bevel" title="Realtime" bezelStyle="regularSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="bT4-TG-hNS" id="PVm-bw-4jL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="2zt-J4-9bT">
+                                        <items>
+                                            <menuItem title="Realtime" state="on" id="bT4-TG-hNS" userLabel="Realtime"/>
+                                            <menuItem title="History" id="YAW-Jq-Xwn"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                        </subviews>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="nRY-Ks-vZd" secondAttribute="centerX" id="1ns-0Q-NuZ"/>
+                            <constraint firstItem="eoQ-Og-7kU" firstAttribute="leading" secondItem="nfn-EY-81D" secondAttribute="trailing" constant="36" id="8Zj-Jd-PJu"/>
+                            <constraint firstItem="nRY-Ks-vZd" firstAttribute="centerY" secondItem="nfn-EY-81D" secondAttribute="centerY" id="IbP-04-2CS"/>
                             <constraint firstAttribute="height" constant="48" id="O7R-U6-MyA"/>
+                            <constraint firstAttribute="centerY" secondItem="nRY-Ks-vZd" secondAttribute="centerY" id="bte-27-GYF"/>
+                            <constraint firstItem="IhB-Ko-hTy" firstAttribute="centerY" secondItem="nRY-Ks-vZd" secondAttribute="centerY" id="fnk-Nh-GZK"/>
+                            <constraint firstItem="nfn-EY-81D" firstAttribute="leading" secondItem="nRY-Ks-vZd" secondAttribute="trailing" constant="12" id="jXN-RP-9ZE"/>
+                            <constraint firstItem="nRY-Ks-vZd" firstAttribute="centerY" secondItem="eoQ-Og-7kU" secondAttribute="centerY" id="pqo-1f-Dyp"/>
+                            <constraint firstItem="nRY-Ks-vZd" firstAttribute="leading" secondItem="IhB-Ko-hTy" secondAttribute="trailing" constant="8" id="r2c-QX-rGU"/>
                         </constraints>
                     </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="content" customClass="YBGraphView">

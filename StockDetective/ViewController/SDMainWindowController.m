@@ -18,6 +18,7 @@ static NSString * const kStockCodeDaPan     = @"大盘";
 @property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
 
 @property (nonatomic, strong) NSString *stockCode;
+@property (nonatomic, assign) TaskType queryTaskType;
 
 @property (nonatomic, strong) NSString *dataUnit;
 @property (nonatomic, strong) NSArray *legend;
@@ -25,6 +26,9 @@ static NSString * const kStockCodeDaPan     = @"大盘";
 @property (nonatomic, strong) NSArray *values;
 
 @property (weak) IBOutlet YBGraphView *graphView;
+@property (weak) IBOutlet NSTextField *labelStockCode;
+@property (weak) IBOutlet NSPopUpButton *popupGraphType;
+@property (weak) IBOutlet NSButton *btnManuallyRefresh;
 
 @end
 
@@ -34,7 +38,8 @@ static NSString * const kStockCodeDaPan     = @"大盘";
 {
     self = [super initWithWindowNibName:@"SDMainWindowController"];
     if (self) {
-
+        _stockCode = kStockCodeDaPan; // 指定具体股票时这里需要修改成相应的股票代码，例如，中国平安：000001
+        _queryTaskType = TaskTypeRealtime;
     }
     return self;
 }
@@ -85,7 +90,9 @@ static NSString * const kStockCodeDaPan     = @"大盘";
 
 - (void)startStockRefresher
 {
-    self.stockCode = kStockCodeDaPan; // 指定具体股票时这里需要修改成相应的股票代码，例如，中国平安：000001
+    if (self.refreshDataTaskTimer.isValid) {
+        return;
+    }
 
     self.refreshDataTaskTimer = [NSTimer scheduledTimerWithTimeInterval:5
                                                                  target:self
@@ -98,7 +105,6 @@ static NSString * const kStockCodeDaPan     = @"大盘";
 - (void)stopStockRefresher
 {
     [self.refreshDataTaskTimer invalidate];
-    self.refreshDataTaskTimer = nil;
 }
 
 - (void)doRefreshDataTask
@@ -106,7 +112,7 @@ static NSString * const kStockCodeDaPan     = @"大盘";
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
         refreshDataTask.taskManager = self;
-        [refreshDataTask refreshDataTask:TaskTypeRealtime
+        [refreshDataTask refreshDataTask:self.queryTaskType
                                stockCode:self.stockCode
                        completionHandler:^(NSData *data) {
                            [self updateViewWithData:data];
@@ -161,6 +167,27 @@ static NSString * const kStockCodeDaPan     = @"大盘";
                     littleForce];
 
     self.graphView.info = [NSString stringWithFormat:@"%@ %@", self.stockCode, array[0]];
+}
+
+#pragma mark - UI action
+
+- (IBAction)btnManuallyRefreshDidClick:(id)sender {
+    NSLog(@"%@ %@", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
+
+    NSString *inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.stockCode = (inputStockCode.length == 0) ? kStockCodeDaPan : inputStockCode;
+
+    self.queryTaskType = (self.popupGraphType.indexOfSelectedItem == 0) ? TaskTypeRealtime : TaskTypeHistory;
+
+    [self stopStockRefresher];
+    [self startStockRefresher];
+}
+
+#pragma mark - text field delegate
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj
+{
+    [self btnManuallyRefreshDidClick:self.btnManuallyRefresh];
 }
 
 #pragma mark - graph view delegate
