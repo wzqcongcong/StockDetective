@@ -9,13 +9,11 @@
 @import AFNetworking;
 #import "SDRefreshDataTask.h"
 
-
 static NSString * const kQueryDaPanRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/index.xml";
 static NSString * const kQueryDaPanHistoryFormatURL = @"http://s1.dfcfw.com/History/index.xml";
 
 static NSString * const kQueryRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/%@.xml";
 static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjlx/graph/his_%@.html";
-
 
 @interface SDRefreshDataTask ()
 

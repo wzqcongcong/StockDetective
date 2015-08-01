@@ -8,19 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef NS_ENUM(NSUInteger, TaskType) {
     TaskTypeRealtime,
     TaskTypeHistory,
 };
-
 
 @protocol SDRefreshDataTaskManagerProtocol <NSObject>
 
 @property (atomic, strong) NSDate *lastRefreshedByDataTaskStartDate; // renewed when a task successfully refresh the data
 
 @end
-
 
 @interface SDRefreshDataTask : NSObject
 
