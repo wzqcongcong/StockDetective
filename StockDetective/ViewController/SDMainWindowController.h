@@ -7,9 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SDRefreshDataTask.h"
 
-@interface SDMainWindowController : NSWindowController
+@interface SDMainWindowController : NSWindowController <NSWindowDelegate, SDRefreshDataTaskManagerProtocol>
 
-- (void)updateViewWithStockCode:(NSString *)stockCode data:(NSData *)data;
+- (void)startStockRefresher;
+- (void)stopStockRefresher;
+
+@property (atomic, strong) NSDate *lastRefreshedByDataTaskStartDate;
 
 @end

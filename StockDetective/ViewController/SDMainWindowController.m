@@ -10,10 +10,16 @@
 #import "SDMainWindowController.h"
 #import "SDGraphMarkerViewController.h"
 
+static NSString * const kStockDataUnitWan   = @"万";
+static NSString * const kStockCodeDaPan     = @"大盘";
+
 @interface SDMainWindowController ()
+
+@property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
 
 @property (nonatomic, strong) NSString *stockCode;
 
+@property (nonatomic, strong) NSString *dataUnit;
 @property (nonatomic, strong) NSArray *legend;
 @property (nonatomic, strong) NSArray *series;
 @property (nonatomic, strong) NSArray *values;
@@ -44,8 +50,14 @@
     [self setupGraphConfig];
 }
 
+- (void)windowWillClose:(NSNotification *)notification
+{
+    [self stopStockRefresher];
+}
+
 - (void)setupGraphConfig
 {
+    self.dataUnit = kStockDataUnitWan;
     self.legend = @[@"主力",
                     @"巨单",
                     @"大单",
@@ -71,13 +83,43 @@
     self.graphView.showMouseOverLineX = YES;
 }
 
-- (void)updateViewWithStockCode:(NSString *)stockCode data:(NSData *)data
+- (void)startStockRefresher
+{
+    self.stockCode = kStockCodeDaPan; // 指定具体股票时这里需要修改成相应的股票代码，例如，中国平安：000001
+
+    self.refreshDataTaskTimer = [NSTimer scheduledTimerWithTimeInterval:5
+                                                                 target:self
+                                                               selector:@selector(doRefreshDataTask)
+                                                               userInfo:nil
+                                                                repeats:YES];
+    [self.refreshDataTaskTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+}
+
+- (void)stopStockRefresher
+{
+    [self.refreshDataTaskTimer invalidate];
+    self.refreshDataTaskTimer = nil;
+}
+
+- (void)doRefreshDataTask
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
+        refreshDataTask.taskManager = self;
+        [refreshDataTask refreshDataTask:TaskTypeRealtime
+                               stockCode:self.stockCode
+                       completionHandler:^(NSData *data) {
+                           [self updateViewWithData:data];
+                       }];
+    });
+}
+
+- (void)updateViewWithData:(NSData *)data
 {
     if (!data) {
         return;
     }
 
-    self.stockCode = stockCode;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self parseData:data];
         [self.graphView draw];
@@ -141,13 +183,13 @@
 }
 
 - (NSString *)graphView:(YBGraphView *)graph markerTitleForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
-    return [NSString stringWithFormat:@"%ld M", [[(NSArray *)(self.values[graphIndex]) objectAtIndex:elementIndex] integerValue]];
+    return [NSString stringWithFormat:@"%ld %@", [[(NSArray *)(self.values[graphIndex]) objectAtIndex:elementIndex] integerValue], self.dataUnit];
 }
 
 - (NSView *)graphView:(YBGraphView *)graph markerViewForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
     SDGraphMarkerViewController *graphMarkerViewController = [[SDGraphMarkerViewController alloc] init];
     graphMarkerViewController.view.hidden = NO;
-    graphMarkerViewController.label.attributedStringValue = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld M", [[(NSArray *)(self.values[graphIndex]) objectAtIndex:elementIndex] integerValue]]
+    graphMarkerViewController.label.attributedStringValue = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld %@", [[(NSArray *)(self.values[graphIndex]) objectAtIndex:elementIndex] integerValue], self.dataUnit]
                                                                                             attributes:@{NSForegroundColorAttributeName: [YBGraphView colorByIndex:graphIndex]}];
     return graphMarkerViewController.view;
 }
