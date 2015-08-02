@@ -8,6 +8,7 @@
 
 @import AFNetworking;
 #import "SDRefreshDataTask.h"
+#import "SDStockInfo.h"
 
 static NSString * const kQueryDaPanRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/index.xml";
 static NSString * const kQueryDaPanHistoryFormatURL = @"http://s1.dfcfw.com/History/index.xml";
@@ -42,7 +43,7 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
         switch (taskType) {
             case TaskTypeRealtime:
             {
-                if ([stockCode integerValue] == 0) { // 大盘
+                if ([stockCode isEqualToString:kStockCodeDaPan]) { // 大盘
                     url = [NSURL URLWithString:kQueryDaPanRealtimeFormatURL];
                 } else {
                     url = [NSURL URLWithString:[NSString stringWithFormat:kQueryRealtimeFormatURL, stockCode]];
@@ -51,7 +52,7 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
             }
             case TaskTypeHistory:
             {
-                if ([stockCode integerValue] == 0) { // 大盘
+                if ([stockCode isEqualToString:kStockCodeDaPan]) { // 大盘
                     url = [NSURL URLWithString:kQueryDaPanHistoryFormatURL];
                 } else {
                     url = [NSURL URLWithString:[NSString stringWithFormat:kQueryHistoryFormatURL, stockCode]];

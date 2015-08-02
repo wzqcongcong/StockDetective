@@ -9,14 +9,15 @@
 @import Yuba;
 #import "SDMainWindowController.h"
 #import "SDGraphMarkerViewController.h"
+#import "SDCommonFetcher.h"
 
 static NSString * const kStockDataUnitWan   = @"万";
-static NSString * const kStockCodeDaPan     = @"大盘";
 
 @interface SDMainWindowController ()
 
 @property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
 
+@property (nonatomic, strong) NSString *stockDisplayInfo;
 @property (nonatomic, strong) NSString *stockCode;
 @property (nonatomic, assign) TaskType queryTaskType;
 
@@ -39,6 +40,7 @@ static NSString * const kStockCodeDaPan     = @"大盘";
     self = [super initWithWindowNibName:@"SDMainWindowController"];
     if (self) {
         _stockCode = kStockCodeDaPan; // 指定具体股票时这里需要修改成相应的股票代码，例如，中国平安：000001
+        _stockDisplayInfo = _stockCode;
         _queryTaskType = TaskTypeRealtime;
     }
     return self;
@@ -166,7 +168,7 @@ static NSString * const kStockCodeDaPan     = @"大盘";
                     mediumForce,
                     littleForce];
 
-    self.graphView.info = [NSString stringWithFormat:@"%@ %@", self.stockCode, array[0]];
+    self.graphView.info = [NSString stringWithFormat:@"%@ [%@]", self.stockDisplayInfo, array[0]];
 }
 
 #pragma mark - UI action
@@ -179,8 +181,23 @@ static NSString * const kStockCodeDaPan     = @"大盘";
 
     self.queryTaskType = (self.popupGraphType.indexOfSelectedItem == 0) ? TaskTypeRealtime : TaskTypeHistory;
 
-    [self stopStockRefresher];
-    [self startStockRefresher];
+    if ([self.stockCode isEqualToString:kStockCodeDaPan]) {
+        self.stockDisplayInfo = self.stockCode;
+
+        [self stopStockRefresher];
+        [self startStockRefresher];
+
+    } else {
+        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:self.stockCode
+                                                      completionHandler:^(SDStockInfo *stockInfo) {
+                                                          self.stockDisplayInfo = [stockInfo stockShortDisplayInfo];
+
+                                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                                              [self stopStockRefresher];
+                                                              [self startStockRefresher];
+                                                          });
+                                                      }];
+    }
 }
 
 #pragma mark - text field delegate

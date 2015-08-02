@@ -1,0 +1,21 @@
+//
+//  SDCommonFetcher.h
+//  StockDetective
+//
+//  Created by GoKu on 8/2/15.
+//  Copyright (c) 2015 GoKuStudio. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "SDStockInfo.h"
+
+#define kNSGB18030StringEncoding    CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+
+@interface SDCommonFetcher : NSObject
+
++ (SDCommonFetcher *)sharedSDCommonFetcher; // NS_DESIGNATED_INITIALIZER
+
+- (void)fetchStockInfoWithCode:(NSString *)code
+             completionHandler:(void (^)(SDStockInfo *stockInfo))completionHandler;
+
+@end
