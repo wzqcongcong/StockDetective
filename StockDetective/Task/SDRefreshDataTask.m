@@ -35,7 +35,8 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
 
 - (void)refreshDataTask:(TaskType)taskType
               stockCode:(NSString *)stockCode
-      completionHandler:(void (^)(NSData *))completionHandler
+         successHandler:(void (^)(NSData *data))successHandler
+         failureHandler:(void (^)(NSError *error))failureHandler
 {
     if (self.taskManager) {
         NSURL *url;
@@ -66,26 +67,31 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
         self.refreshDataTaskStartDate = [NSDate date];
 
         [self fetchDataOfURL:url
-           completionHandler:^(NSData *data) {
-               // if manager has already refreshed by another newer task (by network factor), ignore this old task.
-               if (!self.taskManager.lastRefreshedByDataTaskStartDate ||
-                   ([self.taskManager.lastRefreshedByDataTaskStartDate compare:self.refreshDataTaskStartDate] == NSOrderedAscending)) {
+              successHandler:^(NSData *data) {
+                  // if manager has already refreshed by another newer task (by network factor), ignore this old task.
+                  if (!self.taskManager.lastRefreshedByDataTaskStartDate ||
+                      ([self.taskManager.lastRefreshedByDataTaskStartDate compare:self.refreshDataTaskStartDate] == NSOrderedAscending)) {
 
-                   self.taskManager.lastRefreshedByDataTaskStartDate = self.refreshDataTaskStartDate;
-                   if (completionHandler) {
-                       completionHandler(data);
-                   }
-                   NSLog(@"data refreshed");
+                      self.taskManager.lastRefreshedByDataTaskStartDate = self.refreshDataTaskStartDate;
+                      if (successHandler) {
+                          successHandler(data);
+                      }
+                      NSLog(@"data refreshed");
 
-               } else {
-                   NSLog(@"ignore old task");
-               }
-           }];
+                  } else {
+                      NSLog(@"ignore old task");
+                  }
+              } failureHandler:^(NSError *error) {
+                  if (failureHandler) {
+                      failureHandler(error);
+                  }
+              }];
     }
 }
 
 - (void)fetchDataOfURL:(NSURL *)url
-     completionHandler:(void (^)(NSData *data))completionHandler
+        successHandler:(void (^)(NSData *data))successHandler
+        failureHandler:(void (^)(NSError *error))failureHandler
 {
     if (!url) {
         return;
@@ -103,9 +109,9 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
                                                 completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                                                     if (error) {
-                                                        NSLog(@"Error: %@", error);
+                                                        failureHandler(error);
                                                     } else {
-                                                        completionHandler((NSData *)responseObject);
+                                                        successHandler((NSData *)responseObject);
                                                     }
                                                 }];
     [dataTask resume];

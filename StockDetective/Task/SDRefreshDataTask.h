@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, TaskType) {
 
 - (void)refreshDataTask:(TaskType)taskType
               stockCode:(NSString *)stockCode
-      completionHandler:(void (^)(NSData *data))completionHandler;
+         successHandler:(void (^)(NSData *data))successHandler
+         failureHandler:(void (^)(NSError *error))failureHandler;
 
 @end

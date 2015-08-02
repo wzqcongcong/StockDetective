@@ -116,9 +116,14 @@ static NSString * const kStockDataUnitWan   = @"万";
         refreshDataTask.taskManager = self;
         [refreshDataTask refreshDataTask:self.queryTaskType
                                stockCode:self.stockCode
-                       completionHandler:^(NSData *data) {
-                           [self updateViewWithData:data];
-                       }];
+                          successHandler:^(NSData *data) {
+                              [self updateViewWithData:data];
+                          }
+                          failureHandler:^(NSError *error) {
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  [self showErrorMessage:@"refresh data error"];
+                              });
+                          }];
     });
 }
 
@@ -173,7 +178,14 @@ static NSString * const kStockDataUnitWan   = @"万";
 
 #pragma mark - UI action
 
+- (void)showErrorMessage:(NSString *)errorMessage
+{
+    NSLog(@"%@", errorMessage);
+}
+
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
+    [self stopStockRefresher];
+
     NSLog(@"%@ %@", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
 
     NSString *inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -184,19 +196,24 @@ static NSString * const kStockDataUnitWan   = @"万";
     if ([self.stockCode isEqualToString:kStockCodeDaPan]) {
         self.stockDisplayInfo = self.stockCode;
 
-        [self stopStockRefresher];
         [self startStockRefresher];
 
     } else {
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:self.stockCode
-                                                      completionHandler:^(SDStockInfo *stockInfo) {
-                                                          self.stockDisplayInfo = [stockInfo stockShortDisplayInfo];
+                                                         successHandler:^(SDStockInfo *stockInfo) {
+                                                             self.stockDisplayInfo = [stockInfo stockShortDisplayInfo];
+                                                             // update valid stock code after query
+                                                             self.stockCode = stockInfo.stockCode;
 
-                                                          dispatch_async(dispatch_get_main_queue(), ^{
-                                                              [self stopStockRefresher];
-                                                              [self startStockRefresher];
-                                                          });
-                                                      }];
+                                                             dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 [self startStockRefresher];
+                                                             });
+                                                         }
+                                                         failureHandler:^(NSError *error) {
+                                                             dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 [self showErrorMessage:@"fetch stock info error"];
+                                                             });
+                                                         }];
     }
 }
 

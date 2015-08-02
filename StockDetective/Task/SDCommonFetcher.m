@@ -38,7 +38,8 @@ static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.co
 }
 
 - (void)fetchStockInfoWithCode:(NSString *)code
-             completionHandler:(void (^)(SDStockInfo *stockInfo))completionHandler
+                successHandler:(void (^)(SDStockInfo *stockInfo))successHandler
+                failureHandler:(void (^)(NSError *error))failureHandler;
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kFetchStockInfoFormatURL, code]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -46,7 +47,10 @@ static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.co
     NSURLSessionDataTask *dataTask = [self.sessionManager dataTaskWithRequest:request
                                                             completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                                                                 if (error) {
-                                                                    NSLog(@"Error: %@", error);
+                                                                    if (failureHandler) {
+                                                                        failureHandler(error);
+                                                                    }
+
                                                                 } else {
                                                                     NSString *string = [[NSString alloc] initWithData:(NSData *)responseObject encoding:kNSGB18030StringEncoding];
                                                                     NSRange range1 = [string rangeOfString:@"\""];
@@ -57,18 +61,32 @@ static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.co
                                                                         range2.location - range1.location > 1) {
 
                                                                         NSString *content = [string substringWithRange:NSMakeRange(range1.location+1, range2.location-range1.location-1)];
-                                                                        NSArray *array = [content componentsSeparatedByString:@","];
+                                                                        NSArray *arrayAll = [content componentsSeparatedByString:@";"];
 
-                                                                        if (array.count == 7) {
+                                                                        if (arrayAll.count > 0) {
+                                                                            NSArray *array = [(NSString *)(arrayAll.firstObject) componentsSeparatedByString:@","];
+
                                                                             SDStockInfo *stockInfo = [[SDStockInfo alloc] init];
-                                                                            stockInfo.stockCode = code;
+                                                                            stockInfo.stockCode = array[0];
                                                                             stockInfo.stockName = array[4];
                                                                             stockInfo.stockAbbr = array[3];
                                                                             stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kStockTypeSH : kStockTypeSZ;
 
                                                                             NSLog(@"%@", stockInfo);
 
-                                                                            completionHandler(stockInfo);
+                                                                            if (successHandler) {
+                                                                                successHandler(stockInfo);
+                                                                            }
+
+                                                                        } else {
+                                                                            if (failureHandler) {
+                                                                                failureHandler(nil);
+                                                                            }
+                                                                        }
+
+                                                                    } else {
+                                                                        if (failureHandler) {
+                                                                            failureHandler(nil);
                                                                         }
                                                                     }
                                                                 }

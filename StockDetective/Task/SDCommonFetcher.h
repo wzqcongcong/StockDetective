@@ -16,6 +16,7 @@
 + (SDCommonFetcher *)sharedSDCommonFetcher; // NS_DESIGNATED_INITIALIZER
 
 - (void)fetchStockInfoWithCode:(NSString *)code
-             completionHandler:(void (^)(SDStockInfo *stockInfo))completionHandler;
+                successHandler:(void (^)(SDStockInfo *stockInfo))successHandler
+                failureHandler:(void (^)(NSError *error))failureHandler;
 
 @end
