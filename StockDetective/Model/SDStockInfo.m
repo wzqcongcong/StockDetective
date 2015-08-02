@@ -12,12 +12,12 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (%@%@) [%@]", self.stockName, self.stockType, self.stockCode, self.stockAbbr];
+    return [NSString stringWithFormat:@"%@ (%@) [%@%@]", self.stockName, self.stockAbbr, self.stockType, self.stockCode];
 }
 
 - (NSString *)stockShortDisplayInfo
 {
-    return [NSString stringWithFormat:@"%@ (%@%@)", self.stockName, self.stockType, self.stockCode];
+    return [NSString stringWithFormat:@"%@ [%@%@]", self.stockName, self.stockType, self.stockCode];
 }
 
 @end

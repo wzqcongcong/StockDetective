@@ -8,9 +8,11 @@
 
 @import Yuba;
 #import "SDMainWindowController.h"
+#import "SDColorBackgroundView.h"
 #import "SDGraphMarkerViewController.h"
 #import "SDCommonFetcher.h"
 
+static NSUInteger kErrorBarDurationTime     = 3;
 static NSString * const kStockDataUnitWan   = @"万";
 
 @interface SDMainWindowController ()
@@ -30,6 +32,11 @@ static NSString * const kStockDataUnitWan   = @"万";
 @property (weak) IBOutlet NSTextField *labelStockCode;
 @property (weak) IBOutlet NSPopUpButton *popupGraphType;
 @property (weak) IBOutlet NSButton *btnManuallyRefresh;
+
+// error message bar
+@property (weak) IBOutlet SDColorBackgroundView *errorBar;
+@property (weak) IBOutlet NSLayoutConstraint *errorBarConstraint;
+@property (weak) IBOutlet NSButton *btnErrorMessage;
 
 @end
 
@@ -53,6 +60,8 @@ static NSString * const kStockDataUnitWan   = @"万";
 
     self.window.titlebarAppearsTransparent = YES;
     self.window.movableByWindowBackground = YES;
+
+    self.errorBarConstraint.constant = -self.errorBar.frame.size.height - 2;
 
     [self setupGraphConfig];
 }
@@ -121,7 +130,7 @@ static NSString * const kStockDataUnitWan   = @"万";
                           }
                           failureHandler:^(NSError *error) {
                               dispatch_async(dispatch_get_main_queue(), ^{
-                                  [self showErrorMessage:@"refresh data error"];
+                                  [self showErrorMessage:@"Failed to refresh stock data"];
                               });
                           }];
     });
@@ -173,7 +182,7 @@ static NSString * const kStockDataUnitWan   = @"万";
                     mediumForce,
                     littleForce];
 
-    self.graphView.info = [NSString stringWithFormat:@"%@ [%@]", self.stockDisplayInfo, array[0]];
+    self.graphView.info = [NSString stringWithFormat:@"%@ (%@)", self.stockDisplayInfo, array[0]];
 }
 
 #pragma mark - UI action
@@ -181,6 +190,12 @@ static NSString * const kStockDataUnitWan   = @"万";
 - (void)showErrorMessage:(NSString *)errorMessage
 {
     NSLog(@"%@", errorMessage);
+    self.btnErrorMessage.title = errorMessage;
+    self.errorBarConstraint.animator.constant = 0;
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kErrorBarDurationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.errorBarConstraint.animator.constant = -self.errorBar.frame.size.height - 2;
+    });
 }
 
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
@@ -211,7 +226,7 @@ static NSString * const kStockDataUnitWan   = @"万";
                                                          }
                                                          failureHandler:^(NSError *error) {
                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                 [self showErrorMessage:@"fetch stock info error"];
+                                                                 [self showErrorMessage:@"Failed to query stock info. Invalid stock code."];
                                                              });
                                                          }];
     }

@@ -67,7 +67,7 @@ static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.co
                                                                             NSArray *array = [(NSString *)(arrayAll.firstObject) componentsSeparatedByString:@","];
 
                                                                             SDStockInfo *stockInfo = [[SDStockInfo alloc] init];
-                                                                            stockInfo.stockCode = array[0];
+                                                                            stockInfo.stockCode = array[1];
                                                                             stockInfo.stockName = array[4];
                                                                             stockInfo.stockAbbr = array[3];
                                                                             stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kStockTypeSH : kStockTypeSZ;

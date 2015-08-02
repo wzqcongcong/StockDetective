@@ -6,7 +6,10 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SDMainWindowController">
             <connections>
+                <outlet property="btnErrorMessage" destination="xzx-JJ-OAc" id="e5d-hV-1D7"/>
                 <outlet property="btnManuallyRefresh" destination="eoQ-Og-7kU" id="7Rk-4W-KNo"/>
+                <outlet property="errorBar" destination="9Lj-LI-0c9" id="WZU-86-rfJ"/>
+                <outlet property="errorBarConstraint" destination="QYU-Yr-6EV" id="VRh-0f-aUe"/>
                 <outlet property="graphView" destination="awK-z4-DP8" id="mgk-kO-JKQ"/>
                 <outlet property="labelStockCode" destination="nRY-Ks-vZd" id="7wC-hy-IuI"/>
                 <outlet property="popupGraphType" destination="nfn-EY-81D" id="S8o-Pk-Afs"/>
@@ -97,6 +100,38 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="9Lj-LI-0c9" userLabel="error" customClass="SDColorBackgroundView">
+                        <rect key="frame" x="0.0" y="452" width="800" height="48"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="xzx-JJ-OAc" userLabel="message">
+                                <rect key="frame" x="382" y="0.0" width="36" height="48"/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSCaution" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="7Cx-BV-gzM">
+                                    <behavior key="behavior" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="2Pl-Nf-XDb"/>
+                            <constraint firstAttribute="centerX" secondItem="xzx-JJ-OAc" secondAttribute="centerX" id="7I3-WI-vxB"/>
+                            <constraint firstItem="xzx-JJ-OAc" firstAttribute="top" secondItem="9Lj-LI-0c9" secondAttribute="top" id="ZNI-6t-tRt"/>
+                            <constraint firstAttribute="bottom" secondItem="xzx-JJ-OAc" secondAttribute="bottom" id="h3Z-wx-DqZ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBackgroundColor">
+                                <color key="value" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdBorderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdCornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBorderColor">
+                                <color key="value" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="content" customClass="YBGraphView">
                         <rect key="frame" x="0.0" y="48" width="800" height="404"/>
                         <connections>
@@ -152,11 +187,14 @@
                     <constraint firstItem="awK-z4-DP8" firstAttribute="top" secondItem="SEY-Rw-TPA" secondAttribute="bottom" id="A1W-d2-yp1"/>
                     <constraint firstItem="SEY-Rw-TPA" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="Edq-Bb-EDO"/>
                     <constraint firstItem="SEY-Rw-TPA" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="H4X-Ua-p8U"/>
+                    <constraint firstItem="9Lj-LI-0c9" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="QYU-Yr-6EV"/>
                     <constraint firstItem="Up3-hX-THf" firstAttribute="top" secondItem="awK-z4-DP8" secondAttribute="bottom" id="h3k-lM-rLX"/>
                     <constraint firstAttribute="trailing" secondItem="awK-z4-DP8" secondAttribute="trailing" id="jgs-lr-Ytg"/>
                     <constraint firstAttribute="bottom" secondItem="Up3-hX-THf" secondAttribute="bottom" id="k0t-Um-KZB"/>
+                    <constraint firstAttribute="trailing" secondItem="9Lj-LI-0c9" secondAttribute="trailing" id="r4k-Jh-8zP"/>
                     <constraint firstAttribute="trailing" secondItem="Up3-hX-THf" secondAttribute="trailing" id="rBV-3d-6HL"/>
                     <constraint firstItem="awK-z4-DP8" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="w7o-or-beb"/>
+                    <constraint firstItem="9Lj-LI-0c9" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="wSj-AA-vdI"/>
                     <constraint firstAttribute="trailing" secondItem="SEY-Rw-TPA" secondAttribute="trailing" id="yKC-tU-bNo"/>
                 </constraints>
             </view>
@@ -165,8 +203,17 @@
             </connections>
             <point key="canvasLocation" x="464" y="224"/>
         </window>
+        <button verticalHuggingPriority="750" id="lDJ-9Y-oYf">
+            <rect key="frame" x="0.0" y="0.0" width="82" height="32"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4ZK-9e-4mh">
+                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                <font key="font" metaFont="system"/>
+            </buttonCell>
+        </button>
     </objects>
     <resources>
+        <image name="NSCaution" width="32" height="32"/>
         <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>
