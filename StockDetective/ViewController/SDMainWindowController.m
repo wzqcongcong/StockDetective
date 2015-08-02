@@ -18,6 +18,7 @@ static NSString * const kStockDataUnitWan   = @"万";
 @interface SDMainWindowController ()
 
 @property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
+@property (nonatomic, assign) BOOL forbiddenToRefresh;
 
 @property (nonatomic, strong) NSString *stockDisplayInfo;
 @property (nonatomic, strong) NSString *stockCode;
@@ -101,6 +102,10 @@ static NSString * const kStockDataUnitWan   = @"万";
 
 - (void)startStockRefresher
 {
+    if (self.forbiddenToRefresh) {
+        return;
+    }
+    
     if (self.refreshDataTaskTimer.isValid) {
         return;
     }
@@ -211,6 +216,7 @@ static NSString * const kStockDataUnitWan   = @"万";
     if ([self.stockCode isEqualToString:kStockCodeDaPan]) {
         self.stockDisplayInfo = self.stockCode;
 
+        self.forbiddenToRefresh = NO;
         [self startStockRefresher];
 
     } else {
@@ -221,11 +227,13 @@ static NSString * const kStockDataUnitWan   = @"万";
                                                              self.stockCode = stockInfo.stockCode;
 
                                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 self.forbiddenToRefresh = NO;
                                                                  [self startStockRefresher];
                                                              });
                                                          }
                                                          failureHandler:^(NSError *error) {
                                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 self.forbiddenToRefresh = YES;
                                                                  [self showErrorMessage:@"Failed to query stock info. Invalid stock code."];
                                                              });
                                                          }];
