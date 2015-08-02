@@ -32,7 +32,7 @@
                         <rect key="frame" x="0.0" y="452" width="800" height="48"/>
                         <subviews>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="nfn-EY-81D" userLabel="Type">
-                                <rect key="frame" x="240" y="9" width="104" height="29"/>
+                                <rect key="frame" x="210" y="9" width="104" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="JLc-WJ-Kyo"/>
                                 </constraints>
@@ -48,11 +48,11 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRY-Ks-vZd">
-                                <rect key="frame" x="350" y="13" width="100" height="22"/>
+                                <rect key="frame" x="320" y="13" width="160" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Swj-9n-wkG"/>
+                                    <constraint firstAttribute="width" constant="160" id="Swj-9n-wkG"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" placeholderString="股票代码" bezelStyle="round" id="i1V-8W-oIY">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" placeholderString="股票代码 或 拼音缩写" bezelStyle="round" id="i1V-8W-oIY">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -62,7 +62,7 @@
                                 </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="eoQ-Og-7kU" userLabel="Detect">
-                                <rect key="frame" x="456" y="9" width="104" height="29"/>
+                                <rect key="frame" x="486" y="9" width="104" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Fkd-Lk-ocy"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="gr5-M3-2bT"/>
