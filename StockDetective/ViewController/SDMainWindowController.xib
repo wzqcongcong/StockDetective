@@ -14,6 +14,7 @@
                 <outlet property="headerBar" destination="SEY-Rw-TPA" id="Loj-LL-Yy3"/>
                 <outlet property="labelStockCode" destination="nRY-Ks-vZd" id="7wC-hy-IuI"/>
                 <outlet property="popupGraphType" destination="nfn-EY-81D" id="S8o-Pk-Afs"/>
+                <outlet property="progressForQuery" destination="XAH-8z-U5w" id="OeB-2y-Onk"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -70,20 +71,27 @@
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="elA-B4-LnM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">r</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="btnManuallyRefreshDidClick:" target="-2" id="4Yp-d1-nDF"/>
                                 </connections>
                             </button>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="XAH-8z-U5w">
+                                <rect key="frame" x="530" y="16" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="nRY-Ks-vZd" secondAttribute="centerX" id="1ns-0Q-NuZ"/>
                             <constraint firstItem="nfn-EY-81D" firstAttribute="centerY" secondItem="nRY-Ks-vZd" secondAttribute="centerY" id="Djw-Mu-4WQ"/>
+                            <constraint firstItem="XAH-8z-U5w" firstAttribute="centerY" secondItem="eoQ-Og-7kU" secondAttribute="centerY" id="HpF-B8-j2O"/>
                             <constraint firstItem="nRY-Ks-vZd" firstAttribute="centerY" secondItem="nfn-EY-81D" secondAttribute="centerY" id="IbP-04-2CS"/>
                             <constraint firstItem="nRY-Ks-vZd" firstAttribute="leading" secondItem="nfn-EY-81D" secondAttribute="trailing" constant="8" symbolic="YES" id="MkW-h6-Buw"/>
                             <constraint firstAttribute="height" constant="48" id="O7R-U6-MyA"/>
                             <constraint firstAttribute="centerY" secondItem="nRY-Ks-vZd" secondAttribute="centerY" id="bte-27-GYF"/>
                             <constraint firstItem="eoQ-Og-7kU" firstAttribute="leading" secondItem="nRY-Ks-vZd" secondAttribute="trailing" constant="8" symbolic="YES" id="dxv-RI-LyF"/>
+                            <constraint firstItem="XAH-8z-U5w" firstAttribute="centerX" secondItem="eoQ-Og-7kU" secondAttribute="centerX" id="eCu-5d-cLm"/>
                             <constraint firstItem="nRY-Ks-vZd" firstAttribute="centerY" secondItem="eoQ-Og-7kU" secondAttribute="centerY" id="pqo-1f-Dyp"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

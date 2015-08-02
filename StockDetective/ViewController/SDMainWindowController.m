@@ -34,6 +34,7 @@ static NSString * const kStockDataUnitWan   = @"万";
 @property (weak) IBOutlet NSTextField *labelStockCode;
 @property (weak) IBOutlet NSPopUpButton *popupGraphType;
 @property (weak) IBOutlet NSButton *btnManuallyRefresh;
+@property (weak) IBOutlet NSProgressIndicator *progressForQuery;
 
 // graph
 @property (weak) IBOutlet YBGraphView *graphView;
@@ -129,6 +130,8 @@ static NSString * const kStockDataUnitWan   = @"万";
 
 - (void)doRefreshDataTask
 {
+    [self busyWithQuery:YES];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
         refreshDataTask.taskManager = self;
@@ -139,6 +142,7 @@ static NSString * const kStockDataUnitWan   = @"万";
                           }
                           failureHandler:^(NSError *error) {
                               dispatch_async(dispatch_get_main_queue(), ^{
+                                  [self busyWithQuery:NO];
                                   [self showErrorMessage:@"Failed to refresh stock data"];
                               });
                           }];
@@ -152,6 +156,8 @@ static NSString * const kStockDataUnitWan   = @"万";
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self busyWithQuery:NO];
+
         [self parseData:data];
         [self.graphView draw];
     });
@@ -196,18 +202,6 @@ static NSString * const kStockDataUnitWan   = @"万";
 
 #pragma mark - UI action
 
-- (void)showErrorMessage:(NSString *)errorMessage
-{
-    NSLog(@"%@", errorMessage);
-
-    self.btnErrorMessage.title = [@" " stringByAppendingString:errorMessage];
-    self.errorBarConstraint.animator.constant = 0;
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kErrorBarDurationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.errorBarConstraint.animator.constant = -self.errorBar.frame.size.height - 2;
-    });
-}
-
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
     [self stopStockRefresher];
 
@@ -225,6 +219,9 @@ static NSString * const kStockDataUnitWan   = @"万";
         [self startStockRefresher];
 
     } else {
+
+        [self busyWithQuery:YES];
+
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:self.stockCode
                                                          successHandler:^(SDStockInfo *stockInfo) {
                                                              self.stockDisplayInfo = [stockInfo stockShortDisplayInfo];
@@ -238,11 +235,37 @@ static NSString * const kStockDataUnitWan   = @"万";
                                                          }
                                                          failureHandler:^(NSError *error) {
                                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 [self busyWithQuery:NO];
+
                                                                  self.forbiddenToRefresh = YES;
                                                                  [self showErrorMessage:@"Failed to query stock info. Invalid stock code."];
                                                              });
                                                          }];
     }
+}
+
+- (void)busyWithQuery:(BOOL)busy
+{
+    if (busy) {
+        self.btnManuallyRefresh.image = nil;
+        [self.progressForQuery startAnimation:self];
+
+    } else {
+        self.btnManuallyRefresh.image = [NSImage imageNamed:NSImageNameRevealFreestandingTemplate];
+        [self.progressForQuery stopAnimation:self];
+    }
+}
+
+- (void)showErrorMessage:(NSString *)errorMessage
+{
+    NSLog(@"%@", errorMessage);
+
+    self.btnErrorMessage.title = [@" " stringByAppendingString:errorMessage];
+    self.errorBarConstraint.animator.constant = 0;
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kErrorBarDurationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.errorBarConstraint.animator.constant = -self.errorBar.frame.size.height - 2;
+    });
 }
 
 #pragma mark - text field delegate
