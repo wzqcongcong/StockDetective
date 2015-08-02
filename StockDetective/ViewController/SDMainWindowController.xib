@@ -11,6 +11,7 @@
                 <outlet property="errorBar" destination="9Lj-LI-0c9" id="WZU-86-rfJ"/>
                 <outlet property="errorBarConstraint" destination="QYU-Yr-6EV" id="VRh-0f-aUe"/>
                 <outlet property="graphView" destination="awK-z4-DP8" id="mgk-kO-JKQ"/>
+                <outlet property="headerBar" destination="SEY-Rw-TPA" id="Loj-LL-Yy3"/>
                 <outlet property="labelStockCode" destination="nRY-Ks-vZd" id="7wC-hy-IuI"/>
                 <outlet property="popupGraphType" destination="nfn-EY-81D" id="S8o-Pk-Afs"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
@@ -25,7 +26,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="SEY-Rw-TPA" userLabel="header" customClass="SDColorBackgroundView">
                         <rect key="frame" x="0.0" y="452" width="800" height="48"/>
@@ -46,12 +47,12 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRY-Ks-vZd">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nRY-Ks-vZd">
                                 <rect key="frame" x="350" y="13" width="100" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Swj-9n-wkG"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="股票代码" bezelStyle="round" id="i1V-8W-oIY">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" placeholderString="股票代码" bezelStyle="round" id="i1V-8W-oIY">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -104,8 +105,8 @@
                         <rect key="frame" x="0.0" y="452" width="800" height="48"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="xzx-JJ-OAc" userLabel="message">
-                                <rect key="frame" x="382" y="0.0" width="36" height="48"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSCaution" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="7Cx-BV-gzM">
+                                <rect key="frame" x="386" y="0.0" width="28" height="48"/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="error" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="7Cx-BV-gzM">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -142,8 +143,16 @@
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Up3-hX-THf" userLabel="footer" customClass="SDColorBackgroundView">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="48"/>
                         <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="91f-9S-EDF">
+                                <rect key="frame" x="20" y="12" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="8LR-oz-k2M"/>
+                                    <constraint firstAttribute="width" constant="24" id="iuS-a4-dNT"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="0E6-V0-j0u"/>
+                            </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OGJ-Ff-Zyr" userLabel="info">
-                                <rect key="frame" x="18" y="16" width="78" height="17"/>
+                                <rect key="frame" x="50" y="16" width="78" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A股资金流向" id="2kq-la-DX4">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -151,20 +160,32 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="unF-e2-Qm7" userLabel="thanks">
-                                <rect key="frame" x="606" y="16" width="176" height="17"/>
+                                <rect key="frame" x="574" y="16" width="176" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Data by crawling 东方财富网" allowsEditingTextAttributes="YES" id="scT-BM-rQ3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eQ6-hs-QbL">
+                                <rect key="frame" x="756" y="12" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="aGw-ps-piO"/>
+                                    <constraint firstAttribute="width" constant="24" id="nEA-1E-Wjo"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="cool" id="7PZ-kz-wly"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="91f-9S-EDF" firstAttribute="leading" secondItem="Up3-hX-THf" secondAttribute="leading" constant="20" symbolic="YES" id="4uu-ye-xfe"/>
+                            <constraint firstItem="eQ6-hs-QbL" firstAttribute="leading" secondItem="unF-e2-Qm7" secondAttribute="trailing" constant="8" symbolic="YES" id="DVH-Gt-dfh"/>
                             <constraint firstAttribute="centerY" secondItem="unF-e2-Qm7" secondAttribute="centerY" id="HwE-Am-viU"/>
-                            <constraint firstItem="OGJ-Ff-Zyr" firstAttribute="leading" secondItem="Up3-hX-THf" secondAttribute="leading" constant="20" symbolic="YES" id="e97-Sp-gQm"/>
+                            <constraint firstAttribute="trailing" secondItem="eQ6-hs-QbL" secondAttribute="trailing" constant="20" symbolic="YES" id="N1k-wh-kSj"/>
+                            <constraint firstAttribute="centerY" secondItem="eQ6-hs-QbL" secondAttribute="centerY" id="WWx-Bk-oNQ"/>
                             <constraint firstAttribute="centerY" secondItem="OGJ-Ff-Zyr" secondAttribute="centerY" id="hg8-KE-Uay"/>
+                            <constraint firstItem="OGJ-Ff-Zyr" firstAttribute="leading" secondItem="91f-9S-EDF" secondAttribute="trailing" constant="8" symbolic="YES" id="khX-fZ-q4j"/>
+                            <constraint firstAttribute="centerY" secondItem="91f-9S-EDF" secondAttribute="centerY" id="noB-qA-c0f"/>
                             <constraint firstAttribute="height" constant="48" id="q9x-b6-xAL"/>
-                            <constraint firstAttribute="trailing" secondItem="unF-e2-Qm7" secondAttribute="trailing" constant="20" symbolic="YES" id="t85-ON-vTJ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="sdBackgroundColor">
@@ -213,7 +234,9 @@
         </button>
     </objects>
     <resources>
-        <image name="NSCaution" width="32" height="32"/>
+        <image name="AppIcon" width="128" height="128"/>
         <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
+        <image name="cool" width="24" height="24"/>
+        <image name="error" width="24" height="24"/>
     </resources>
 </document>

@@ -29,10 +29,14 @@ static NSString * const kStockDataUnitWan   = @"万";
 @property (nonatomic, strong) NSArray *series;
 @property (nonatomic, strong) NSArray *values;
 
-@property (weak) IBOutlet YBGraphView *graphView;
+// header
+@property (weak) IBOutlet SDColorBackgroundView *headerBar;
 @property (weak) IBOutlet NSTextField *labelStockCode;
 @property (weak) IBOutlet NSPopUpButton *popupGraphType;
 @property (weak) IBOutlet NSButton *btnManuallyRefresh;
+
+// graph
+@property (weak) IBOutlet YBGraphView *graphView;
 
 // error message bar
 @property (weak) IBOutlet SDColorBackgroundView *errorBar;
@@ -195,7 +199,8 @@ static NSString * const kStockDataUnitWan   = @"万";
 - (void)showErrorMessage:(NSString *)errorMessage
 {
     NSLog(@"%@", errorMessage);
-    self.btnErrorMessage.title = errorMessage;
+
+    self.btnErrorMessage.title = [@" " stringByAppendingString:errorMessage];
     self.errorBarConstraint.animator.constant = 0;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kErrorBarDurationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
