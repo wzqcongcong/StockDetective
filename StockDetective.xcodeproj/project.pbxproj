@@ -11,7 +11,7 @@
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
 		E5E9D4071B6E1CAB00DCC7C0 /* SDCommonFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4061B6E1CAB00DCC7C0 /* SDCommonFetcher.m */; };
-		E5F43CC21B632BE5000D2AB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */; };
+		E5F43CC21B632BE5000D2AB8 /* SDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC11B632BE5000D2AB8 /* SDAppDelegate.m */; };
 		E5F43CC41B632BE5000D2AB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC31B632BE5000D2AB8 /* main.m */; };
 		E5F43CC61B632BE5000D2AB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
 		E5F43CC91B632BE5000D2AB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC71B632BE5000D2AB8 /* MainMenu.xib */; };
@@ -74,8 +74,8 @@
 		E5E9D4061B6E1CAB00DCC7C0 /* SDCommonFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDCommonFetcher.m; path = Task/SDCommonFetcher.m; sourceTree = "<group>"; };
 		E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDetective.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F43CBF1B632BE5000D2AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5F43CC01B632BE5000D2AB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E5F43CC01B632BE5000D2AB8 /* SDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDAppDelegate.h; sourceTree = "<group>"; };
+		E5F43CC11B632BE5000D2AB8 /* SDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDAppDelegate.m; sourceTree = "<group>"; };
 		E5F43CC31B632BE5000D2AB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E5F43CC51B632BE5000D2AB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E5F43CC81B632BE5000D2AB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -164,8 +164,8 @@
 		E5F43CBD1B632BE5000D2AB8 /* StockDetective */ = {
 			isa = PBXGroup;
 			children = (
-				E5F43CC01B632BE5000D2AB8 /* AppDelegate.h */,
-				E5F43CC11B632BE5000D2AB8 /* AppDelegate.m */,
+				E5F43CC01B632BE5000D2AB8 /* SDAppDelegate.h */,
+				E5F43CC11B632BE5000D2AB8 /* SDAppDelegate.m */,
 				E5F43E191B638FF4000D2AB8 /* ViewController */,
 				E5A6CC3B1B6C969300FD6565 /* View */,
 				E5F43CDE1B6337BB000D2AB8 /* Task */,
@@ -233,12 +233,12 @@
 		E5F43E191B638FF4000D2AB8 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E5F43E231B63A9BC000D2AB8 /* SDGraphMarkerViewController.h */,
-				E5F43E241B63A9BC000D2AB8 /* SDGraphMarkerViewController.m */,
-				E5F43E251B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib */,
 				E5F43E1A1B639035000D2AB8 /* SDMainWindowController.h */,
 				E5F43E1B1B639035000D2AB8 /* SDMainWindowController.m */,
 				E5F43E1C1B639035000D2AB8 /* SDMainWindowController.xib */,
+				E5F43E231B63A9BC000D2AB8 /* SDGraphMarkerViewController.h */,
+				E5F43E241B63A9BC000D2AB8 /* SDGraphMarkerViewController.m */,
+				E5F43E251B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 				E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */,
 				E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */,
 				E5E9D4071B6E1CAB00DCC7C0 /* SDCommonFetcher.m in Sources */,
-				E5F43CC21B632BE5000D2AB8 /* AppDelegate.m in Sources */,
+				E5F43CC21B632BE5000D2AB8 /* SDAppDelegate.m in Sources */,
 				E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

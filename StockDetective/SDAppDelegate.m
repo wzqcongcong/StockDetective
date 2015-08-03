@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "SDAppDelegate.h"
 #import "SDMainWindowController.h"
 
-@interface AppDelegate ()
+@interface SDAppDelegate ()
 
 @property (nonatomic, strong) SDMainWindowController *mainWindowController;
 
 @end
 
-@implementation AppDelegate
+@implementation SDAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
@@ -34,7 +34,7 @@
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
     if (!self.mainWindowController.window.isVisible &&
-        !self.mainWindowController.window.isMiniaturized) {
+        !self.mainWindowController.window.isMiniaturized) { // window is closed
 
         [self.mainWindowController showWindow:self];
         [self.mainWindowController.window makeKeyAndOrderFront:self];
