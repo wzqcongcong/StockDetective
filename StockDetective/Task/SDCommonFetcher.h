@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SDStockInfo.h"
 
-#define kNSGB18030StringEncoding    CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+#define kNSGB18030StringEncoding    (CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000))
 
 @interface SDCommonFetcher : NSObject
 

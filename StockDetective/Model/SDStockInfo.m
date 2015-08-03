@@ -8,6 +8,11 @@
 
 #import "SDStockInfo.h"
 
+NSString * const kSDStockCodeDaPan  = @"大盘";
+
+NSString * const kSDStockTypeSH     = @"SH";
+NSString * const kSDStockTypeSZ     = @"SZ";
+
 @implementation SDStockInfo
 
 - (NSString *)description

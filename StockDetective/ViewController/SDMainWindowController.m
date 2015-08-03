@@ -12,8 +12,9 @@
 #import "SDGraphMarkerViewController.h"
 #import "SDCommonFetcher.h"
 
-static NSUInteger kErrorBarDurationTime     = 3;
-static NSString * const kStockDataUnitWan   = @"万";
+static NSUInteger const kDataRefreshInterval  = 5;
+static NSUInteger const kErrorBarDurationTime = 3;
+static NSString * const kStockDataUnitWan     = @"万";
 
 @interface SDMainWindowController ()
 
@@ -52,7 +53,7 @@ static NSString * const kStockDataUnitWan   = @"万";
 {
     self = [super initWithWindowNibName:@"SDMainWindowController"];
     if (self) {
-        _stockCode = kStockCodeDaPan; // 指定具体股票时这里需要修改成相应的股票代码，例如，中国平安：000001
+        _stockCode = kSDStockCodeDaPan; // specific stock should use its own stock code, like 平安银行 uses "000001".
         _stockDisplayInfo = _stockCode;
         _queryTaskType = TaskTypeRealtime;
     }
@@ -115,7 +116,7 @@ static NSString * const kStockDataUnitWan   = @"万";
         return;
     }
 
-    self.refreshDataTaskTimer = [NSTimer scheduledTimerWithTimeInterval:5
+    self.refreshDataTaskTimer = [NSTimer scheduledTimerWithTimeInterval:kDataRefreshInterval
                                                                  target:self
                                                                selector:@selector(doRefreshDataTask)
                                                                userInfo:nil
@@ -208,11 +209,11 @@ static NSString * const kStockDataUnitWan   = @"万";
     NSLog(@"%@ %@", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
 
     NSString *inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    self.stockCode = (inputStockCode.length == 0) ? kStockCodeDaPan : inputStockCode;
+    self.stockCode = (inputStockCode.length == 0) ? kSDStockCodeDaPan : inputStockCode;
 
     self.queryTaskType = (self.popupGraphType.indexOfSelectedItem == 0) ? TaskTypeRealtime : TaskTypeHistory;
 
-    if ([self.stockCode isEqualToString:kStockCodeDaPan]) {
+    if ([self.stockCode isEqualToString:kSDStockCodeDaPan]) {
         self.stockDisplayInfo = self.stockCode;
 
         self.forbiddenToRefresh = NO;

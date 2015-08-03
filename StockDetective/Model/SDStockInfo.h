@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#define kStockTypeSH    @"SH"
-#define kStockTypeSZ    @"SZ"
+extern NSString * const kSDStockCodeDaPan;
 
-#define kStockCodeDaPan @"大盘"
+extern NSString * const kSDStockTypeSH;
+extern NSString * const kSDStockTypeSZ;
 
 @interface SDStockInfo : NSObject
 
