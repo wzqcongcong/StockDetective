@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 
-@import AFNetworking;
+#import "AFNetworking.h"
 #import "SDRefreshDataTask.h"
 #import "SDStockInfo.h"
 

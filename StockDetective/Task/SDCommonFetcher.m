@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 
-@import AFNetworking;
+#import "AFNetworking.h"
 #import "SDCommonFetcher.h"
 
 static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.com/suggest/default.aspx?name=sData&input=%@&type=1,2,3";
