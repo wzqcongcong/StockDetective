@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1787E72DD526A2A226460C1C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A93A3B282686A0A247209F /* libPods.a */; };
+		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
 		E5E9D4071B6E1CAB00DCC7C0 /* SDCommonFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4061B6E1CAB00DCC7C0 /* SDCommonFetcher.m */; };
@@ -66,6 +67,8 @@
 /* Begin PBXFileReference section */
 		49A93A3B282686A0A247209F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E58551F21B710A870037E7F4 /* SDStockMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockMarket.h; path = Model/SDStockMarket.h; sourceTree = "<group>"; };
+		E58551F31B710A870037E7F4 /* SDStockMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockMarket.m; path = Model/SDStockMarket.m; sourceTree = "<group>"; };
 		E5A6CC3C1B6C96C100FD6565 /* SDColorBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDColorBackgroundView.h; path = View/SDColorBackgroundView.h; sourceTree = "<group>"; };
 		E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDColorBackgroundView.m; path = View/SDColorBackgroundView.m; sourceTree = "<group>"; };
 		E5E9D4021B6E1BA200DCC7C0 /* SDStockInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockInfo.h; path = Model/SDStockInfo.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 			children = (
 				E5E9D4021B6E1BA200DCC7C0 /* SDStockInfo.h */,
 				E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */,
+				E58551F21B710A870037E7F4 /* SDStockMarket.h */,
+				E58551F31B710A870037E7F4 /* SDStockMarket.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 				E5F43E261B63A9BC000D2AB8 /* SDGraphMarkerViewController.m in Sources */,
 				E5F43CC41B632BE5000D2AB8 /* main.m in Sources */,
 				E5F43CE11B63380D000D2AB8 /* SDRefreshDataTask.m in Sources */,
+				E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */,
 				E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */,
 				E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */,
 				E5E9D4071B6E1CAB00DCC7C0 /* SDCommonFetcher.m in Sources */,

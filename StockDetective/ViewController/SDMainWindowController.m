@@ -22,7 +22,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 @property (nonatomic, assign) BOOL forbiddenToRefresh;
 
 @property (nonatomic, strong) NSString *stockDisplayInfo;
-@property (nonatomic, strong) NSString *stockCode;
+@property (nonatomic, strong) NSString *stockCode; // stock code or pinyin abbr.
 @property (nonatomic, assign) TaskType queryTaskType;
 
 @property (nonatomic, strong) NSString *dataUnit;
@@ -233,6 +233,12 @@ static NSString * const kStockDataUnitWan     = @"万";
                                                                  self.forbiddenToRefresh = NO;
                                                                  [self startStockRefresher];
                                                              });
+
+                                                             [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithCodeInfo:stockInfo
+                                                                                                                    successHandler:^(SDStockMarket *stockMarket) {
+                                                                                                                    }
+                                                                                                                    failureHandler:^(NSError *error) {
+                                                                                                                    }];
                                                          }
                                                          failureHandler:^(NSError *error) {
                                                              dispatch_async(dispatch_get_main_queue(), ^{
