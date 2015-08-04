@@ -219,6 +219,13 @@ static NSString * const kStockDataUnitWan     = @"万";
         self.forbiddenToRefresh = NO;
         [self startStockRefresher];
 
+        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithCodeInfo:nil
+                                                               successHandler:^(SDStockMarket *stockMarket) {
+                                                                   NSLog(@"Current Price of %@: %@", self.stockCode, stockMarket.currentPrice);
+                                                               }
+                                                               failureHandler:^(NSError *error) {
+                                                               }];
+
     } else {
 
         [self busyWithQuery:YES];
@@ -236,6 +243,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 
                                                              [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithCodeInfo:stockInfo
                                                                                                                     successHandler:^(SDStockMarket *stockMarket) {
+                                                                                                                        NSLog(@"Current Price of %@: %@", stockInfo.stockName, stockMarket.currentPrice);
                                                                                                                     }
                                                                                                                     failureHandler:^(NSError *error) {
                                                                                                                     }];

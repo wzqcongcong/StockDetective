@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const kSDStockCodeDaPan;
+extern NSString * const kSDStockFullCodeDaPan;
 
 extern NSString * const kSDStockTypeSH;
 extern NSString * const kSDStockTypeSZ;

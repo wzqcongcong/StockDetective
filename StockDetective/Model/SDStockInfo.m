@@ -8,7 +8,8 @@
 
 #import "SDStockInfo.h"
 
-NSString * const kSDStockCodeDaPan  = @"大盘";
+NSString * const kSDStockCodeDaPan      = @"上证指数";
+NSString * const kSDStockFullCodeDaPan  = @"SH000001";
 
 NSString * const kSDStockTypeSH     = @"SH";
 NSString * const kSDStockTypeSZ     = @"SZ";
