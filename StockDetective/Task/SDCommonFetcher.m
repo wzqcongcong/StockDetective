@@ -219,7 +219,22 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
 
 - (BOOL)validXueQiuCookie
 {
-    return NO;
+    NSArray *allCookies = self.sessionConfig.HTTPCookieStorage.cookies;
+
+    NSString *domainString = [NSURL URLWithString:kXueQiuLoginURL].host;
+    NSDate *currentDate = [NSDate date];
+
+    NSMutableArray *cookies = [NSMutableArray array];
+    for (NSHTTPCookie *cookie in allCookies) {
+        if ([cookie.domain containsString:domainString] &&
+            ([cookie.name isEqualToString:@"xq_a_token"] || [cookie.name isEqualToString:@"xq_r_token"]) &&
+            (!cookie.expiresDate || [currentDate compare:cookie.expiresDate] == NSOrderedAscending)) {
+
+            [cookies addObject:cookie];
+        }
+    }
+
+    return (cookies.count >= 2);
 }
 
 @end
