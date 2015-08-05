@@ -221,7 +221,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:nil
                                                                 successHandler:^(SDStockMarket *stockMarket) {
-                                                                    NSLog(@"Current Price of %@: %@", self.stockCode, stockMarket.currentPrice);
+                                                                    NSLog(@"current price of %@: %@", self.stockCode, stockMarket.currentPrice);
                                                                 }
                                                                 failureHandler:^(NSError *error) {
                                                                 }];
@@ -243,7 +243,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 
                                                              [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:stockInfo
                                                                                                                      successHandler:^(SDStockMarket *stockMarket) {
-                                                                                                                         NSLog(@"Current Price of %@: %@", stockInfo.stockName, stockMarket.currentPrice);
+                                                                                                                         NSLog(@"current price of %@: %@", stockInfo.stockName, stockMarket.currentPrice);
                                                                                                                      }
                                                                                                                      failureHandler:^(NSError *error) {
                                                                                                                      }];

@@ -12,6 +12,10 @@
 static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.com/suggest/default.aspx?name=sData&input=%@&type=1,2,3";
 static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stock/quote.json?code=%@"; // by full code, like SH000001.
 
+static NSString * const kXueQiuLoginURL = @"http://xueqiu.com/user/login";
+static NSString * const kXueQiuLoginUsername = @"wzqcongcong@sina.com";
+static NSString * const kXueQiuLoginPassword = @"wzq424327";
+
 @interface SDCommonFetcher ()
 
 @property (nonatomic, strong) NSURLSessionConfiguration *sessionConfig;
@@ -99,61 +103,77 @@ static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stoc
                        successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
                        failureHandler:(void (^)(NSError *error))failureHandler
 {
-    SDUserInfo *userInfo = [[SDUserInfo alloc] init];
-    userInfo.username = @"wzqcongcong@sina.com";    // need encode
-    userInfo.password = @"wzq424327";               // need encode
+    if ([self validXueQiuCookie]) {
+        [self fetchStockMarketByXueQiuWithStockInfo:stockInfo
+                                     successHandler:^(SDStockMarket *stockMarket) {
+                                         successHandler(stockMarket);
+                                     }
+                                     failureHandler:^(NSError *error) {
+                                         NSLog(@"Failed to fetch stock market from XueQiu: %@", error);
+                                         if (failureHandler) {
+                                             failureHandler(error);
+                                         }
+                                     }];
 
-    [self loginXueQiuWithUserInfo:userInfo
-                   successHandler:^() {
-                       [self fetchStockMarketByXueQiuWithStockInfo:stockInfo
-                                                    successHandler:^(SDStockMarket *stockMarket) {
-                                                        successHandler(stockMarket);
-                                                    }
-                                                    failureHandler:^(NSError *error) {
-                                                        NSLog(@"Failed to fetch XueQiu: %@", error);
-                                                    }];
-                   }
-                   failureHandler:^(NSError *error) {
-                       NSLog(@"Failed to login XueQiu: %@", error);
-                   }];
+    } else {
+        SDUserInfo *userInfo = [[SDUserInfo alloc] init];
+        userInfo.username = kXueQiuLoginUsername;
+        userInfo.password = kXueQiuLoginPassword;
+
+        [self loginXueQiuWithUserInfo:userInfo
+                       successHandler:^() {
+                           [self fetchStockMarketByXueQiuWithStockInfo:stockInfo
+                                                        successHandler:^(SDStockMarket *stockMarket) {
+                                                            successHandler(stockMarket);
+                                                        }
+                                                        failureHandler:^(NSError *error) {
+                                                            NSLog(@"Failed to fetch stock market from XueQiu: %@", error);
+                                                            if (failureHandler) {
+                                                                failureHandler(error);
+                                                            }
+                                                        }];
+                       }
+                       failureHandler:^(NSError *error) {
+                           NSLog(@"Failed to login XueQiu: %@", error);
+                           if (failureHandler) {
+                               failureHandler(error);
+                           }
+                       }];
+    }
 }
+
+#pragma mark - XueQiu
 
 - (void)loginXueQiuWithUserInfo:(SDUserInfo *)userInfo
                  successHandler:(void (^)())successHandler
                  failureHandler:(void (^)(NSError *error))failureHandler
 {
-    AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
+    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
     sessionManager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:userInfo.username password:userInfo.password];
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
 
-    NSURL *url = [NSURL URLWithString:@"http://xueqiu.com/user/login"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    request.mainDocumentURL = [NSURL URLWithString:url.host];
-    request.HTTPMethod = @"POST";
-    [request setValue:userInfo.username forHTTPHeaderField:@"username"];
-    [request setValue:userInfo.password forHTTPHeaderField:@"password"];
+    NSURL *domainURL = [NSURL URLWithString:[NSURL URLWithString:kXueQiuLoginURL].host];
+    [sessionManager POST:kXueQiuLoginURL
+              parameters:nil
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+                     NSDictionary *header = [(NSHTTPURLResponse *)(task.response) allHeaderFields];
+                     NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:header
+                                                                               forURL:domainURL];
+                     [self.sessionConfig.HTTPCookieStorage setCookies:cookies
+                                                               forURL:domainURL
+                                                      mainDocumentURL:domainURL];
 
-    NSURLSessionDataTask *dataTask = [sessionManager dataTaskWithRequest:request
-                                                       completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                                                           if (error) {
-                                                               if (failureHandler) {
-                                                                   failureHandler(error);
-                                                               }
-
-                                                           } else {
-                                                               NSDictionary *header = [(NSHTTPURLResponse *)response allHeaderFields];
-                                                               NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:header
-                                                                                                                         forURL:request.mainDocumentURL];
-                                                               [self.sessionConfig.HTTPCookieStorage setCookies:cookies
-                                                                                                         forURL:request.mainDocumentURL
-                                                                                                mainDocumentURL:request.mainDocumentURL];
-
-                                                               if (successHandler) {
-                                                                   successHandler();
-                                                               }
-                                                           }
-                                                       }];
-    [dataTask resume];
+                     if (successHandler) {
+                         successHandler();
+                     }
+                 }
+                 failure:^(NSURLSessionDataTask *task, NSError *error) {
+                     if (failureHandler) {
+                         failureHandler(error);
+                     }
+                 }];
 }
 
 - (void)fetchStockMarketByXueQiuWithStockInfo:(SDStockInfo *)stockInfo
@@ -195,6 +215,11 @@ static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stoc
                                                            }
                                                        }];
     [dataTask resume];
+}
+
+- (BOOL)validXueQiuCookie
+{
+    return NO;
 }
 
 @end
