@@ -8,13 +8,43 @@
 
 #import "SDStockInfo.h"
 
-NSString * const kSDStockCodeDaPan      = @"上证指数";
-NSString * const kSDStockFullCodeDaPan  = @"SH000001";
+NSString * const kSDStockTypeSH         = @"SH";
+NSString * const kSDStockTypeSZ         = @"SZ";
 
-NSString * const kSDStockTypeSH     = @"SH";
-NSString * const kSDStockTypeSZ     = @"SZ";
+NSString * const kSDStockDaPanName      = @"上证指数";
+NSString * const kSDStockDaPanCode      = @"000001";
+NSString * const kSDStockDaPanAbbr      = @"SZZS";
+NSString * const kSDStockDaPanType      = @"SH";
+
+NSString * const kSDStockDaPanFullCode  = @"SH000001";
 
 @implementation SDStockInfo
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+
+    }
+    return self;
+}
+
+- (instancetype)initDaPan
+{
+    self = [super init];
+    if (self) {
+        _stockCode = kSDStockDaPanCode;
+        _stockName = kSDStockDaPanName;
+        _stockAbbr = kSDStockDaPanAbbr;
+        _stockType = kSDStockDaPanType;
+    }
+    return self;
+}
+
+- (BOOL)isValidStock
+{
+    return (self.stockCode && self.stockName && self.stockAbbr && self.stockType);
+}
 
 - (NSString *)description
 {

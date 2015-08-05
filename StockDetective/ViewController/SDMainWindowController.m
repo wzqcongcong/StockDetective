@@ -21,9 +21,9 @@ static NSString * const kStockDataUnitWan     = @"万";
 @property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
 @property (nonatomic, assign) BOOL forbiddenToRefresh;
 
-@property (nonatomic, strong) NSString *stockDisplayInfo;
-@property (nonatomic, strong) NSString *stockCode; // stock code or pinyin abbr.
+@property (nonatomic, strong) NSString *inputStockCode; // stock code or pinyin abbr.
 @property (nonatomic, assign) TaskType queryTaskType;
+@property (nonatomic, strong) SDStockInfo *stockInfo;
 
 @property (nonatomic, strong) NSString *dataUnit;
 @property (nonatomic, strong) NSArray *legend;
@@ -53,9 +53,9 @@ static NSString * const kStockDataUnitWan     = @"万";
 {
     self = [super initWithWindowNibName:@"SDMainWindowController"];
     if (self) {
-        _stockCode = kSDStockCodeDaPan; // specific stock should use its own stock code, like 平安银行 uses "000001".
-        _stockDisplayInfo = _stockCode;
+        _inputStockCode = kSDStockDaPanFullCode; // specific stock should use its own stock code without type, like 平安银行 uses "000001".
         _queryTaskType = TaskTypeRealtime;
+        _stockInfo = [[SDStockInfo alloc] initDaPan];
     }
     return self;
 }
@@ -137,7 +137,7 @@ static NSString * const kStockDataUnitWan     = @"万";
         SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
         refreshDataTask.taskManager = self;
         [refreshDataTask refreshDataTask:self.queryTaskType
-                               stockCode:self.stockCode
+                               stockCode:self.inputStockCode
                           successHandler:^(NSData *data) {
                               [self updateViewWithData:data];
                           }
@@ -147,6 +147,16 @@ static NSString * const kStockDataUnitWan     = @"万";
                                   [self showErrorMessage:@"Failed to refresh stock data"];
                               });
                           }];
+    });
+
+    // query stock market
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:self.stockInfo
+                                                                successHandler:^(SDStockMarket *stockMarket) {
+                                                                    NSLog(@"%@", [stockMarket currentPriceDescription]);
+                                                                }
+                                                                failureHandler:^(NSError *error) {
+                                                                }];
     });
 }
 
@@ -198,7 +208,7 @@ static NSString * const kStockDataUnitWan     = @"万";
                     mediumForce,
                     littleForce];
 
-    self.graphView.info = [NSString stringWithFormat:@"%@ (%@)", self.stockDisplayInfo, array[0]];
+    self.graphView.info = [NSString stringWithFormat:@"%@ (%@)", [self.stockInfo stockShortDisplayInfo], array[0]];
 }
 
 #pragma mark - UI action
@@ -206,47 +216,33 @@ static NSString * const kStockDataUnitWan     = @"万";
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
     [self stopStockRefresher];
 
-    NSLog(@"%@ %@", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
+    NSLog(@"<input: \"%@\" type: %@>", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
 
     NSString *inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    self.stockCode = (inputStockCode.length == 0) ? kSDStockCodeDaPan : inputStockCode;
+    self.inputStockCode = (inputStockCode.length == 0) ? kSDStockDaPanFullCode : inputStockCode;
 
     self.queryTaskType = (self.popupGraphType.indexOfSelectedItem == 0) ? TaskTypeRealtime : TaskTypeHistory;
 
-    if ([self.stockCode isEqualToString:kSDStockCodeDaPan]) {
-        self.stockDisplayInfo = self.stockCode;
+    if ([self.inputStockCode isEqualToString:kSDStockDaPanFullCode]) {
+        self.stockInfo = [[SDStockInfo alloc] initDaPan];
 
         self.forbiddenToRefresh = NO;
         [self startStockRefresher];
-
-        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:nil
-                                                                successHandler:^(SDStockMarket *stockMarket) {
-                                                                    NSLog(@"current price of %@: %@", self.stockCode, stockMarket.currentPrice);
-                                                                }
-                                                                failureHandler:^(NSError *error) {
-                                                                }];
 
     } else {
 
         [self busyWithQuery:YES];
 
-        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:self.stockCode
+        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:self.inputStockCode
                                                          successHandler:^(SDStockInfo *stockInfo) {
-                                                             self.stockDisplayInfo = [stockInfo stockShortDisplayInfo];
+                                                             self.stockInfo = stockInfo;
                                                              // update valid stock code after query
-                                                             self.stockCode = stockInfo.stockCode;
+                                                             self.inputStockCode = self.stockInfo.stockCode;
 
                                                              dispatch_async(dispatch_get_main_queue(), ^{
                                                                  self.forbiddenToRefresh = NO;
                                                                  [self startStockRefresher];
                                                              });
-
-                                                             [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:stockInfo
-                                                                                                                     successHandler:^(SDStockMarket *stockMarket) {
-                                                                                                                         NSLog(@"current price of %@: %@", stockInfo.stockName, stockMarket.currentPrice);
-                                                                                                                     }
-                                                                                                                     failureHandler:^(NSError *error) {
-                                                                                                                     }];
                                                          }
                                                          failureHandler:^(NSError *error) {
                                                              dispatch_async(dispatch_get_main_queue(), ^{

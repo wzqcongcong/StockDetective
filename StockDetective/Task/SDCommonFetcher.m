@@ -77,7 +77,7 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                                                                        stockInfo.stockAbbr = array[3];
                                                                        stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kSDStockTypeSH : kSDStockTypeSZ;
 
-                                                                       NSLog(@"%@", stockInfo);
+                                                                       NSLog(@"%@", [stockInfo stockShortDisplayInfo]);
 
                                                                        if (successHandler) {
                                                                            successHandler(stockInfo);
@@ -103,6 +103,10 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                        successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
                        failureHandler:(void (^)(NSError *error))failureHandler
 {
+    if (![stockInfo isValidStock]) {
+        return;
+    }
+
     if ([self validXueQiuCookie]) {
         [self fetchStockMarketByXueQiuWithStockInfo:stockInfo
                                      successHandler:^(SDStockMarket *stockMarket) {
@@ -184,7 +188,7 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
     sessionManager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     // sessionManager.responseSerializer: default json
 
-    NSString *fullCode = stockInfo ? [stockInfo.stockType stringByAppendingString:stockInfo.stockCode] : kSDStockFullCodeDaPan;
+    NSString *fullCode = [stockInfo.stockType stringByAppendingString:stockInfo.stockCode];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kFetchStockMarketFormatURL, fullCode]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.mainDocumentURL = [NSURL URLWithString:url.host];
@@ -200,7 +204,7 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                                                                NSDictionary *responseDic = (NSDictionary *)responseObject;
                                                                if (responseDic && [[responseDic allKeys] containsObject:fullCode]) {
                                                                    NSDictionary *stockDic = responseDic[fullCode];
-                                                                   SDStockMarket *stockMarket = stockInfo ? [[SDStockMarket alloc] initWithStockInfo:stockInfo] : [[SDStockMarket alloc] init];
+                                                                   SDStockMarket *stockMarket = [[SDStockMarket alloc] initWithStockInfo:stockInfo];
                                                                    stockMarket.currentPrice = stockDic[@"current"];
 
                                                                    if (successHandler) {

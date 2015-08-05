@@ -31,4 +31,9 @@
     return self;
 }
 
+- (NSString *)currentPriceDescription
+{
+    return [NSString stringWithFormat:@"%@ <%@>", [self stockShortDisplayInfo], self.currentPrice];
+}
+
 @end

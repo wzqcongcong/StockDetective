@@ -44,7 +44,7 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
         switch (taskType) {
             case TaskTypeRealtime:
             {
-                if ([stockCode isEqualToString:kSDStockCodeDaPan]) {
+                if ([stockCode isEqualToString:kSDStockDaPanFullCode]) {
                     url = [NSURL URLWithString:kQueryDaPanRealtimeFormatURL];
                 } else {
                     url = [NSURL URLWithString:[NSString stringWithFormat:kQueryRealtimeFormatURL, stockCode]];
@@ -53,7 +53,7 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
             }
             case TaskTypeHistory:
             {
-                if ([stockCode isEqualToString:kSDStockCodeDaPan]) {
+                if ([stockCode isEqualToString:kSDStockDaPanFullCode]) {
                     url = [NSURL URLWithString:kQueryDaPanHistoryFormatURL];
                 } else {
                     url = [NSURL URLWithString:[NSString stringWithFormat:kQueryHistoryFormatURL, stockCode]];
