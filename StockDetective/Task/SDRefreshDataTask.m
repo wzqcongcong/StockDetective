@@ -81,7 +81,8 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
                   } else {
                       NSLog(@"ignore old task");
                   }
-              } failureHandler:^(NSError *error) {
+              }
+              failureHandler:^(NSError *error) {
                   if (failureHandler) {
                       failureHandler(error);
                   }
@@ -102,7 +103,7 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
 
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     manager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 

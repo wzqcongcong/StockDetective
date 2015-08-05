@@ -29,6 +29,7 @@ static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stoc
 
         sharedInstance.sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
         sharedInstance.sessionConfig.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
+        sharedInstance.sessionConfig.HTTPCookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     });
     return sharedInstance;
 }
@@ -94,21 +95,79 @@ static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stoc
     [dataTask resume];
 }
 
-- (void)fetchStockMarketWithCodeInfo:(SDStockInfo *)stockInfo
-                      successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
-                      failureHandler:(void (^)(NSError *error))failureHandler
+- (void)fetchStockMarketWithStockInfo:(SDStockInfo *)stockInfo
+                       successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
+                       failureHandler:(void (^)(NSError *error))failureHandler
+{
+    SDUserInfo *userInfo = [[SDUserInfo alloc] init];
+    userInfo.username = @"wzqcongcong@sina.com";    // need encode
+    userInfo.password = @"wzq424327";               // need encode
+
+    [self loginXueQiuWithUserInfo:userInfo
+                   successHandler:^() {
+                       [self fetchStockMarketByXueQiuWithStockInfo:stockInfo
+                                                    successHandler:^(SDStockMarket *stockMarket) {
+                                                        successHandler(stockMarket);
+                                                    }
+                                                    failureHandler:^(NSError *error) {
+                                                        NSLog(@"Failed to fetch XueQiu: %@", error);
+                                                    }];
+                   }
+                   failureHandler:^(NSError *error) {
+                       NSLog(@"Failed to login XueQiu: %@", error);
+                   }];
+}
+
+- (void)loginXueQiuWithUserInfo:(SDUserInfo *)userInfo
+                 successHandler:(void (^)())successHandler
+                 failureHandler:(void (^)(NSError *error))failureHandler
 {
     AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
     sessionManager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    // sessionManager.responseSerializer default json
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+
+    NSURL *url = [NSURL URLWithString:@"http://xueqiu.com/user/login"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.mainDocumentURL = [NSURL URLWithString:url.host];
+    request.HTTPMethod = @"POST";
+    [request setValue:userInfo.username forHTTPHeaderField:@"username"];
+    [request setValue:userInfo.password forHTTPHeaderField:@"password"];
+
+    NSURLSessionDataTask *dataTask = [sessionManager dataTaskWithRequest:request
+                                                       completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                                                           if (error) {
+                                                               if (failureHandler) {
+                                                                   failureHandler(error);
+                                                               }
+
+                                                           } else {
+                                                               NSDictionary *header = [(NSHTTPURLResponse *)response allHeaderFields];
+                                                               NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:header
+                                                                                                                         forURL:request.mainDocumentURL];
+                                                               [self.sessionConfig.HTTPCookieStorage setCookies:cookies
+                                                                                                         forURL:request.mainDocumentURL
+                                                                                                mainDocumentURL:request.mainDocumentURL];
+
+                                                               if (successHandler) {
+                                                                   successHandler();
+                                                               }
+                                                           }
+                                                       }];
+    [dataTask resume];
+}
+
+- (void)fetchStockMarketByXueQiuWithStockInfo:(SDStockInfo *)stockInfo
+                               successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
+                               failureHandler:(void (^)(NSError *error))failureHandler
+{
+    AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
+    sessionManager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    // sessionManager.responseSerializer: default json
 
     NSString *fullCode = stockInfo ? [stockInfo.stockType stringByAppendingString:stockInfo.stockCode] : kSDStockFullCodeDaPan;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kFetchStockMarketFormatURL, fullCode]];
-
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.mainDocumentURL = [NSURL URLWithString:url.host];
-    // must set cookie, or else will return 400.
-    [request setValue:@"bid=3665910ca8164db2820caee62672580a_i8pw2vyr; s=jur11cogt6; __utmt=1; last_account=wzqcongcong%40sina.com; xq_a_token=918a2f9a1dba46290fc56123fdda7ff82477678d; xq_r_token=f673e97297eb89677155eddc20a381ba06968453; __utma=1.563950774.1429534733.1438698746.1438702612.23; __utmb=1.2.10.1438702612; __utmc=1; __utmz=1.1429534733.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); Hm_lvt_1db88642e346389874251b5a1eded6e3=1437907284,1438501023,1438698753,1438702614; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1438702620" forHTTPHeaderField:@"Cookie"];
 
     NSURLSessionDataTask *dataTask = [sessionManager dataTaskWithRequest:request
                                                        completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {

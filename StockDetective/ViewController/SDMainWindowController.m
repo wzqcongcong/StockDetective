@@ -219,12 +219,12 @@ static NSString * const kStockDataUnitWan     = @"万";
         self.forbiddenToRefresh = NO;
         [self startStockRefresher];
 
-        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithCodeInfo:nil
-                                                               successHandler:^(SDStockMarket *stockMarket) {
-                                                                   NSLog(@"Current Price of %@: %@", self.stockCode, stockMarket.currentPrice);
-                                                               }
-                                                               failureHandler:^(NSError *error) {
-                                                               }];
+        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:nil
+                                                                successHandler:^(SDStockMarket *stockMarket) {
+                                                                    NSLog(@"Current Price of %@: %@", self.stockCode, stockMarket.currentPrice);
+                                                                }
+                                                                failureHandler:^(NSError *error) {
+                                                                }];
 
     } else {
 
@@ -241,12 +241,12 @@ static NSString * const kStockDataUnitWan     = @"万";
                                                                  [self startStockRefresher];
                                                              });
 
-                                                             [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithCodeInfo:stockInfo
-                                                                                                                    successHandler:^(SDStockMarket *stockMarket) {
-                                                                                                                        NSLog(@"Current Price of %@: %@", stockInfo.stockName, stockMarket.currentPrice);
-                                                                                                                    }
-                                                                                                                    failureHandler:^(NSError *error) {
-                                                                                                                    }];
+                                                             [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:stockInfo
+                                                                                                                     successHandler:^(SDStockMarket *stockMarket) {
+                                                                                                                         NSLog(@"Current Price of %@: %@", stockInfo.stockName, stockMarket.currentPrice);
+                                                                                                                     }
+                                                                                                                     failureHandler:^(NSError *error) {
+                                                                                                                     }];
                                                          }
                                                          failureHandler:^(NSError *error) {
                                                              dispatch_async(dispatch_get_main_queue(), ^{

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1787E72DD526A2A226460C1C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A93A3B282686A0A247209F /* libPods.a */; };
+		848D8CDE1B71C71B001D7A8A /* SDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */; };
 		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
@@ -66,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		49A93A3B282686A0A247209F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		848D8CDC1B71C71B001D7A8A /* SDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDUserInfo.h; path = Model/SDUserInfo.h; sourceTree = "<group>"; };
+		848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDUserInfo.m; path = Model/SDUserInfo.m; sourceTree = "<group>"; };
 		8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E58551F21B710A870037E7F4 /* SDStockMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockMarket.h; path = Model/SDStockMarket.h; sourceTree = "<group>"; };
 		E58551F31B710A870037E7F4 /* SDStockMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockMarket.m; path = Model/SDStockMarket.m; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */,
 				E58551F21B710A870037E7F4 /* SDStockMarket.h */,
 				E58551F31B710A870037E7F4 /* SDStockMarket.m */,
+				848D8CDC1B71C71B001D7A8A /* SDUserInfo.h */,
+				848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 				E5E9D4071B6E1CAB00DCC7C0 /* SDCommonFetcher.m in Sources */,
 				E5F43CC21B632BE5000D2AB8 /* SDAppDelegate.m in Sources */,
 				E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */,
+				848D8CDE1B71C71B001D7A8A /* SDUserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

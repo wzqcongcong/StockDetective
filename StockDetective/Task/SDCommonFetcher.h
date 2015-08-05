@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SDStockInfo.h"
 #import "SDStockMarket.h"
+#import "SDUserInfo.h"
 
 #define kNSGB18030StringEncoding    (CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000))
 
@@ -20,8 +21,8 @@
                 successHandler:(void (^)(SDStockInfo *stockInfo))successHandler
                 failureHandler:(void (^)(NSError *error))failureHandler;
 
-- (void)fetchStockMarketWithCodeInfo:(SDStockInfo *)stockInfo
-                      successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
-                      failureHandler:(void (^)(NSError *error))failureHandler;
+- (void)fetchStockMarketWithStockInfo:(SDStockInfo *)stockInfo
+                       successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
+                       failureHandler:(void (^)(NSError *error))failureHandler;
 
 @end
