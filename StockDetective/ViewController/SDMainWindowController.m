@@ -216,7 +216,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
     [self stopStockRefresher];
 
-    NSLog(@"<input: \"%@\" type: %@>", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
+    NSLog(@"{input: \"%@\", type: %@}", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
 
     NSString *inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     self.inputStockCode = (inputStockCode.length == 0) ? kSDStockDaPanFullCode : inputStockCode;

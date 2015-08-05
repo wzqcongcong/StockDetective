@@ -77,7 +77,7 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                                                                        stockInfo.stockAbbr = array[3];
                                                                        stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kSDStockTypeSH : kSDStockTypeSZ;
 
-                                                                       NSLog(@"%@", [stockInfo stockShortDisplayInfo]);
+                                                                       NSLog(@"%@", [stockInfo description]);
 
                                                                        if (successHandler) {
                                                                            successHandler(stockInfo);
