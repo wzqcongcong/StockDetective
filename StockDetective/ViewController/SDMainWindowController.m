@@ -37,6 +37,15 @@ static NSString * const kStockDataUnitWan     = @"万";
 @property (weak) IBOutlet NSButton *btnManuallyRefresh;
 @property (weak) IBOutlet NSProgressIndicator *progressForQuery;
 
+// board
+@property (atomic, assign) BOOL needToReshowBoard;
+@property (weak) IBOutlet NSView *leftBoard;
+@property (weak) IBOutlet NSTextField *leftBoardLabel;
+@property (weak) IBOutlet NSLayoutConstraint *leftBoardConstraint;
+@property (weak) IBOutlet NSView *rightBoard;
+@property (weak) IBOutlet NSTextField *rightBoardLabel;
+@property (weak) IBOutlet NSLayoutConstraint *rightBoardConstraint;
+
 // graph
 @property (weak) IBOutlet YBGraphView *graphView;
 
@@ -69,6 +78,12 @@ static NSString * const kStockDataUnitWan     = @"万";
     self.window.movableByWindowBackground = YES;
 
     self.errorBarConstraint.constant = -self.errorBar.frame.size.height - 2;
+    self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height;
+    self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height;
+    self.leftBoardLabel.stringValue = @"-.-";
+    self.rightBoardLabel.stringValue = @"-.-";
+
+    self.needToReshowBoard = YES;
 
     [self setupGraphConfig];
 }
@@ -154,6 +169,9 @@ static NSString * const kStockDataUnitWan     = @"万";
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:self.stockInfo
                                                                 successHandler:^(SDStockMarket *stockMarket) {
                                                                     NSLog(@"%@", [stockMarket currentPriceDescription]);
+                                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                                        self.rightBoardLabel.stringValue = stockMarket.currentPrice;
+                                                                    });
                                                                 }
                                                                 failureHandler:^(NSError *error) {
                                                                 }];
@@ -171,7 +189,21 @@ static NSString * const kStockDataUnitWan     = @"万";
 
         [self parseData:data];
         [self.graphView draw];
+
+        self.leftBoardLabel.stringValue = self.stockInfo.stockName;
+        if (self.needToReshowBoard) {
+            self.needToReshowBoard = NO;
+            [self reshowBoardWithAnimation];
+        }
     });
+}
+
+- (void)reshowBoardWithAnimation
+{
+    self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height/2;
+    self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height/2;
+    self.leftBoardConstraint.animator.constant = 0;
+    self.rightBoardConstraint.animator.constant = 0;
 }
 
 - (void)parseData:(NSData *)data
@@ -214,6 +246,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 #pragma mark - UI action
 
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
+    self.needToReshowBoard = YES;
     [self stopStockRefresher];
 
     NSLog(@"{input: \"%@\", type: %@}", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
