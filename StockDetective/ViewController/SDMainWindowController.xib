@@ -14,12 +14,12 @@
                 <outlet property="headerBar" destination="SEY-Rw-TPA" id="Loj-LL-Yy3"/>
                 <outlet property="labelStockCode" destination="nRY-Ks-vZd" id="7wC-hy-IuI"/>
                 <outlet property="leftBoard" destination="pXX-z9-L8m" id="8Yo-Ub-E62"/>
-                <outlet property="leftBoardConstraint" destination="VjE-pV-yTn" id="wG6-a1-A81"/>
+                <outlet property="leftBoardConstraint" destination="6SE-5X-NUd" id="aZh-QU-VUG"/>
                 <outlet property="leftBoardLabel" destination="oc0-E8-MfY" id="cpz-TM-DRE"/>
                 <outlet property="popupGraphType" destination="nfn-EY-81D" id="S8o-Pk-Afs"/>
                 <outlet property="progressForQuery" destination="XAH-8z-U5w" id="OeB-2y-Onk"/>
                 <outlet property="rightBoard" destination="Jv4-Xe-fJI" id="4cV-Yb-iDr"/>
-                <outlet property="rightBoardConstraint" destination="oTH-nK-dSh" id="jUg-no-EkL"/>
+                <outlet property="rightBoardConstraint" destination="JQw-VA-e1m" id="SPS-eA-2tU"/>
                 <outlet property="rightBoardLabel" destination="Vjr-RD-42q" id="HTp-ZA-mxX"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -30,141 +30,12 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="800" height="500"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="800" height="500"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Up3-hX-THf" userLabel="footer" customClass="SDColorBackgroundView">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="48"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="91f-9S-EDF">
-                                <rect key="frame" x="20" y="12" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="8LR-oz-k2M"/>
-                                    <constraint firstAttribute="width" constant="24" id="iuS-a4-dNT"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="0E6-V0-j0u"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OGJ-Ff-Zyr" userLabel="info">
-                                <rect key="frame" x="50" y="16" width="78" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A股资金流向" id="2kq-la-DX4">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="unF-e2-Qm7" userLabel="thanks">
-                                <rect key="frame" x="531" y="16" width="219" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Data by crawling 东方财富网 &amp; 雪球" allowsEditingTextAttributes="YES" id="scT-BM-rQ3">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eQ6-hs-QbL">
-                                <rect key="frame" x="756" y="12" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="aGw-ps-piO"/>
-                                    <constraint firstAttribute="width" constant="24" id="nEA-1E-Wjo"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="cool" id="7PZ-kz-wly"/>
-                            </imageView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="91f-9S-EDF" firstAttribute="leading" secondItem="Up3-hX-THf" secondAttribute="leading" constant="20" symbolic="YES" id="4uu-ye-xfe"/>
-                            <constraint firstItem="eQ6-hs-QbL" firstAttribute="leading" secondItem="unF-e2-Qm7" secondAttribute="trailing" constant="8" symbolic="YES" id="DVH-Gt-dfh"/>
-                            <constraint firstAttribute="centerY" secondItem="unF-e2-Qm7" secondAttribute="centerY" id="HwE-Am-viU"/>
-                            <constraint firstAttribute="trailing" secondItem="eQ6-hs-QbL" secondAttribute="trailing" constant="20" symbolic="YES" id="N1k-wh-kSj"/>
-                            <constraint firstAttribute="centerY" secondItem="eQ6-hs-QbL" secondAttribute="centerY" id="WWx-Bk-oNQ"/>
-                            <constraint firstAttribute="centerY" secondItem="OGJ-Ff-Zyr" secondAttribute="centerY" id="hg8-KE-Uay"/>
-                            <constraint firstItem="OGJ-Ff-Zyr" firstAttribute="leading" secondItem="91f-9S-EDF" secondAttribute="trailing" constant="8" symbolic="YES" id="khX-fZ-q4j"/>
-                            <constraint firstAttribute="centerY" secondItem="91f-9S-EDF" secondAttribute="centerY" id="noB-qA-c0f"/>
-                            <constraint firstAttribute="height" constant="48" id="q9x-b6-xAL"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="sdBackgroundColor">
-                                <color key="value" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="sdBorderWidth">
-                                <real key="value" value="0.0"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="sdCornerRadius">
-                                <real key="value" value="0.0"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="sdBorderColor">
-                                <color key="value" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="RaU-L2-eZC" userLabel="header2" customClass="SDColorBackgroundView">
-                        <rect key="frame" x="0.0" y="404" width="800" height="48"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="48" id="DSI-vd-mjz"/>
-                        </constraints>
-                    </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="content" customClass="YBGraphView">
-                        <rect key="frame" x="0.0" y="48" width="800" height="356"/>
-                        <connections>
-                            <outlet property="dataSource" destination="-2" id="N6k-FP-rlS"/>
-                            <outlet property="delegate" destination="-2" id="uUF-fh-7Gw"/>
-                        </connections>
-                    </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="pXX-z9-L8m" userLabel="left board">
-                        <rect key="frame" x="82" y="404" width="96" height="96"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4cq-P5-8h0">
-                                <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign.board" id="CrQ-hb-xZq"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oc0-E8-MfY">
-                                <rect key="frame" x="44" y="8" width="8" height="19"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="IoU-N3-arq">
-                                    <font key="font" metaFont="systemBold" size="16"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="oc0-E8-MfY" secondAttribute="centerX" id="3LW-84-jPi"/>
-                            <constraint firstAttribute="bottom" secondItem="oc0-E8-MfY" secondAttribute="bottom" constant="8" id="CDa-kj-rwl"/>
-                            <constraint firstItem="4cq-P5-8h0" firstAttribute="leading" secondItem="pXX-z9-L8m" secondAttribute="leading" id="H90-7T-e7B"/>
-                            <constraint firstAttribute="trailing" secondItem="4cq-P5-8h0" secondAttribute="trailing" id="LKa-3V-9tv"/>
-                            <constraint firstAttribute="width" constant="96" id="MRs-ou-mC6"/>
-                            <constraint firstItem="4cq-P5-8h0" firstAttribute="top" secondItem="pXX-z9-L8m" secondAttribute="top" id="NCG-8T-Qhj"/>
-                            <constraint firstAttribute="height" constant="96" id="QYS-Bc-R0U"/>
-                            <constraint firstAttribute="bottom" secondItem="4cq-P5-8h0" secondAttribute="bottom" id="zd7-XE-ZDy"/>
-                        </constraints>
-                    </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Jv4-Xe-fJI" userLabel="right board">
-                        <rect key="frame" x="622" y="404" width="96" height="96"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-Tv-hcJ">
-                                <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign.board" id="ALP-gm-mto"/>
-                            </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vjr-RD-42q">
-                                <rect key="frame" x="44" y="8" width="8" height="19"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="xbF-Gx-aax">
-                                    <font key="font" metaFont="systemBold" size="16"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Vjr-RD-42q" secondAttribute="bottom" constant="8" id="3cA-dU-4Sk"/>
-                            <constraint firstAttribute="height" constant="96" id="7Aw-F5-nJU"/>
-                            <constraint firstAttribute="bottom" secondItem="YYo-Tv-hcJ" secondAttribute="bottom" id="AxG-Ew-Kj2"/>
-                            <constraint firstItem="YYo-Tv-hcJ" firstAttribute="top" secondItem="Jv4-Xe-fJI" secondAttribute="top" id="Ijz-SF-HMI"/>
-                            <constraint firstItem="YYo-Tv-hcJ" firstAttribute="leading" secondItem="Jv4-Xe-fJI" secondAttribute="leading" id="L0u-fV-RxG"/>
-                            <constraint firstAttribute="centerX" secondItem="Vjr-RD-42q" secondAttribute="centerX" id="jil-Ht-vMW"/>
-                            <constraint firstAttribute="width" constant="96" id="rA4-kB-5b1"/>
-                            <constraint firstAttribute="trailing" secondItem="YYo-Tv-hcJ" secondAttribute="trailing" id="tqA-zB-tHV"/>
-                        </constraints>
-                    </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="SEY-Rw-TPA" userLabel="header" customClass="SDColorBackgroundView">
                         <rect key="frame" x="0.0" y="452" width="800" height="48"/>
                         <subviews>
@@ -277,26 +148,171 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="RaU-L2-eZC" userLabel="content" customClass="SDColorBackgroundView">
+                        <rect key="frame" x="0.0" y="48" width="800" height="404"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="graph" customClass="YBGraphView">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="356"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="-2" id="N6k-FP-rlS"/>
+                                    <outlet property="delegate" destination="-2" id="uUF-fh-7Gw"/>
+                                </connections>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="pXX-z9-L8m" userLabel="left board">
+                                <rect key="frame" x="82" y="356" width="96" height="96"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4cq-P5-8h0">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign.board" id="CrQ-hb-xZq"/>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oc0-E8-MfY">
+                                        <rect key="frame" x="44" y="8" width="8" height="19"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="IoU-N3-arq">
+                                            <font key="font" metaFont="systemBold" size="16"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="oc0-E8-MfY" secondAttribute="centerX" id="3LW-84-jPi"/>
+                                    <constraint firstAttribute="bottom" secondItem="oc0-E8-MfY" secondAttribute="bottom" constant="8" id="CDa-kj-rwl"/>
+                                    <constraint firstItem="4cq-P5-8h0" firstAttribute="leading" secondItem="pXX-z9-L8m" secondAttribute="leading" id="H90-7T-e7B"/>
+                                    <constraint firstAttribute="trailing" secondItem="4cq-P5-8h0" secondAttribute="trailing" id="LKa-3V-9tv"/>
+                                    <constraint firstAttribute="width" constant="96" id="MRs-ou-mC6"/>
+                                    <constraint firstItem="4cq-P5-8h0" firstAttribute="top" secondItem="pXX-z9-L8m" secondAttribute="top" id="NCG-8T-Qhj"/>
+                                    <constraint firstAttribute="height" constant="96" id="QYS-Bc-R0U"/>
+                                    <constraint firstAttribute="bottom" secondItem="4cq-P5-8h0" secondAttribute="bottom" id="zd7-XE-ZDy"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Jv4-Xe-fJI" userLabel="right board">
+                                <rect key="frame" x="622" y="356" width="96" height="96"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-Tv-hcJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="sign.board" id="ALP-gm-mto"/>
+                                    </imageView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vjr-RD-42q">
+                                        <rect key="frame" x="44" y="8" width="8" height="19"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="xbF-Gx-aax">
+                                            <font key="font" metaFont="systemBold" size="16"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Vjr-RD-42q" secondAttribute="bottom" constant="8" id="3cA-dU-4Sk"/>
+                                    <constraint firstAttribute="height" constant="96" id="7Aw-F5-nJU"/>
+                                    <constraint firstAttribute="bottom" secondItem="YYo-Tv-hcJ" secondAttribute="bottom" id="AxG-Ew-Kj2"/>
+                                    <constraint firstItem="YYo-Tv-hcJ" firstAttribute="top" secondItem="Jv4-Xe-fJI" secondAttribute="top" id="Ijz-SF-HMI"/>
+                                    <constraint firstItem="YYo-Tv-hcJ" firstAttribute="leading" secondItem="Jv4-Xe-fJI" secondAttribute="leading" id="L0u-fV-RxG"/>
+                                    <constraint firstAttribute="centerX" secondItem="Vjr-RD-42q" secondAttribute="centerX" id="jil-Ht-vMW"/>
+                                    <constraint firstAttribute="width" constant="96" id="rA4-kB-5b1"/>
+                                    <constraint firstAttribute="trailing" secondItem="YYo-Tv-hcJ" secondAttribute="trailing" id="tqA-zB-tHV"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pXX-z9-L8m" firstAttribute="top" secondItem="RaU-L2-eZC" secondAttribute="top" constant="-48" id="6SE-5X-NUd"/>
+                            <constraint firstAttribute="bottom" secondItem="awK-z4-DP8" secondAttribute="bottom" id="Etk-eg-svE"/>
+                            <constraint firstItem="Jv4-Xe-fJI" firstAttribute="top" secondItem="RaU-L2-eZC" secondAttribute="top" constant="-48" id="JQw-VA-e1m"/>
+                            <constraint firstAttribute="trailing" secondItem="awK-z4-DP8" secondAttribute="trailing" id="NdH-pq-a6h"/>
+                            <constraint firstAttribute="centerX" secondItem="Jv4-Xe-fJI" secondAttribute="centerX" constant="-270" id="QvT-0J-vfu"/>
+                            <constraint firstItem="awK-z4-DP8" firstAttribute="leading" secondItem="RaU-L2-eZC" secondAttribute="leading" id="W6e-4l-1Jd"/>
+                            <constraint firstItem="awK-z4-DP8" firstAttribute="top" secondItem="RaU-L2-eZC" secondAttribute="top" constant="48" id="XDz-rE-gaQ"/>
+                            <constraint firstAttribute="centerX" secondItem="pXX-z9-L8m" secondAttribute="centerX" constant="270" id="oYX-vS-RPS"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBackgroundColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBorderColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdBorderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdCornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Up3-hX-THf" userLabel="footer" customClass="SDColorBackgroundView">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="48"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="91f-9S-EDF">
+                                <rect key="frame" x="20" y="12" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="8LR-oz-k2M"/>
+                                    <constraint firstAttribute="width" constant="24" id="iuS-a4-dNT"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AppIcon" id="0E6-V0-j0u"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OGJ-Ff-Zyr" userLabel="info">
+                                <rect key="frame" x="50" y="16" width="78" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="A股资金流向" id="2kq-la-DX4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="unF-e2-Qm7" userLabel="thanks">
+                                <rect key="frame" x="531" y="16" width="219" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Data by crawling 东方财富网 &amp; 雪球" allowsEditingTextAttributes="YES" id="scT-BM-rQ3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eQ6-hs-QbL">
+                                <rect key="frame" x="756" y="12" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="aGw-ps-piO"/>
+                                    <constraint firstAttribute="width" constant="24" id="nEA-1E-Wjo"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="cool" id="7PZ-kz-wly"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="91f-9S-EDF" firstAttribute="leading" secondItem="Up3-hX-THf" secondAttribute="leading" constant="20" symbolic="YES" id="4uu-ye-xfe"/>
+                            <constraint firstItem="eQ6-hs-QbL" firstAttribute="leading" secondItem="unF-e2-Qm7" secondAttribute="trailing" constant="8" symbolic="YES" id="DVH-Gt-dfh"/>
+                            <constraint firstAttribute="centerY" secondItem="unF-e2-Qm7" secondAttribute="centerY" id="HwE-Am-viU"/>
+                            <constraint firstAttribute="trailing" secondItem="eQ6-hs-QbL" secondAttribute="trailing" constant="20" symbolic="YES" id="N1k-wh-kSj"/>
+                            <constraint firstAttribute="centerY" secondItem="eQ6-hs-QbL" secondAttribute="centerY" id="WWx-Bk-oNQ"/>
+                            <constraint firstAttribute="centerY" secondItem="OGJ-Ff-Zyr" secondAttribute="centerY" id="hg8-KE-Uay"/>
+                            <constraint firstItem="OGJ-Ff-Zyr" firstAttribute="leading" secondItem="91f-9S-EDF" secondAttribute="trailing" constant="8" symbolic="YES" id="khX-fZ-q4j"/>
+                            <constraint firstAttribute="centerY" secondItem="91f-9S-EDF" secondAttribute="centerY" id="noB-qA-c0f"/>
+                            <constraint firstAttribute="height" constant="48" id="q9x-b6-xAL"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBackgroundColor">
+                                <color key="value" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdBorderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="sdCornerRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="sdBorderColor">
+                                <color key="value" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="RaU-L2-eZC" secondAttribute="trailing" id="2PJ-mv-DNO"/>
                     <constraint firstItem="Up3-hX-THf" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="2aQ-Qd-eEJ"/>
-                    <constraint firstAttribute="centerX" secondItem="pXX-z9-L8m" secondAttribute="centerX" constant="270" id="43K-yL-RWE"/>
-                    <constraint firstAttribute="centerX" secondItem="Jv4-Xe-fJI" secondAttribute="centerX" constant="-270" id="6ft-ky-QiJ"/>
                     <constraint firstItem="RaU-L2-eZC" firstAttribute="top" secondItem="SEY-Rw-TPA" secondAttribute="bottom" id="8ga-yF-4lJ"/>
+                    <constraint firstItem="Up3-hX-THf" firstAttribute="top" secondItem="RaU-L2-eZC" secondAttribute="bottom" id="E8H-xU-CkS"/>
                     <constraint firstItem="SEY-Rw-TPA" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="Edq-Bb-EDO"/>
                     <constraint firstItem="SEY-Rw-TPA" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="H4X-Ua-p8U"/>
                     <constraint firstItem="9Lj-LI-0c9" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="QYU-Yr-6EV"/>
-                    <constraint firstItem="pXX-z9-L8m" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="VjE-pV-yTn"/>
-                    <constraint firstItem="awK-z4-DP8" firstAttribute="top" secondItem="RaU-L2-eZC" secondAttribute="bottom" id="ZnU-lJ-Qa6"/>
-                    <constraint firstItem="Up3-hX-THf" firstAttribute="top" secondItem="awK-z4-DP8" secondAttribute="bottom" id="h3k-lM-rLX"/>
-                    <constraint firstAttribute="trailing" secondItem="awK-z4-DP8" secondAttribute="trailing" id="jgs-lr-Ytg"/>
                     <constraint firstAttribute="bottom" secondItem="Up3-hX-THf" secondAttribute="bottom" id="k0t-Um-KZB"/>
                     <constraint firstItem="RaU-L2-eZC" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="mgI-E3-NJ3"/>
-                    <constraint firstItem="Jv4-Xe-fJI" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" id="oTH-nK-dSh"/>
                     <constraint firstAttribute="trailing" secondItem="9Lj-LI-0c9" secondAttribute="trailing" id="r4k-Jh-8zP"/>
                     <constraint firstAttribute="trailing" secondItem="Up3-hX-THf" secondAttribute="trailing" id="rBV-3d-6HL"/>
-                    <constraint firstItem="awK-z4-DP8" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="w7o-or-beb"/>
                     <constraint firstItem="9Lj-LI-0c9" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="wSj-AA-vdI"/>
                     <constraint firstAttribute="trailing" secondItem="SEY-Rw-TPA" secondAttribute="trailing" id="yKC-tU-bNo"/>
                 </constraints>

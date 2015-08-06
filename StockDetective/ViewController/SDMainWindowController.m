@@ -200,10 +200,14 @@ static NSString * const kStockDataUnitWan     = @"万";
 
 - (void)reshowBoardWithAnimation
 {
-    self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height/2;
-    self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height/2;
-    self.leftBoardConstraint.animator.constant = 0;
-    self.rightBoardConstraint.animator.constant = 0;
+    self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height;
+    self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height;
+
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setDuration:0.5]; // default 0.25
+    self.leftBoardConstraint.animator.constant = -self.leftBoard.frame.size.height/2;
+    self.rightBoardConstraint.animator.constant = -self.rightBoard.frame.size.height/2;
+    [NSAnimationContext endGrouping];
 }
 
 - (void)parseData:(NSData *)data
