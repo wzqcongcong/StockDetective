@@ -11,6 +11,7 @@
 #import "SDColorBackgroundView.h"
 #import "SDGraphMarkerViewController.h"
 #import "SDCommonFetcher.h"
+#import <pop/POP.h>
 
 static NSUInteger const kDataRefreshInterval  = 5;
 static NSUInteger const kErrorBarDurationTime = 3;
@@ -203,11 +204,21 @@ static NSString * const kStockDataUnitWan     = @"万";
     self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height;
     self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height;
 
-    [NSAnimationContext beginGrouping];
-    [[NSAnimationContext currentContext] setDuration:0.5]; // default 0.25
-    self.leftBoardConstraint.animator.constant = -self.leftBoard.frame.size.height/2;
-    self.rightBoardConstraint.animator.constant = -self.rightBoard.frame.size.height/2;
-    [NSAnimationContext endGrouping];
+//    [NSAnimationContext beginGrouping];
+//    [[NSAnimationContext currentContext] setDuration:0.5]; // default 0.25
+//    self.leftBoardConstraint.animator.constant = -self.leftBoard.frame.size.height/2;
+//    self.rightBoardConstraint.animator.constant = -self.rightBoard.frame.size.height/2;
+//    [NSAnimationContext endGrouping];
+
+    POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+    animation.toValue = @(-self.rightBoard.frame.size.height/2);
+    animation.springBounciness = 16;
+    animation.springSpeed = 8;
+    animation.dynamicsFriction = 10;
+    animation.dynamicsMass = 1;
+    animation.dynamicsTension = 300;
+    [self.leftBoardConstraint pop_addAnimation:animation forKey:@"leftSpring"];
+    [self.rightBoardConstraint pop_addAnimation:animation forKey:@"rightSpring"];
 }
 
 - (void)parseData:(NSData *)data
