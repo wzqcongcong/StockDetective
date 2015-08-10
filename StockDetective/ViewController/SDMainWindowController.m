@@ -171,7 +171,13 @@ static NSString * const kStockDataUnitWan     = @"万";
                                                                 successHandler:^(SDStockMarket *stockMarket) {
                                                                     NSLog(@"%@", [stockMarket currentPriceDescription]);
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
+                                                                        self.leftBoardLabel.stringValue = self.stockInfo.stockName;
                                                                         self.rightBoardLabel.stringValue = stockMarket.currentPrice;
+                                                                        
+                                                                        if (self.needToReshowBoard) {
+                                                                            self.needToReshowBoard = NO;
+                                                                            [self reshowBoardWithAnimation];
+                                                                        }
                                                                     });
                                                                 }
                                                                 failureHandler:^(NSError *error) {
@@ -191,10 +197,10 @@ static NSString * const kStockDataUnitWan     = @"万";
         [self parseData:data];
         [self.graphView draw];
 
-        self.leftBoardLabel.stringValue = self.stockInfo.stockName;
+        // if stock market is not yet queried back at this time, set the board status to undefined, waiting new stock market data updates it to normal.
         if (self.needToReshowBoard) {
-            self.needToReshowBoard = NO;
-            [self reshowBoardWithAnimation];
+            self.leftBoardLabel.stringValue = @"?.?";
+            self.rightBoardLabel.stringValue = @"?.?";
         }
     });
 }
