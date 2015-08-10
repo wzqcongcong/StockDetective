@@ -764,6 +764,7 @@
 				84478F871B78902F00B766AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E5F43CB61B632BE5000D2AB8 /* Build configuration list for PBXProject "StockDetective" */ = {
 			isa = XCConfigurationList;
