@@ -14,6 +14,13 @@
 		84478F821B78902F00B766AF /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84478F811B78902F00B766AF /* TodayViewController.xib */; };
 		84478F851B78902F00B766AF /* ExtensionToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84478F741B78902F00B766AF /* ExtensionToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		848D8CDE1B71C71B001D7A8A /* SDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */; };
+		84EBFDBB1B79C6B40078F93B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84478F751B78902F00B766AF /* NotificationCenter.framework */; };
+		84EBFDC21B79C6B40078F93B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84EBFDC01B79C6B40078F93B /* InfoPlist.strings */; };
+		84EBFDC51B79C6B40078F93B /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFDC41B79C6B40078F93B /* TodayViewController.m */; };
+		84EBFDC81B79C6B40078F93B /* ListRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFDC71B79C6B40078F93B /* ListRowViewController.m */; };
+		84EBFDCA1B79C6B40078F93B /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EBFDC91B79C6B40078F93B /* TodayViewController.xib */; };
+		84EBFDCC1B79C6B40078F93B /* ListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EBFDCB1B79C6B40078F93B /* ListRowViewController.xib */; };
+		84EBFDCF1B79C6B40078F93B /* ExtensionTodayList.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84EBFDBA1B79C6B40078F93B /* ExtensionTodayList.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
@@ -39,6 +46,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 84478F731B78902F00B766AF;
 			remoteInfo = ExtensionToday;
+		};
+		84EBFDCD1B79C6B40078F93B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F43CB31B632BE5000D2AB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84EBFDB91B79C6B40078F93B;
+			remoteInfo = ExtensionTodayList;
 		};
 		E5F43CCF1B632BE5000D2AB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -70,6 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				84EBFDCF1B79C6B40078F93B /* ExtensionTodayList.appex in Embed App Extensions */,
 				84478F851B78902F00B766AF /* ExtensionToday.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -100,6 +115,16 @@
 		84478F811B78902F00B766AF /* TodayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayViewController.xib; sourceTree = "<group>"; };
 		848D8CDC1B71C71B001D7A8A /* SDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDUserInfo.h; path = Model/SDUserInfo.h; sourceTree = "<group>"; };
 		848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDUserInfo.m; path = Model/SDUserInfo.m; sourceTree = "<group>"; };
+		84EBFDBA1B79C6B40078F93B /* ExtensionTodayList.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ExtensionTodayList.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		84EBFDBE1B79C6B40078F93B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84EBFDBF1B79C6B40078F93B /* ExtensionTodayList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ExtensionTodayList.entitlements; sourceTree = "<group>"; };
+		84EBFDC11B79C6B40078F93B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84EBFDC31B79C6B40078F93B /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		84EBFDC41B79C6B40078F93B /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		84EBFDC61B79C6B40078F93B /* ListRowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListRowViewController.h; sourceTree = "<group>"; };
+		84EBFDC71B79C6B40078F93B /* ListRowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListRowViewController.m; sourceTree = "<group>"; };
+		84EBFDC91B79C6B40078F93B /* TodayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayViewController.xib; sourceTree = "<group>"; };
+		84EBFDCB1B79C6B40078F93B /* ListRowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListRowViewController.xib; sourceTree = "<group>"; };
 		8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E58551F21B710A870037E7F4 /* SDStockMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockMarket.h; path = Model/SDStockMarket.h; sourceTree = "<group>"; };
 		E58551F31B710A870037E7F4 /* SDStockMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockMarket.m; path = Model/SDStockMarket.m; sourceTree = "<group>"; };
@@ -137,6 +162,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84478F761B78902F00B766AF /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84EBFDB71B79C6B40078F93B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84EBFDBB1B79C6B40078F93B /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +222,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		84EBFDBC1B79C6B40078F93B /* ExtensionTodayList */ = {
+			isa = PBXGroup;
+			children = (
+				84EBFDC31B79C6B40078F93B /* TodayViewController.h */,
+				84EBFDC41B79C6B40078F93B /* TodayViewController.m */,
+				84EBFDC91B79C6B40078F93B /* TodayViewController.xib */,
+				84EBFDC61B79C6B40078F93B /* ListRowViewController.h */,
+				84EBFDC71B79C6B40078F93B /* ListRowViewController.m */,
+				84EBFDCB1B79C6B40078F93B /* ListRowViewController.xib */,
+				84EBFDBD1B79C6B40078F93B /* Supporting Files */,
+			);
+			path = ExtensionTodayList;
+			sourceTree = "<group>";
+		};
+		84EBFDBD1B79C6B40078F93B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84EBFDBE1B79C6B40078F93B /* Info.plist */,
+				84EBFDBF1B79C6B40078F93B /* ExtensionTodayList.entitlements */,
+				84EBFDC01B79C6B40078F93B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E5A6CC3B1B6C969300FD6565 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +275,7 @@
 				E5F43CBD1B632BE5000D2AB8 /* StockDetective */,
 				E5F43CD11B632BE5000D2AB8 /* StockDetectiveTests */,
 				84478F771B78902F00B766AF /* ExtensionToday */,
+				84EBFDBC1B79C6B40078F93B /* ExtensionTodayList */,
 				EA4F27AFF5EDF99923C34D14 /* Pods */,
 				1BD36D656BDBD9F136BC38C2 /* Frameworks */,
 				E5F43CBC1B632BE5000D2AB8 /* Products */,
@@ -230,6 +288,7 @@
 				E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */,
 				E5F43CCE1B632BE5000D2AB8 /* StockDetectiveTests.xctest */,
 				84478F741B78902F00B766AF /* ExtensionToday.appex */,
+				84EBFDBA1B79C6B40078F93B /* ExtensionTodayList.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -345,6 +404,23 @@
 			productReference = 84478F741B78902F00B766AF /* ExtensionToday.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		84EBFDB91B79C6B40078F93B /* ExtensionTodayList */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84EBFDD21B79C6B40078F93B /* Build configuration list for PBXNativeTarget "ExtensionTodayList" */;
+			buildPhases = (
+				84EBFDB61B79C6B40078F93B /* Sources */,
+				84EBFDB71B79C6B40078F93B /* Frameworks */,
+				84EBFDB81B79C6B40078F93B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExtensionTodayList;
+			productName = ExtensionTodayList;
+			productReference = 84EBFDBA1B79C6B40078F93B /* ExtensionTodayList.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E5F43CBA1B632BE5000D2AB8 /* StockDetective */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5F43CD81B632BE5000D2AB8 /* Build configuration list for PBXNativeTarget "StockDetective" */;
@@ -362,6 +438,7 @@
 			dependencies = (
 				E5F43E001B638AF1000D2AB8 /* PBXTargetDependency */,
 				84478F841B78902F00B766AF /* PBXTargetDependency */,
+				84EBFDCE1B79C6B40078F93B /* PBXTargetDependency */,
 			);
 			name = StockDetective;
 			productName = StockDetective;
@@ -398,6 +475,9 @@
 					84478F731B78902F00B766AF = {
 						CreatedOnToolsVersion = 6.4;
 					};
+					84EBFDB91B79C6B40078F93B = {
+						CreatedOnToolsVersion = 6.4;
+					};
 					E5F43CBA1B632BE5000D2AB8 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -430,6 +510,7 @@
 				E5F43CBA1B632BE5000D2AB8 /* StockDetective */,
 				E5F43CCD1B632BE5000D2AB8 /* StockDetectiveTests */,
 				84478F731B78902F00B766AF /* ExtensionToday */,
+				84EBFDB91B79C6B40078F93B /* ExtensionTodayList */,
 			);
 		};
 /* End PBXProject section */
@@ -451,6 +532,16 @@
 			files = (
 				84478F821B78902F00B766AF /* TodayViewController.xib in Resources */,
 				84478F7D1B78902F00B766AF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84EBFDB81B79C6B40078F93B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84EBFDCC1B79C6B40078F93B /* ListRowViewController.xib in Resources */,
+				84EBFDCA1B79C6B40078F93B /* TodayViewController.xib in Resources */,
+				84EBFDC21B79C6B40078F93B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +607,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84EBFDB61B79C6B40078F93B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84EBFDC51B79C6B40078F93B /* TodayViewController.m in Sources */,
+				84EBFDC81B79C6B40078F93B /* ListRowViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5F43CB71B632BE5000D2AB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -549,6 +649,11 @@
 			target = 84478F731B78902F00B766AF /* ExtensionToday */;
 			targetProxy = 84478F831B78902F00B766AF /* PBXContainerItemProxy */;
 		};
+		84EBFDCE1B79C6B40078F93B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84EBFDB91B79C6B40078F93B /* ExtensionTodayList */;
+			targetProxy = 84EBFDCD1B79C6B40078F93B /* PBXContainerItemProxy */;
+		};
 		E5F43CD01B632BE5000D2AB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E5F43CBA1B632BE5000D2AB8 /* StockDetective */;
@@ -566,6 +671,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				84478F7C1B78902F00B766AF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		84EBFDC01B79C6B40078F93B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84EBFDC11B79C6B40078F93B /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -607,6 +720,38 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = ExtensionToday/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		84EBFDD01B79C6B40078F93B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = ExtensionTodayList/ExtensionTodayList.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ExtensionTodayList/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		84EBFDD11B79C6B40078F93B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = ExtensionTodayList/ExtensionTodayList.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ExtensionTodayList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -765,6 +910,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		84EBFDD21B79C6B40078F93B /* Build configuration list for PBXNativeTarget "ExtensionTodayList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84EBFDD01B79C6B40078F93B /* Debug */,
+				84EBFDD11B79C6B40078F93B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		E5F43CB61B632BE5000D2AB8 /* Build configuration list for PBXProject "StockDetective" */ = {
 			isa = XCConfigurationList;

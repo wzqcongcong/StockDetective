@@ -1,0 +1,4 @@
+/* Display name and description for this extension. */
+"CFBundleDisplayName" = "Stock Detective Today List";
+"com.apple.notificationcenter.widget.description" = "Stock Detective Today List";
+
