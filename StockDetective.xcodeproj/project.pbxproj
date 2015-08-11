@@ -23,6 +23,14 @@
 		84EBFDCF1B79C6B40078F93B /* ExtensionTodayList.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84EBFDBA1B79C6B40078F93B /* ExtensionTodayList.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		84EBFDD51B79DFD00078F93B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
 		84EBFDD61B79DFD60078F93B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
+		84EBFDDA1B79E7250078F93B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A93A3B282686A0A247209F /* libPods.a */; };
+		84EBFDDB1B79E73D0078F93B /* SDRefreshDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */; };
+		84EBFDDC1B79E73D0078F93B /* SDCommonFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4061B6E1CAB00DCC7C0 /* SDCommonFetcher.m */; };
+		84EBFDDD1B79E73D0078F93B /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
+		84EBFDDE1B79E73D0078F93B /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
+		84EBFDDF1B79E73D0078F93B /* SDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */; };
+		84EBFDE01B79E7870078F93B /* Yuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; };
+		84EBFDE21B79E7AF0078F93B /* Yuba.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
@@ -55,6 +63,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 84EBFDB91B79C6B40078F93B;
 			remoteInfo = ExtensionTodayList;
+		};
+		84EBFDD71B79E6EB0078F93B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Yuba;
 		};
 		E5F43CCF1B632BE5000D2AB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -90,6 +105,17 @@
 				84478F851B78902F00B766AF /* ExtensionToday.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84EBFDE11B79E7A60078F93B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				84EBFDE21B79E7AF0078F93B /* Yuba.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E5F43E011B638AF1000D2AB8 /* Embed Frameworks */ = {
@@ -163,6 +189,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBFDDA1B79E7250078F93B /* libPods.a in Frameworks */,
+				84EBFDE01B79E7870078F93B /* Yuba.framework in Frameworks */,
 				84478F761B78902F00B766AF /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,10 +424,13 @@
 				84478F701B78902F00B766AF /* Sources */,
 				84478F711B78902F00B766AF /* Frameworks */,
 				84478F721B78902F00B766AF /* Resources */,
+				84EBFDE31B79E7C20078F93B /* Copy Pods Resources */,
+				84EBFDE11B79E7A60078F93B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84EBFDD81B79E6EB0078F93B /* PBXTargetDependency */,
 			);
 			name = ExtensionToday;
 			productName = ExtensionToday;
@@ -570,6 +601,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		84EBFDE31B79E7C20078F93B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"";
+			showEnvVarsInLog = 0;
+		};
 		C916F81178D28877DDD7C80C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -607,6 +653,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBFDDB1B79E73D0078F93B /* SDRefreshDataTask.m in Sources */,
+				84EBFDDC1B79E73D0078F93B /* SDCommonFetcher.m in Sources */,
+				84EBFDDD1B79E73D0078F93B /* SDStockInfo.m in Sources */,
+				84EBFDDE1B79E73D0078F93B /* SDStockMarket.m in Sources */,
+				84EBFDDF1B79E73D0078F93B /* SDUserInfo.m in Sources */,
 				84478F801B78902F00B766AF /* TodayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +709,11 @@
 			target = 84EBFDB91B79C6B40078F93B /* ExtensionTodayList */;
 			targetProxy = 84EBFDCD1B79C6B40078F93B /* PBXContainerItemProxy */;
 		};
+		84EBFDD81B79E6EB0078F93B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Yuba;
+			targetProxy = 84EBFDD71B79E6EB0078F93B /* PBXContainerItemProxy */;
+		};
 		E5F43CD01B632BE5000D2AB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E5F43CBA1B632BE5000D2AB8 /* StockDetective */;
@@ -702,6 +758,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionToday/ExtensionToday.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -709,9 +766,29 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
 				);
 				INFOPLIST_FILE = ExtensionToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"c++\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -721,12 +798,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionToday/ExtensionToday.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "COCOAPODS=1";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
 				INFOPLIST_FILE = ExtensionToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"c++\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -803,6 +901,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PODS_ROOT = "${SRCROOT}/Pods";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -839,6 +938,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PODS_ROOT = "${SRCROOT}/Pods";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -924,6 +1024,7 @@
 				84EBFDD11B79C6B40078F93B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E5F43CB61B632BE5000D2AB8 /* Build configuration list for PBXProject "StockDetective" */ = {
 			isa = XCConfigurationList;

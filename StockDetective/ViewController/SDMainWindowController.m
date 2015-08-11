@@ -113,6 +113,7 @@ static NSString * const kStockDataUnitWan     = @"万";
     self.graphView.showMarker = YES;
     self.graphView.showMarkerNearPoint = NO;
     self.graphView.drawBullets = NO;
+    self.graphView.highlightBullet = YES;
     self.graphView.useMinValue = NO;
     self.graphView.gridYCount = 10;
     self.graphView.isRoundGridY = YES;

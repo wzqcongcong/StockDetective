@@ -7,7 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SDRefreshDataTask.h"
 
-@interface TodayViewController : NSViewController
+@interface TodayViewController : NSViewController <SDRefreshDataTaskManagerProtocol>
+
+@property (atomic, strong) NSDate *lastRefreshedByDataTaskStartDate;
 
 @end
