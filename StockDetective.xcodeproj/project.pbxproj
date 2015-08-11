@@ -21,6 +21,8 @@
 		84EBFDCA1B79C6B40078F93B /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EBFDC91B79C6B40078F93B /* TodayViewController.xib */; };
 		84EBFDCC1B79C6B40078F93B /* ListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EBFDCB1B79C6B40078F93B /* ListRowViewController.xib */; };
 		84EBFDCF1B79C6B40078F93B /* ExtensionTodayList.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84EBFDBA1B79C6B40078F93B /* ExtensionTodayList.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84EBFDD51B79DFD00078F93B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
+		84EBFDD61B79DFD60078F93B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
 		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
@@ -530,6 +532,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBFDD51B79DFD00078F93B /* Images.xcassets in Resources */,
 				84478F821B78902F00B766AF /* TodayViewController.xib in Resources */,
 				84478F7D1B78902F00B766AF /* InfoPlist.strings in Resources */,
 			);
@@ -539,6 +542,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBFDD61B79DFD60078F93B /* Images.xcassets in Resources */,
 				84EBFDCC1B79C6B40078F93B /* ListRowViewController.xib in Resources */,
 				84EBFDCA1B79C6B40078F93B /* TodayViewController.xib in Resources */,
 				84EBFDC21B79C6B40078F93B /* InfoPlist.strings in Resources */,
@@ -698,6 +702,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionToday/ExtensionToday.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -716,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionToday/ExtensionToday.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
