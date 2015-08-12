@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
             <subviews>
                 <textField verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KU6-MB-4x2" userLabel="name">
-                    <rect key="frame" x="-2" y="5" width="294" height="19"/>
+                    <rect key="frame" x="-2" y="5" width="306" height="19"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" id="pgq-dU-GDk">
                         <font key="font" metaFont="system" size="16"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -25,27 +25,21 @@
                         <binding destination="-2" name="value" keyPath="self.representedObject.description" id="mRI-fA-4DV"/>
                     </connections>
                 </textField>
-                <button horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Zyp-pH-19l" userLabel="price">
-                    <rect key="frame" x="298" y="1" width="24" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="USj-Gj-qIs"/>
-                    </constraints>
-                    <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4ZY-01-Ftl">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="-2" name="title" keyPath="colorPrice" id="oAE-0s-fQT"/>
-                    </connections>
-                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="bJl-P6-fpf" userLabel="price">
+                    <rect key="frame" x="310" y="5" width="4" height="19"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" id="vfP-6W-f7I">
+                        <font key="font" metaFont="system" size="16"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Zyp-pH-19l" secondAttribute="bottom" constant="4" id="0mR-0q-7sH"/>
-                <constraint firstItem="Zyp-pH-19l" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="4" id="4r3-Bv-v5i"/>
                 <constraint firstItem="KU6-MB-4x2" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="AfO-ab-vWV"/>
+                <constraint firstItem="bJl-P6-fpf" firstAttribute="leading" secondItem="KU6-MB-4x2" secondAttribute="trailing" constant="10" id="FGu-Dm-DEi"/>
                 <constraint firstAttribute="centerY" secondItem="KU6-MB-4x2" secondAttribute="centerY" id="XZ9-Jn-fHr"/>
-                <constraint firstItem="Zyp-pH-19l" firstAttribute="leading" secondItem="KU6-MB-4x2" secondAttribute="trailing" constant="10" id="ZJt-t3-g9H"/>
-                <constraint firstAttribute="trailing" secondItem="Zyp-pH-19l" secondAttribute="trailing" id="j5h-fV-qDw"/>
+                <constraint firstAttribute="centerY" secondItem="bJl-P6-fpf" secondAttribute="centerY" id="ebu-TQ-xgS"/>
+                <constraint firstAttribute="trailing" secondItem="bJl-P6-fpf" secondAttribute="trailing" constant="8" id="tVY-Ps-tIs"/>
             </constraints>
             <point key="canvasLocation" x="290" y="317"/>
         </customView>

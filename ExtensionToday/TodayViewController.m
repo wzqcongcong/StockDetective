@@ -31,6 +31,7 @@ static NSUInteger const kDataRefreshInterval  = 5;
 @property (weak) IBOutlet NSTextField *titleStock;
 @property (weak) IBOutlet NSTextField *titlePrice;
 @property (weak) IBOutlet YBGraphView *graphView;
+@property (weak) IBOutlet NSLayoutConstraint *constraintGraph;
 
 @end
 
@@ -224,6 +225,17 @@ static NSUInteger const kDataRefreshInterval  = 5;
                     littleForce];
 
     self.graphView.info = [NSString stringWithFormat:@"%@ (%@)", [self.stockInfo stockShortDisplayInfo], array[0]];
+}
+
+#pragma mark - ui action
+
+- (IBAction)btnTitleBackground:(id)sender
+{
+    if (self.constraintGraph.constant == 0) {
+        self.constraintGraph.animator.constant = -self.graphView.frame.size.height;
+    } else {
+        self.constraintGraph.animator.constant = 0;
+    }
 }
 
 #pragma mark - graph view delegate

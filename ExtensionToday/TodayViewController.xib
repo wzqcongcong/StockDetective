@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TodayViewController">
             <connections>
+                <outlet property="constraintGraph" destination="sOZ-Ht-S9a" id="aig-f6-THl"/>
                 <outlet property="graphView" destination="Dhd-HS-FZV" id="sEs-NU-nTe"/>
                 <outlet property="titlePrice" destination="nc5-u1-e9d" id="KM8-cU-Wy1"/>
                 <outlet property="titleStock" destination="UuI-kV-5z1" id="Jb1-uN-tvV"/>
@@ -17,16 +18,6 @@
         <customView simulatedAppContext="notificationCenter" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="320" height="288"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Dhd-HS-FZV" customClass="YBGraphView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="240" id="zGb-tr-4gH"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="dataSource" destination="-2" id="28k-1l-ST3"/>
-                        <outlet property="delegate" destination="-2" id="F6h-y0-tRX"/>
-                    </connections>
-                </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="c9I-d1-rub" userLabel="Title View">
                     <rect key="frame" x="0.0" y="240" width="320" height="48"/>
                     <subviews>
@@ -46,15 +37,39 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="MdV-Ao-Q60">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="cer-2j-oJT">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="btnTitleBackground:" target="-2" id="BIS-Uf-uiF"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="UuI-kV-5z1" firstAttribute="leading" secondItem="c9I-d1-rub" secondAttribute="leading" constant="24" id="A2d-fD-xoH"/>
                         <constraint firstAttribute="centerY" secondItem="nc5-u1-e9d" secondAttribute="centerY" id="CJx-OX-yk4"/>
+                        <constraint firstItem="MdV-Ao-Q60" firstAttribute="leading" secondItem="c9I-d1-rub" secondAttribute="leading" id="EC5-Vp-NPC"/>
                         <constraint firstAttribute="trailing" secondItem="nc5-u1-e9d" secondAttribute="trailing" constant="24" id="FUA-K4-rEw"/>
+                        <constraint firstItem="MdV-Ao-Q60" firstAttribute="top" secondItem="c9I-d1-rub" secondAttribute="top" id="M7C-iD-bmY"/>
+                        <constraint firstAttribute="trailing" secondItem="MdV-Ao-Q60" secondAttribute="trailing" id="NmU-gv-D58"/>
                         <constraint firstAttribute="height" constant="48" id="RJv-Ji-3jo"/>
+                        <constraint firstAttribute="bottom" secondItem="MdV-Ao-Q60" secondAttribute="bottom" id="aBj-bQ-5Hw"/>
                         <constraint firstAttribute="centerY" secondItem="UuI-kV-5z1" secondAttribute="centerY" id="drO-Bs-v8v"/>
                         <constraint firstItem="nc5-u1-e9d" firstAttribute="leading" secondItem="UuI-kV-5z1" secondAttribute="trailing" constant="8" id="mFh-WK-hRo"/>
                     </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Dhd-HS-FZV" customClass="YBGraphView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="zGb-tr-4gH"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-2" id="28k-1l-ST3"/>
+                        <outlet property="delegate" destination="-2" id="F6h-y0-tRX"/>
+                    </connections>
                 </customView>
             </subviews>
             <constraints>

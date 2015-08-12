@@ -54,6 +54,7 @@
 - (NSEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(NSEdgeInsets)defaultMarginInset {
     // Override the left margin so that the list view is flush with the edge.
     defaultMarginInset.left = 0;
+    defaultMarginInset.right = 0;
     return defaultMarginInset;
 }
 
