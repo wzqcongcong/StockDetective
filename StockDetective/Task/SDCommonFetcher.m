@@ -80,7 +80,7 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
 
                                                                                        SDStockInfo *stockInfo = [[SDStockInfo alloc] init];
                                                                                        stockInfo.stockCode = array[1];
-                                                                                       stockInfo.stockName = array[4];
+                                                                                       stockInfo.stockName = [array[4] uppercaseString];
                                                                                        stockInfo.stockAbbr = array[3];
                                                                                        stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kSDStockTypeSH : kSDStockTypeSZ;
 

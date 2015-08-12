@@ -106,8 +106,8 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:theStockMarket
                                                                     successHandler:^(SDStockMarket *stockMarket) {
-                                                                        NSLog(@"%@", [stockMarket currentPriceDescription]);
-                                                                        
+//                                                                        NSLog(@"%@", [stockMarket currentPriceDescription]);
+
                                                                         dispatch_async(dispatch_get_main_queue(), ^{
                                                                             theStockMarket.currentPrice = stockMarket.currentPrice;
                                                                             theStockMarket.changeValue = stockMarket.changeValue;
@@ -163,10 +163,10 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     NSArray *savedContent = [self readSavedContents];
     self.listViewController.contents = savedContent.count > 0 ? savedContent : @[[[SDStockMarket alloc] initDaPan]];
 
-//    [self startStockRefresher];
+    [self startStockRefresher];
     // show the 1st stock by default
-    ListRowViewController *rowVC = (ListRowViewController *)[self.listViewController viewControllerAtRow:0 makeIfNecessary:YES];
-    [rowVC didClickTitleBar:nil];
+//    ListRowViewController *rowVC = (ListRowViewController *)[self.listViewController viewControllerAtRow:0 makeIfNecessary:YES];
+//    [rowVC didClickTitleBar:nil];
 
     completionHandler(NCUpdateResultNoData);
 }

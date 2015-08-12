@@ -85,7 +85,7 @@
     self.graphView.textColor = [NSColor labelColor];
     self.graphView.formatter = formatter;
     self.graphView.drawLegend = YES;
-    self.graphView.drawInfo = NO;
+    self.graphView.drawInfo = YES;
     self.graphView.lineWidth = 1.6;
     self.graphView.showMarker = NO;
     self.graphView.showMarkerNearPoint = NO;

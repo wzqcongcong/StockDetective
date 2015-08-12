@@ -12,7 +12,6 @@
 		84478F7D1B78902F00B766AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84478F7B1B78902F00B766AF /* InfoPlist.strings */; };
 		84478F801B78902F00B766AF /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84478F7F1B78902F00B766AF /* TodayViewController.m */; };
 		84478F821B78902F00B766AF /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84478F811B78902F00B766AF /* TodayViewController.xib */; };
-		84478F851B78902F00B766AF /* ExtensionToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 84478F741B78902F00B766AF /* ExtensionToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		848D8CDE1B71C71B001D7A8A /* SDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */; };
 		84EBFDBB1B79C6B40078F93B /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84478F751B78902F00B766AF /* NotificationCenter.framework */; };
 		84EBFDC21B79C6B40078F93B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84EBFDC01B79C6B40078F93B /* InfoPlist.strings */; };
@@ -123,7 +122,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				84EBFDCF1B79C6B40078F93B /* ExtensionTodayList.appex in Embed App Extensions */,
-				84478F851B78902F00B766AF /* ExtensionToday.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
