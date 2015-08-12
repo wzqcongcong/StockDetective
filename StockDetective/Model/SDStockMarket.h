@@ -19,5 +19,6 @@
 - (instancetype)initWithStockInfo:(SDStockInfo *)stockInfo;
 
 - (NSString *)currentPriceDescription;
+- (NSString *)currentPriceWithPercentage;
 
 @end

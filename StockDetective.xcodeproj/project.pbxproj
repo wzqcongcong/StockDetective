@@ -31,6 +31,12 @@
 		84EBFDDF1B79E73D0078F93B /* SDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */; };
 		84EBFDE01B79E7870078F93B /* Yuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; };
 		84EBFDE21B79E7AF0078F93B /* Yuba.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84EBFDE71B7B0EBA0078F93B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A93A3B282686A0A247209F /* libPods.a */; };
+		84EBFDE81B7B0F260078F93B /* SDRefreshDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */; };
+		84EBFDE91B7B0F260078F93B /* SDCommonFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4061B6E1CAB00DCC7C0 /* SDCommonFetcher.m */; };
+		84EBFDEA1B7B0F260078F93B /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
+		84EBFDEB1B7B0F260078F93B /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
+		84EBFDEC1B7B0F260078F93B /* SDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */; };
 		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
@@ -199,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBFDE71B7B0EBA0078F93B /* libPods.a in Frameworks */,
 				84EBFDBB1B79C6B40078F93B /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +451,7 @@
 				84EBFDB61B79C6B40078F93B /* Sources */,
 				84EBFDB71B79C6B40078F93B /* Frameworks */,
 				84EBFDB81B79C6B40078F93B /* Resources */,
+				84EBFDEE1B7B0F6B0078F93B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -616,6 +624,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"";
 			showEnvVarsInLog = 0;
 		};
+		84EBFDEE1B7B0F6B0078F93B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"";
+			showEnvVarsInLog = 0;
+		};
 		C916F81178D28877DDD7C80C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -666,6 +689,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EBFDE81B7B0F260078F93B /* SDRefreshDataTask.m in Sources */,
+				84EBFDE91B7B0F260078F93B /* SDCommonFetcher.m in Sources */,
+				84EBFDEA1B7B0F260078F93B /* SDStockInfo.m in Sources */,
+				84EBFDEB1B7B0F260078F93B /* SDStockMarket.m in Sources */,
+				84EBFDEC1B7B0F260078F93B /* SDUserInfo.m in Sources */,
 				84EBFDC51B79C6B40078F93B /* TodayViewController.m in Sources */,
 				84EBFDC81B79C6B40078F93B /* ListRowViewController.m in Sources */,
 			);
@@ -834,15 +862,36 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionTodayList/ExtensionTodayList.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
 				);
 				INFOPLIST_FILE = ExtensionTodayList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"c++\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -852,11 +901,32 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionTodayList/ExtensionTodayList.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "COCOAPODS=1";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
 				INFOPLIST_FILE = ExtensionTodayList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"c++\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

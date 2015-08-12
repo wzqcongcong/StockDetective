@@ -2,7 +2,7 @@
 //  SDUserInfo.m
 //  StockDetective
 //
-//  Created by user on 8/5/15.
+//  Created by GoKu on 8/5/15.
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 

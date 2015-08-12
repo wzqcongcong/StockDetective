@@ -2,18 +2,24 @@
 //  TodayViewController.m
 //  ExtensionTodayList
 //
-//  Created by user on 8/11/15.
+//  Created by GoKu on 8/11/15.
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 
 #import "TodayViewController.h"
 #import "ListRowViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
+#import "SDCommonFetcher.h"
+
+static NSUInteger const kDataRefreshInterval  = 5;
 
 @interface TodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, NCWidgetSearchViewDelegate>
 
 @property (strong) IBOutlet NCWidgetListViewController *listViewController;
 @property (strong) NCWidgetSearchViewController *searchController;
+
+@property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
+@property (nonatomic, assign) BOOL forbiddenToRefresh;
 
 @end
 
@@ -28,7 +34,7 @@
     // Set up the widget list view controller.
     // The contents property should contain an object for each row in the list.
     self.listViewController.hasDividerLines = NO;
-    self.listViewController.contents = [NSArray array];
+    self.listViewController.contents = [NSArray array]; // of SDStockMarket
 }
 
 - (void)dismissViewController:(NSViewController *)viewController {
@@ -40,6 +46,49 @@
     }
 }
 
+- (void)manuallyUpdateWidget
+{
+    [self stopStockRefresher];
+    [self startStockRefresher];
+}
+
+- (void)startStockRefresher
+{
+    if (self.forbiddenToRefresh) {
+        return;
+    }
+
+    if (self.refreshDataTaskTimer.isValid) {
+        return;
+    }
+
+    self.refreshDataTaskTimer = [NSTimer scheduledTimerWithTimeInterval:kDataRefreshInterval
+                                                                 target:self
+                                                               selector:@selector(doRefreshDataTask)
+                                                               userInfo:nil
+                                                                repeats:YES];
+    [self.refreshDataTaskTimer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+}
+
+- (void)stopStockRefresher
+{
+    [self.refreshDataTaskTimer invalidate];
+}
+
+- (void)doRefreshDataTask
+{
+    // query stock market
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:nil
+                                                                successHandler:^(SDStockMarket *stockMarket) {
+                                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    });
+                                                                }
+                                                                failureHandler:^(NSError *error) {
+                                                                }];
+    });
+}
+
 #pragma mark - NCWidgetProviding
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult result))completionHandler {
@@ -48,6 +97,9 @@
     // refreshed. Pass NCUpdateResultNoData to indicate that nothing has changed
     // or NCUpdateResultNewData to indicate that there is new data since the
     // last invocation of this method.
+
+//    [self manuallyUpdateWidget];
+
     completionHandler(NCUpdateResultNoData);
 }
 
@@ -67,6 +119,9 @@
 - (void)widgetDidBeginEditing {
     // The user has clicked the edit button.
     // Put the list view into editing mode.
+
+    [self stopStockRefresher];
+
     self.listViewController.editing = YES;
 }
 
@@ -74,6 +129,9 @@
     // The user has clicked the Done button, begun editing another widget,
     // or the Notification Center has been closed.
     // Take the list view out of editing mode.
+
+//    [self manuallyUpdateWidget];
+
     self.listViewController.editing = NO;
 }
 
@@ -83,8 +141,8 @@
     // Return a new view controller subclass for displaying an item of widget
     // content. The NCWidgetListViewController will set the representedObject
     // of this view controller to one of the objects in its contents array.
+
     ListRowViewController *viewController = [[ListRowViewController alloc] init];
-    viewController.colorPrice = @"Color Price";
 
     return viewController;
 }
@@ -123,9 +181,21 @@
 
 - (void)widgetSearch:(NCWidgetSearchViewController *)searchController searchForTerm:(NSString *)searchTerm maxResults:(NSUInteger)max {
     // The user has entered a search term. Set the controller's searchResults property to the matching items.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        searchController.searchResults = @[@"Stock"];
-    });
+
+    searchController.searchResultsPlaceholderString = @"Please input stock code or pinyin abbr.";
+    searchController.searchResultKeyPath = @"description"; // @"stockShortDisplayInfo" is also OK
+
+    [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:searchTerm
+                                                     successHandler:^(SDStockInfo *stockInfo) {
+                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                             searchController.searchResults = @[stockInfo];
+                                                         });
+                                                     }
+                                                     failureHandler:^(NSError *error) {
+                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                             searchController.searchResults = nil;
+                                                         });
+                                                     }];
 }
 
 - (void)widgetSearchTermCleared:(NCWidgetSearchViewController *)searchController {
@@ -135,8 +205,10 @@
 
 - (void)widgetSearch:(NCWidgetSearchViewController *)searchController resultSelected:(id)object {
     // The user has selected a search result from the list.
-    NSString *selectedResult = (NSString *)object;
-    self.listViewController.contents = [self.listViewController.contents arrayByAddingObject:selectedResult];
+
+    SDStockInfo *selectedResult = (SDStockInfo *)object;
+    SDStockMarket *stockMarket = [[SDStockMarket alloc] initWithStockInfo:selectedResult];
+    self.listViewController.contents = [self.listViewController.contents arrayByAddingObject:stockMarket];
 }
 
 @end

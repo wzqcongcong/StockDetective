@@ -36,4 +36,9 @@
     return [NSString stringWithFormat:@"%@ <%@>", [self stockShortDisplayInfo], self.currentPrice];
 }
 
+- (NSString *)currentPriceWithPercentage
+{
+    return self.currentPrice ? [NSString stringWithFormat:@"%@ (%@%%)", self.currentPrice, self.changePercentage] : @"-.-";
+}
+
 @end

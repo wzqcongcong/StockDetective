@@ -154,7 +154,7 @@ static NSUInteger const kDataRefreshInterval  = 5;
                                                                 successHandler:^(SDStockMarket *stockMarket) {
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                                         self.titleStock.stringValue = self.stockInfo.stockName;
-                                                                        self.titlePrice.stringValue = [NSString stringWithFormat:@"%@ (%@%%)", stockMarket.currentPrice, stockMarket.changePercentage];
+                                                                        self.titlePrice.stringValue = [stockMarket currentPriceWithPercentage];
 
                                                                         if (stockMarket.changePercentage.floatValue > 0) {
                                                                             self.titlePrice.textColor = [NSColor redColor];
