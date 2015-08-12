@@ -42,9 +42,11 @@ static NSString * const kStockDataUnitWan     = @"万";
 @property (atomic, assign) BOOL needToReshowBoard;
 @property (weak) IBOutlet NSView *leftBoard;
 @property (weak) IBOutlet NSTextField *leftBoardLabel;
+@property (weak) IBOutlet NSTextField *leftBoardSubLabel;
 @property (weak) IBOutlet NSLayoutConstraint *leftBoardConstraint;
 @property (weak) IBOutlet NSView *rightBoard;
 @property (weak) IBOutlet NSTextField *rightBoardLabel;
+@property (weak) IBOutlet NSTextField *rightBoardSubLabel;
 @property (weak) IBOutlet NSLayoutConstraint *rightBoardConstraint;
 
 // graph
@@ -82,7 +84,9 @@ static NSString * const kStockDataUnitWan     = @"万";
     self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height;
     self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height;
     self.leftBoardLabel.stringValue = @"-.-";
+    self.leftBoardSubLabel.stringValue = @"";
     self.rightBoardLabel.stringValue = @"-.-";
+    self.rightBoardSubLabel.stringValue = @"";
 
     self.needToReshowBoard = YES;
 
@@ -173,7 +177,20 @@ static NSString * const kStockDataUnitWan     = @"万";
                                                                     NSLog(@"%@", [stockMarket currentPriceDescription]);
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                                         self.leftBoardLabel.stringValue = self.stockInfo.stockName;
+                                                                        self.leftBoardSubLabel.stringValue = [self.stockInfo.stockType stringByAppendingString:self.stockInfo.stockCode];
                                                                         self.rightBoardLabel.stringValue = stockMarket.currentPrice;
+                                                                        self.rightBoardSubLabel.stringValue = [stockMarket.changePercentage stringByAppendingString:@"%"];
+
+                                                                        if (stockMarket.changePercentage.floatValue > 0) {
+                                                                            self.rightBoardLabel.textColor = [NSColor redColor];
+                                                                            self.rightBoardSubLabel.textColor = [NSColor redColor];
+                                                                        } else if (stockMarket.changePercentage.floatValue < 0) {
+                                                                            self.rightBoardLabel.textColor = [NSColor greenColor];
+                                                                            self.rightBoardSubLabel.textColor = [NSColor greenColor];
+                                                                        } else {
+                                                                            self.rightBoardLabel.textColor = [NSColor labelColor];
+                                                                            self.rightBoardSubLabel.textColor = [NSColor labelColor];
+                                                                        }
                                                                         
                                                                         if (self.needToReshowBoard) {
                                                                             self.needToReshowBoard = NO;
@@ -201,7 +218,9 @@ static NSString * const kStockDataUnitWan     = @"万";
         // if stock market is not yet queried back at this time, set the board status to undefined, waiting new stock market data updates it to normal.
         if (self.needToReshowBoard) {
             self.leftBoardLabel.stringValue = @"?.?";
+            self.leftBoardSubLabel.stringValue = @"";
             self.rightBoardLabel.stringValue = @"?.?";
+            self.rightBoardSubLabel.stringValue = @"";
         }
     });
 }

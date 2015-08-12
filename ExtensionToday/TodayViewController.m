@@ -27,6 +27,9 @@ static NSUInteger const kDataRefreshInterval  = 5;
 @property (nonatomic, strong) NSArray *series;
 @property (nonatomic, strong) NSArray *values;
 
+@property (atomic, assign) BOOL needToReshowBoard;
+@property (weak) IBOutlet NSTextField *titleStock;
+@property (weak) IBOutlet NSTextField *titlePrice;
 @property (weak) IBOutlet YBGraphView *graphView;
 
 @end
@@ -77,6 +80,7 @@ static NSUInteger const kDataRefreshInterval  = 5;
 
 - (void)manuallyUpdateWidget
 {
+    self.needToReshowBoard = YES;
     [self stopStockRefresher];
 
     self.inputStockCode = kSDStockDaPanFullCode;
@@ -147,6 +151,20 @@ static NSUInteger const kDataRefreshInterval  = 5;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:self.stockInfo
                                                                 successHandler:^(SDStockMarket *stockMarket) {
+                                                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                                                        self.titleStock.stringValue = self.stockInfo.stockName;
+                                                                        self.titlePrice.stringValue = [NSString stringWithFormat:@"%@ (%@%%)", stockMarket.currentPrice, stockMarket.changePercentage];
+
+                                                                        if (stockMarket.changePercentage.floatValue > 0) {
+                                                                            self.titlePrice.textColor = [NSColor redColor];
+                                                                        } else if (stockMarket.changePercentage.floatValue < 0) {
+                                                                            self.titlePrice.textColor = [NSColor greenColor];
+                                                                        } else {
+                                                                            self.titlePrice.textColor = [NSColor labelColor];
+                                                                        }
+
+                                                                        self.needToReshowBoard = NO;
+                                                                    });
                                                                 }
                                                                 failureHandler:^(NSError *error) {
                                                                 }];
@@ -163,6 +181,12 @@ static NSUInteger const kDataRefreshInterval  = 5;
         [self parseData:data];
         [self.graphView draw];
     });
+
+    // if stock market is not yet queried back at this time, set the board status to undefined, waiting new stock market data updates it to normal.
+    if (self.needToReshowBoard) {
+        self.titleStock.stringValue = @"?.?";
+        self.titlePrice.stringValue = @"?.?";
+    }
 }
 
 - (void)parseData:(NSData *)data

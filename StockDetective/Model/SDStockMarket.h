@@ -12,6 +12,8 @@
 @interface SDStockMarket : SDStockInfo
 
 @property (nonatomic, strong) NSString *currentPrice;
+@property (nonatomic, strong) NSString *changeValue;
+@property (nonatomic, strong) NSString *changePercentage;
 
 - (instancetype)init;
 - (instancetype)initWithStockInfo:(SDStockInfo *)stockInfo;

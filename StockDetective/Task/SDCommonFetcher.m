@@ -206,6 +206,8 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                                                                    NSDictionary *stockDic = responseDic[fullCode];
                                                                    SDStockMarket *stockMarket = [[SDStockMarket alloc] initWithStockInfo:stockInfo];
                                                                    stockMarket.currentPrice = stockDic[@"current"];
+                                                                   stockMarket.changeValue = stockDic[@"change"];
+                                                                   stockMarket.changePercentage = stockDic[@"percentage"];
 
                                                                    if (successHandler) {
                                                                        successHandler(stockMarket);
