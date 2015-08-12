@@ -20,6 +20,8 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
 
 @property (nonatomic, strong) NSDate *refreshDataTaskStartDate;
 
+@property (nonatomic, strong) AFURLSessionManager *sessionManagerToRefreshData;
+
 @end
 
 @implementation SDRefreshDataTask
@@ -101,20 +103,22 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     configuration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
 
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    manager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+    if (!self.sessionManagerToRefreshData) {
+        self.sessionManagerToRefreshData = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+        self.sessionManagerToRefreshData.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        self.sessionManagerToRefreshData.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+    }
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
-                                                completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                                                    if (error) {
-                                                        failureHandler(error);
-                                                    } else {
-                                                        successHandler((NSData *)responseObject);
-                                                    }
-                                                }];
+    NSURLSessionDataTask *dataTask = [self.sessionManagerToRefreshData dataTaskWithRequest:request
+                                                                         completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                                                                             if (error) {
+                                                                                 failureHandler(error);
+                                                                             } else {
+                                                                                 successHandler((NSData *)responseObject);
+                                                                             }
+                                                                         }];
     [dataTask resume];
 }
 

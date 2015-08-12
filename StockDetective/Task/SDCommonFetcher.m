@@ -20,6 +20,11 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
 
 @property (nonatomic, strong) NSURLSessionConfiguration *sessionConfig;
 
+@property (nonatomic, strong) AFURLSessionManager *sessionManagerOfStockInfo;
+@property (nonatomic, strong) AFURLSessionManager *sessionManagerOfStockMarket;
+@property (nonatomic, strong) AFHTTPSessionManager *sessionManagerToLoginXueQiu;
+
+
 @end
 
 @implementation SDCommonFetcher
@@ -42,60 +47,62 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                 successHandler:(void (^)(SDStockInfo *stockInfo))successHandler
                 failureHandler:(void (^)(NSError *error))failureHandler;
 {
-    AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
-    sessionManager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+    if (!self.sessionManagerOfStockInfo) {
+        self.sessionManagerOfStockInfo = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
+        self.sessionManagerOfStockInfo.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        self.sessionManagerOfStockInfo.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+    }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kFetchStockInfoFormatURL, code]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
-    NSURLSessionDataTask *dataTask = [sessionManager dataTaskWithRequest:request
-                                                       completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                                                           if (error) {
-                                                               if (failureHandler) {
-                                                                   failureHandler(error);
-                                                               }
+    NSURLSessionDataTask *dataTask = [self.sessionManagerOfStockInfo dataTaskWithRequest:request
+                                                                       completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                                                                           if (error) {
+                                                                               if (failureHandler) {
+                                                                                   failureHandler(error);
+                                                                               }
 
-                                                           } else {
-                                                               NSString *string = [[NSString alloc] initWithData:(NSData *)responseObject encoding:kNSGB18030StringEncoding];
-                                                               NSRange range1 = [string rangeOfString:@"\""];
-                                                               NSRange range2 = [string rangeOfString:@"\"" options:NSBackwardsSearch];
+                                                                           } else {
+                                                                               NSString *string = [[NSString alloc] initWithData:(NSData *)responseObject encoding:kNSGB18030StringEncoding];
+                                                                               NSRange range1 = [string rangeOfString:@"\""];
+                                                                               NSRange range2 = [string rangeOfString:@"\"" options:NSBackwardsSearch];
 
-                                                               if (range1.location != NSNotFound &&
-                                                                   range2.location != NSNotFound &&
-                                                                   range2.location - range1.location > 1) {
+                                                                               if (range1.location != NSNotFound &&
+                                                                                   range2.location != NSNotFound &&
+                                                                                   range2.location - range1.location > 1) {
 
-                                                                   NSString *content = [string substringWithRange:NSMakeRange(range1.location+1, range2.location-range1.location-1)];
-                                                                   NSArray *arrayAll = [content componentsSeparatedByString:@";"];
+                                                                                   NSString *content = [string substringWithRange:NSMakeRange(range1.location+1, range2.location-range1.location-1)];
+                                                                                   NSArray *arrayAll = [content componentsSeparatedByString:@";"];
 
-                                                                   if (arrayAll.count > 0) {
-                                                                       NSArray *array = [(NSString *)(arrayAll.firstObject) componentsSeparatedByString:@","];
+                                                                                   if (arrayAll.count > 0) {
+                                                                                       NSArray *array = [(NSString *)(arrayAll.firstObject) componentsSeparatedByString:@","];
 
-                                                                       SDStockInfo *stockInfo = [[SDStockInfo alloc] init];
-                                                                       stockInfo.stockCode = array[1];
-                                                                       stockInfo.stockName = array[4];
-                                                                       stockInfo.stockAbbr = array[3];
-                                                                       stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kSDStockTypeSH : kSDStockTypeSZ;
+                                                                                       SDStockInfo *stockInfo = [[SDStockInfo alloc] init];
+                                                                                       stockInfo.stockCode = array[1];
+                                                                                       stockInfo.stockName = array[4];
+                                                                                       stockInfo.stockAbbr = array[3];
+                                                                                       stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kSDStockTypeSH : kSDStockTypeSZ;
 
-                                                                       NSLog(@"%@", [stockInfo description]);
+                                                                                       NSLog(@"%@", [stockInfo description]);
 
-                                                                       if (successHandler) {
-                                                                           successHandler(stockInfo);
-                                                                       }
-
-                                                                   } else {
-                                                                       if (failureHandler) {
-                                                                           failureHandler(nil);
-                                                                       }
-                                                                   }
-
-                                                               } else {
-                                                                   if (failureHandler) {
-                                                                       failureHandler(nil);
-                                                                   }
-                                                               }
-                                                           }
-                                                       }];
+                                                                                       if (successHandler) {
+                                                                                           successHandler(stockInfo);
+                                                                                       }
+                                                                                       
+                                                                                   } else {
+                                                                                       if (failureHandler) {
+                                                                                           failureHandler(nil);
+                                                                                       }
+                                                                                   }
+                                                                                   
+                                                                               } else {
+                                                                                   if (failureHandler) {
+                                                                                       failureHandler(nil);
+                                                                                   }
+                                                                               }
+                                                                           }
+                                                                       }];
     [dataTask resume];
 }
 
@@ -152,74 +159,79 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                  successHandler:(void (^)())successHandler
                  failureHandler:(void (^)(NSError *error))failureHandler
 {
-    AFHTTPSessionManager *sessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
-    sessionManager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:userInfo.username password:userInfo.password];
-    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+    if (!self.sessionManagerToLoginXueQiu) {
+        self.sessionManagerToLoginXueQiu = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
+        self.sessionManagerToLoginXueQiu.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        self.sessionManagerToLoginXueQiu.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [self.sessionManagerToLoginXueQiu.requestSerializer setAuthorizationHeaderFieldWithUsername:userInfo.username password:userInfo.password];
+        self.sessionManagerToLoginXueQiu.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+    }
 
     NSURL *domainURL = [NSURL URLWithString:[NSURL URLWithString:kXueQiuLoginURL].host];
-    [sessionManager POST:kXueQiuLoginURL
-              parameters:nil
-                 success:^(NSURLSessionDataTask *task, id responseObject) {
-                     NSDictionary *header = [(NSHTTPURLResponse *)(task.response) allHeaderFields];
-                     NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:header
-                                                                               forURL:domainURL];
-                     [self.sessionConfig.HTTPCookieStorage setCookies:cookies
-                                                               forURL:domainURL
-                                                      mainDocumentURL:domainURL];
+    [self.sessionManagerToLoginXueQiu POST:kXueQiuLoginURL
+                                parameters:nil
+                                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                                       NSDictionary *header = [(NSHTTPURLResponse *)(task.response) allHeaderFields];
+                                       NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:header
+                                                                                                 forURL:domainURL];
+                                       [self.sessionConfig.HTTPCookieStorage setCookies:cookies
+                                                                                 forURL:domainURL
+                                                                        mainDocumentURL:domainURL];
 
-                     if (successHandler) {
-                         successHandler();
-                     }
-                 }
-                 failure:^(NSURLSessionDataTask *task, NSError *error) {
-                     if (failureHandler) {
-                         failureHandler(error);
-                     }
-                 }];
+                                       if (successHandler) {
+                                           successHandler();
+                                       }
+                                   }
+                                   failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                       if (failureHandler) {
+                                           failureHandler(error);
+                                       }
+                                   }];
 }
 
 - (void)fetchStockMarketByXueQiuWithStockInfo:(SDStockInfo *)stockInfo
                                successHandler:(void (^)(SDStockMarket *stockMarket))successHandler
                                failureHandler:(void (^)(NSError *error))failureHandler
 {
-    AFURLSessionManager *sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
-    sessionManager.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-    // sessionManager.responseSerializer: default json
+    if (!self.sessionManagerOfStockMarket) {
+        self.sessionManagerOfStockMarket = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.sessionConfig];
+        self.sessionManagerOfStockMarket.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        // self.sessionManagerOfStockMarket.responseSerializer: default json
+    }
+
 
     NSString *fullCode = [stockInfo.stockType stringByAppendingString:stockInfo.stockCode];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kFetchStockMarketFormatURL, fullCode]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.mainDocumentURL = [NSURL URLWithString:url.host];
 
-    NSURLSessionDataTask *dataTask = [sessionManager dataTaskWithRequest:request
-                                                       completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                                                           if (error) {
-                                                               if (failureHandler) {
-                                                                   failureHandler(error);
-                                                               }
+    NSURLSessionDataTask *dataTask = [self.sessionManagerOfStockMarket dataTaskWithRequest:request
+                                                                         completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                                                                             if (error) {
+                                                                                 if (failureHandler) {
+                                                                                     failureHandler(error);
+                                                                                 }
 
-                                                           } else {
-                                                               NSDictionary *responseDic = (NSDictionary *)responseObject;
-                                                               if (responseDic && [[responseDic allKeys] containsObject:fullCode]) {
-                                                                   NSDictionary *stockDic = responseDic[fullCode];
-                                                                   SDStockMarket *stockMarket = [[SDStockMarket alloc] initWithStockInfo:stockInfo];
-                                                                   stockMarket.currentPrice = stockDic[@"current"];
-                                                                   stockMarket.changeValue = stockDic[@"change"];
-                                                                   stockMarket.changePercentage = stockDic[@"percentage"];
+                                                                             } else {
+                                                                                 NSDictionary *responseDic = (NSDictionary *)responseObject;
+                                                                                 if (responseDic && [[responseDic allKeys] containsObject:fullCode]) {
+                                                                                     NSDictionary *stockDic = responseDic[fullCode];
+                                                                                     SDStockMarket *stockMarket = [[SDStockMarket alloc] initWithStockInfo:stockInfo];
+                                                                                     stockMarket.currentPrice = stockDic[@"current"];
+                                                                                     stockMarket.changeValue = stockDic[@"change"];
+                                                                                     stockMarket.changePercentage = stockDic[@"percentage"];
 
-                                                                   if (successHandler) {
-                                                                       successHandler(stockMarket);
-                                                                   }
+                                                                                     if (successHandler) {
+                                                                                         successHandler(stockMarket);
+                                                                                     }
 
-                                                               } else {
-                                                                   if (failureHandler) {
-                                                                       failureHandler(nil);
-                                                                   }
-                                                               }
-                                                           }
-                                                       }];
+                                                                                 } else {
+                                                                                     if (failureHandler) {
+                                                                                         failureHandler(nil);
+                                                                                     }
+                                                                                 }
+                                                                             }
+                                                                         }];
     [dataTask resume];
 }
 
