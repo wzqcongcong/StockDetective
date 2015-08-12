@@ -35,10 +35,10 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
 
     // Set up the widget list view controller.
     // The contents property should contain an object for each row in the list.
+    self.rowVCShowingDetail = nil;
+
     self.listViewController.hasDividerLines = NO;
     self.listViewController.contents = [NSArray array]; // of SDStockMarket
-
-    self.rowVCShowingDetail = nil;
 
     self.queryTaskType = TaskTypeRealtime;
 }
@@ -160,13 +160,20 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
 
     [self stopStockRefresher];
 
+    self.rowVCShowingDetail = nil;
+
     NSArray *savedContent = [self readSavedContents];
     self.listViewController.contents = savedContent.count > 0 ? savedContent : @[[[SDStockMarket alloc] initDaPan]];
 
     [self startStockRefresher];
-    // show the 1st stock by default
-//    ListRowViewController *rowVC = (ListRowViewController *)[self.listViewController viewControllerAtRow:0 makeIfNecessary:YES];
-//    [rowVC didClickTitleBar:nil];
+
+    // after 2s, show the 1st stock if needed
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self.rowVCShowingDetail) {
+            ListRowViewController *rowVC = (ListRowViewController *)[self.listViewController viewControllerAtRow:0 makeIfNecessary:YES];
+            [rowVC didClickTitleBar:nil];
+        }
+    });
 
     completionHandler(NCUpdateResultNoData);
 }

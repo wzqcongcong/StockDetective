@@ -43,8 +43,11 @@
                                         <string key="NSValueTransformerName">SDStockMarketPriceColorTransformer</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="-2" name="value" keyPath="self.representedObject.currentPrice" id="ybh-S1-R1C">
+                                <binding destination="-2" name="value" keyPath="self.representedObject.currentPrice" id="Pgx-Yx-YSG">
                                     <dictionary key="options">
+                                        <string key="NSMultipleValuesPlaceholder">-.-</string>
+                                        <string key="NSNoSelectionPlaceholder">-.-</string>
+                                        <string key="NSNotApplicablePlaceholder">-.-</string>
                                         <string key="NSNullPlaceholder">-.-</string>
                                     </dictionary>
                                 </binding>
