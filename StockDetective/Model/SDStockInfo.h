@@ -29,5 +29,6 @@ extern NSString * const kSDStockTypeSZ;
 
 - (BOOL)isValidStock;
 - (NSString *)stockShortDisplayInfo;
+- (NSString *)stockShortDisplayInfoV2;
 
 @end

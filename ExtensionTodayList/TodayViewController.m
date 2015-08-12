@@ -13,6 +13,8 @@
 
 static NSUInteger const kDataRefreshInterval  = 5;
 
+static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSavedStocks";
+
 @interface TodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, NCWidgetSearchViewDelegate>
 
 @property (strong) IBOutlet NCWidgetListViewController *listViewController;
@@ -78,15 +80,56 @@ static NSUInteger const kDataRefreshInterval  = 5;
 - (void)doRefreshDataTask
 {
     // query stock market
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:nil
-                                                                successHandler:^(SDStockMarket *stockMarket) {
-                                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                                    });
-                                                                }
-                                                                failureHandler:^(NSError *error) {
-                                                                }];
-    });
+    for (SDStockMarket *theStockMarket in self.listViewController.contents) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:theStockMarket
+                                                                    successHandler:^(SDStockMarket *stockMarket) {
+                                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                                            theStockMarket.currentPrice = stockMarket.currentPrice;
+                                                                            theStockMarket.changeValue = stockMarket.changeValue;
+                                                                            theStockMarket.changePercentage = stockMarket.changePercentage;
+                                                                        });
+                                                                    }
+                                                                    failureHandler:^(NSError *error) {
+                                                                    }];
+        });
+    }
+}
+
+#pragma mark - user defaults
+
+- (NSArray *)readSavedContents
+{
+    NSArray *savedArray = [[NSUserDefaults standardUserDefaults] arrayForKey:kExtensionTodayListSavedStocks];
+
+    NSMutableArray *savedContent = [NSMutableArray array];
+
+    for (NSDictionary *stockDic in savedArray) {
+        SDStockMarket *stockMarket = [[SDStockMarket alloc] init];
+        stockMarket.stockCode = stockDic[@"code"];
+        stockMarket.stockName = stockDic[@"name"];
+        stockMarket.stockType = stockDic[@"type"];
+        stockMarket.stockAbbr = stockDic[@"abbr"];
+        [savedContent addObject:stockMarket];
+    }
+
+    return savedContent;
+}
+
+- (void)saveContents
+{
+    NSMutableArray *toSaveArray = [NSMutableArray array];
+
+    for (SDStockMarket *stockMarket in self.listViewController.contents) {
+        NSDictionary *stockDic = @{@"code": stockMarket.stockCode,
+                                   @"name": stockMarket.stockName,
+                                   @"type": stockMarket.stockType,
+                                   @"abbr": stockMarket.stockAbbr};
+        [toSaveArray addObject:stockDic];
+    }
+
+    [[NSUserDefaults standardUserDefaults] setObject:toSaveArray forKey:kExtensionTodayListSavedStocks];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - NCWidgetProviding
@@ -98,7 +141,12 @@ static NSUInteger const kDataRefreshInterval  = 5;
     // or NCUpdateResultNewData to indicate that there is new data since the
     // last invocation of this method.
 
-//    [self manuallyUpdateWidget];
+    [self stopStockRefresher];
+
+    NSArray *savedContent = [self readSavedContents];
+    self.listViewController.contents = savedContent.count > 0 ? savedContent : @[[[SDStockMarket alloc] initDaPan]];
+
+    [self manuallyUpdateWidget];
 
     completionHandler(NCUpdateResultNoData);
 }
@@ -130,9 +178,11 @@ static NSUInteger const kDataRefreshInterval  = 5;
     // or the Notification Center has been closed.
     // Take the list view out of editing mode.
 
-//    [self manuallyUpdateWidget];
-
     self.listViewController.editing = NO;
+
+    [self saveContents];
+
+    [self manuallyUpdateWidget];
 }
 
 #pragma mark - NCWidgetListViewDelegate
@@ -185,17 +235,23 @@ static NSUInteger const kDataRefreshInterval  = 5;
     searchController.searchResultsPlaceholderString = @"Please input stock code or pinyin abbr.";
     searchController.searchResultKeyPath = @"description"; // @"stockShortDisplayInfo" is also OK
 
-    [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:searchTerm
-                                                     successHandler:^(SDStockInfo *stockInfo) {
-                                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                                             searchController.searchResults = @[stockInfo];
-                                                         });
-                                                     }
-                                                     failureHandler:^(NSError *error) {
-                                                         dispatch_async(dispatch_get_main_queue(), ^{
-                                                             searchController.searchResults = nil;
-                                                         });
-                                                     }];
+    NSString *trimmedSearchTerm = [searchTerm stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (trimmedSearchTerm.length == 0) {
+        searchController.searchResults = @[[[SDStockInfo alloc] initDaPan]];
+
+    } else {
+        [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:trimmedSearchTerm
+                                                         successHandler:^(SDStockInfo *stockInfo) {
+                                                             dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 searchController.searchResults = @[stockInfo];
+                                                             });
+                                                         }
+                                                         failureHandler:^(NSError *error) {
+                                                             dispatch_async(dispatch_get_main_queue(), ^{
+                                                                 searchController.searchResults = nil;
+                                                             });
+                                                         }];
+    }
 }
 
 - (void)widgetSearchTermCleared:(NCWidgetSearchViewController *)searchController {
@@ -207,8 +263,19 @@ static NSUInteger const kDataRefreshInterval  = 5;
     // The user has selected a search result from the list.
 
     SDStockInfo *selectedResult = (SDStockInfo *)object;
-    SDStockMarket *stockMarket = [[SDStockMarket alloc] initWithStockInfo:selectedResult];
-    self.listViewController.contents = [self.listViewController.contents arrayByAddingObject:stockMarket];
+    SDStockMarket *selectedStockMarket = [[SDStockMarket alloc] initWithStockInfo:selectedResult];
+
+    BOOL existed = NO;
+    for (SDStockMarket *stockMarket in self.listViewController.contents) {
+        if ([[stockMarket stockShortDisplayInfo] isEqualToString:[selectedStockMarket stockShortDisplayInfo]]) {
+            existed = YES;
+            break;
+        }
+    }
+
+    if (!existed) {
+        self.listViewController.contents = [self.listViewController.contents arrayByAddingObject:selectedStockMarket];
+    }
 }
 
 @end

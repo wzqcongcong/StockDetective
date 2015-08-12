@@ -15,37 +15,68 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
             <subviews>
                 <textField verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KU6-MB-4x2" userLabel="name">
-                    <rect key="frame" x="-2" y="5" width="306" height="18"/>
+                    <rect key="frame" x="-2" y="5" width="304" height="18"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" id="pgq-dU-GDk">
                         <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.representedObject.stockShortDisplayInfo" id="XyI-2d-qgq"/>
+                        <binding destination="-2" name="value" keyPath="self.representedObject.stockShortDisplayInfoV2" id="p8M-G1-7sl"/>
                     </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="bJl-P6-fpf" userLabel="price">
-                    <rect key="frame" x="310" y="5" width="4" height="18"/>
+                    <rect key="frame" x="308" y="5" width="4" height="18"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" id="vfP-6W-f7I">
                         <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.representedObject.currentPriceWithPercentage" id="3YZ-0a-eMX"/>
+                        <binding destination="-2" name="textColor" keyPath="self.representedObject.changePercentage" id="CVz-mw-S8R">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">SDStockMarketPriceColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="value" keyPath="self.representedObject.currentPrice" id="ybh-S1-R1C">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">-.-</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-Od-Qd7" userLabel="change">
+                    <rect key="frame" x="310" y="5" width="4" height="18"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="TrI-0P-npa">
+                        <font key="font" metaFont="system" size="14"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="textColor" keyPath="self.representedObject.changePercentage" id="hcI-Jj-s9Q">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">SDStockMarketPriceColorTransformer</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="value" keyPath="self.representedObject.changePercentage" id="MgM-OI-VmC">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">SDStockMarketPriceChangeTransformer</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </textField>
             </subviews>
             <constraints>
+                <constraint firstItem="j0K-Od-Qd7" firstAttribute="leading" secondItem="bJl-P6-fpf" secondAttribute="trailing" constant="2" id="5h1-Oc-kUI"/>
                 <constraint firstItem="KU6-MB-4x2" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="AfO-ab-vWV"/>
+                <constraint firstAttribute="trailing" secondItem="j0K-Od-Qd7" secondAttribute="trailing" constant="8" id="Cox-YQ-DQC"/>
                 <constraint firstItem="bJl-P6-fpf" firstAttribute="leading" secondItem="KU6-MB-4x2" secondAttribute="trailing" constant="10" id="FGu-Dm-DEi"/>
                 <constraint firstItem="KU6-MB-4x2" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="3" id="GuH-uV-tDK"/>
                 <constraint firstAttribute="bottom" secondItem="KU6-MB-4x2" secondAttribute="bottom" constant="5" id="Qfc-3K-mMe"/>
                 <constraint firstItem="bJl-P6-fpf" firstAttribute="centerY" secondItem="KU6-MB-4x2" secondAttribute="centerY" id="XZi-0h-Xyb"/>
-                <constraint firstAttribute="trailing" secondItem="bJl-P6-fpf" secondAttribute="trailing" constant="8" id="tVY-Ps-tIs"/>
+                <constraint firstItem="j0K-Od-Qd7" firstAttribute="centerY" secondItem="KU6-MB-4x2" secondAttribute="centerY" id="dz7-sy-nhz"/>
             </constraints>
-            <point key="canvasLocation" x="290" y="317"/>
+            <point key="canvasLocation" x="286" y="317"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="IHb-Xe-7JN"/>
     </objects>

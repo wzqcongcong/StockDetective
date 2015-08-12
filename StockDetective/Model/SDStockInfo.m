@@ -56,4 +56,9 @@ NSString * const kSDStockDaPanFullCode  = @"SH000001";
     return [NSString stringWithFormat:@"%@ [%@%@]", self.stockName, self.stockType, self.stockCode];
 }
 
+- (NSString *)stockShortDisplayInfoV2
+{
+    return [NSString stringWithFormat:@"[%@%@] %@", self.stockType, self.stockCode, self.stockName];
+}
+
 @end
