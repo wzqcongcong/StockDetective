@@ -152,6 +152,8 @@ static NSUInteger const kDataRefreshInterval  = 5;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:self.stockInfo
                                                                 successHandler:^(SDStockMarket *stockMarket) {
+                                                                    NSLog(@"%@", [stockMarket currentPriceDescription]);
+                                                                    
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                                         self.titleStock.stringValue = self.stockInfo.stockName;
                                                                         self.titlePrice.stringValue = [stockMarket currentPriceWithPercentage];

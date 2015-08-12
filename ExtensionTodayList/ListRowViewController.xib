@@ -1,80 +1,119 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ListRowViewController">
             <connections>
+                <outlet property="constraintGrahpView" destination="vlW-vb-XWX" id="S0L-Jh-u5k"/>
+                <outlet property="graphView" destination="Kec-NF-dd1" id="bND-VF-rNs"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="276"/>
             <subviews>
-                <textField verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KU6-MB-4x2" userLabel="name">
-                    <rect key="frame" x="-2" y="5" width="304" height="18"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" id="pgq-dU-GDk">
-                        <font key="font" metaFont="system" size="14"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="dq8-WT-ddQ" userLabel="title bar">
+                    <rect key="frame" x="0.0" y="250" width="320" height="26"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KU6-MB-4x2" userLabel="name">
+                            <rect key="frame" x="-2" y="6" width="4" height="18"/>
+                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" id="pgq-dU-GDk">
+                                <font key="font" metaFont="system" size="14"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.representedObject.stockShortDisplayInfoV2" id="p8M-G1-7sl"/>
+                            </connections>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bJl-P6-fpf" userLabel="price">
+                            <rect key="frame" x="316" y="6" width="4" height="18"/>
+                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" id="vfP-6W-f7I">
+                                <font key="font" metaFont="system" size="14"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="textColor" keyPath="self.representedObject.changePercentage" id="CVz-mw-S8R">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">SDStockMarketPriceColorTransformer</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="-2" name="value" keyPath="self.representedObject.currentPrice" id="ybh-S1-R1C">
+                                    <dictionary key="options">
+                                        <string key="NSNullPlaceholder">-.-</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </textField>
+                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-Od-Qd7" userLabel="change">
+                            <rect key="frame" x="318" y="6" width="4" height="18"/>
+                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="TrI-0P-npa">
+                                <font key="font" metaFont="system" size="14"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="self.representedObject.changePercentage" id="MgM-OI-VmC">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">SDStockMarketPriceChangeTransformer</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="-2" name="textColor" keyPath="self.representedObject.changePercentage" id="hcI-Jj-s9Q">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">SDStockMarketPriceColorTransformer</string>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </textField>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="b6z-0P-avG">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
+                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="FMI-Zf-abg">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="didClickTitleBar:" target="-2" id="5Te-8K-wS7"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="KU6-MB-4x2" secondAttribute="bottom" constant="6" id="32v-HB-yLf"/>
+                        <constraint firstAttribute="trailing" secondItem="b6z-0P-avG" secondAttribute="trailing" id="3oW-7d-Yhg"/>
+                        <constraint firstAttribute="trailing" secondItem="j0K-Od-Qd7" secondAttribute="trailing" id="FM6-UA-Snz"/>
+                        <constraint firstItem="b6z-0P-avG" firstAttribute="top" secondItem="dq8-WT-ddQ" secondAttribute="top" id="G8X-8v-8FT"/>
+                        <constraint firstItem="KU6-MB-4x2" firstAttribute="centerY" secondItem="j0K-Od-Qd7" secondAttribute="centerY" id="H3g-8r-tiW"/>
+                        <constraint firstItem="KU6-MB-4x2" firstAttribute="top" secondItem="dq8-WT-ddQ" secondAttribute="top" constant="2" id="IxN-QV-x0J"/>
+                        <constraint firstItem="KU6-MB-4x2" firstAttribute="centerY" secondItem="bJl-P6-fpf" secondAttribute="centerY" id="KX3-3Y-9RU"/>
+                        <constraint firstItem="j0K-Od-Qd7" firstAttribute="leading" secondItem="bJl-P6-fpf" secondAttribute="trailing" constant="2" id="VTG-tY-elA"/>
+                        <constraint firstItem="b6z-0P-avG" firstAttribute="leading" secondItem="dq8-WT-ddQ" secondAttribute="leading" id="uvn-ee-DBx"/>
+                        <constraint firstItem="KU6-MB-4x2" firstAttribute="leading" secondItem="dq8-WT-ddQ" secondAttribute="leading" id="x7J-G1-poS"/>
+                        <constraint firstAttribute="bottom" secondItem="b6z-0P-avG" secondAttribute="bottom" id="z9S-lc-g7e"/>
+                    </constraints>
+                </customView>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kec-NF-dd1" userLabel="graph" customClass="YBGraphView">
+                    <rect key="frame" x="-20" y="10" width="370" height="240"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="p0B-jn-gn9"/>
+                    </constraints>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.representedObject.stockShortDisplayInfoV2" id="p8M-G1-7sl"/>
+                        <outlet property="dataSource" destination="-2" id="dVa-9k-301"/>
+                        <outlet property="delegate" destination="-2" id="sc3-Lh-PbA"/>
                     </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="bJl-P6-fpf" userLabel="price">
-                    <rect key="frame" x="308" y="5" width="4" height="18"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" id="vfP-6W-f7I">
-                        <font key="font" metaFont="system" size="14"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="textColor" keyPath="self.representedObject.changePercentage" id="CVz-mw-S8R">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">SDStockMarketPriceColorTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="value" keyPath="self.representedObject.currentPrice" id="ybh-S1-R1C">
-                            <dictionary key="options">
-                                <string key="NSNullPlaceholder">-.-</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-Od-Qd7" userLabel="change">
-                    <rect key="frame" x="310" y="5" width="4" height="18"/>
-                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" id="TrI-0P-npa">
-                        <font key="font" metaFont="system" size="14"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="-2" name="textColor" keyPath="self.representedObject.changePercentage" id="hcI-Jj-s9Q">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">SDStockMarketPriceColorTransformer</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="value" keyPath="self.representedObject.changePercentage" id="MgM-OI-VmC">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">SDStockMarketPriceChangeTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
+                </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="j0K-Od-Qd7" firstAttribute="leading" secondItem="bJl-P6-fpf" secondAttribute="trailing" constant="2" id="5h1-Oc-kUI"/>
-                <constraint firstItem="KU6-MB-4x2" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="AfO-ab-vWV"/>
-                <constraint firstAttribute="trailing" secondItem="j0K-Od-Qd7" secondAttribute="trailing" constant="8" id="Cox-YQ-DQC"/>
-                <constraint firstItem="bJl-P6-fpf" firstAttribute="leading" secondItem="KU6-MB-4x2" secondAttribute="trailing" constant="10" id="FGu-Dm-DEi"/>
-                <constraint firstItem="KU6-MB-4x2" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="3" id="GuH-uV-tDK"/>
-                <constraint firstAttribute="bottom" secondItem="KU6-MB-4x2" secondAttribute="bottom" constant="5" id="Qfc-3K-mMe"/>
-                <constraint firstItem="bJl-P6-fpf" firstAttribute="centerY" secondItem="KU6-MB-4x2" secondAttribute="centerY" id="XZi-0h-Xyb"/>
-                <constraint firstItem="j0K-Od-Qd7" firstAttribute="centerY" secondItem="KU6-MB-4x2" secondAttribute="centerY" id="dz7-sy-nhz"/>
+                <constraint firstAttribute="trailing" secondItem="dq8-WT-ddQ" secondAttribute="trailing" id="8f8-Ad-b3m"/>
+                <constraint firstItem="dq8-WT-ddQ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="9mP-J7-7mR"/>
+                <constraint firstItem="Kec-NF-dd1" firstAttribute="top" secondItem="dq8-WT-ddQ" secondAttribute="bottom" id="AyZ-XD-i4m"/>
+                <constraint firstItem="dq8-WT-ddQ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="JuH-2D-xss"/>
+                <constraint firstAttribute="trailing" secondItem="Kec-NF-dd1" secondAttribute="trailing" constant="-30" id="Xqe-8y-xps"/>
+                <constraint firstItem="Kec-NF-dd1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="-20" id="rCl-R9-dD1"/>
+                <constraint firstAttribute="bottom" secondItem="Kec-NF-dd1" secondAttribute="bottom" constant="10" id="vlW-vb-XWX"/>
             </constraints>
             <point key="canvasLocation" x="286" y="317"/>
         </customView>

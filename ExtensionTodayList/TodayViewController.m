@@ -7,7 +7,6 @@
 //
 
 #import "TodayViewController.h"
-#import "ListRowViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "SDCommonFetcher.h"
 
@@ -21,7 +20,8 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
 @property (strong) NCWidgetSearchViewController *searchController;
 
 @property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
-@property (nonatomic, assign) BOOL forbiddenToRefresh;
+@property (nonatomic, assign) TaskType queryTaskType;
+@property (nonatomic, weak) ListRowViewController *rowVCShowingDetail;
 
 @end
 
@@ -37,6 +37,10 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     // The contents property should contain an object for each row in the list.
     self.listViewController.hasDividerLines = NO;
     self.listViewController.contents = [NSArray array]; // of SDStockMarket
+
+    self.rowVCShowingDetail = nil;
+
+    self.queryTaskType = TaskTypeRealtime;
 }
 
 - (void)dismissViewController:(NSViewController *)viewController {
@@ -48,18 +52,8 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     }
 }
 
-- (void)manuallyUpdateWidget
-{
-    [self stopStockRefresher];
-    [self startStockRefresher];
-}
-
 - (void)startStockRefresher
 {
-    if (self.forbiddenToRefresh) {
-        return;
-    }
-
     if (self.refreshDataTaskTimer.isValid) {
         return;
     }
@@ -79,11 +73,41 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
 
 - (void)doRefreshDataTask
 {
+    // query stock data for showing stock
+    if (self.rowVCShowingDetail) {
+        SDStockMarket *stockMarket = self.rowVCShowingDetail.representedObject;
+
+        NSString *searchCode = stockMarket.stockCode;
+        if ([[stockMarket.stockType stringByAppendingString:stockMarket.stockCode] isEqualToString:kSDStockDaPanFullCode]) {
+            searchCode = kSDStockDaPanFullCode;
+        }
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
+            refreshDataTask.taskManager = self;
+            [refreshDataTask refreshDataTask:self.queryTaskType
+                                   stockCode:searchCode
+                              successHandler:^(NSData *data) {
+                                  SDStockMarket *showingStockMarket = self.rowVCShowingDetail.representedObject;
+
+                                  // check if returned data is of current showing stock
+                                  if ([searchCode isEqualToString:showingStockMarket.stockCode] ||
+                                      [searchCode isEqualToString:[showingStockMarket.stockType stringByAppendingString:showingStockMarket.stockCode]]) {
+                                      [self updateViewWithData:data];
+                                  }
+                              }
+                              failureHandler:^(NSError *error) {
+                              }];
+        });
+    }
+    
     // query stock market
     for (SDStockMarket *theStockMarket in self.listViewController.contents) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:theStockMarket
                                                                     successHandler:^(SDStockMarket *stockMarket) {
+                                                                        NSLog(@"%@", [stockMarket currentPriceDescription]);
+                                                                        
                                                                         dispatch_async(dispatch_get_main_queue(), ^{
                                                                             theStockMarket.currentPrice = stockMarket.currentPrice;
                                                                             theStockMarket.changeValue = stockMarket.changeValue;
@@ -96,40 +120,33 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     }
 }
 
-#pragma mark - user defaults
-
-- (NSArray *)readSavedContents
+- (void)updateViewWithData:(NSData *)data
 {
-    NSArray *savedArray = [[NSUserDefaults standardUserDefaults] arrayForKey:kExtensionTodayListSavedStocks];
-
-    NSMutableArray *savedContent = [NSMutableArray array];
-
-    for (NSDictionary *stockDic in savedArray) {
-        SDStockMarket *stockMarket = [[SDStockMarket alloc] init];
-        stockMarket.stockCode = stockDic[@"code"];
-        stockMarket.stockName = stockDic[@"name"];
-        stockMarket.stockType = stockDic[@"type"];
-        stockMarket.stockAbbr = stockDic[@"abbr"];
-        [savedContent addObject:stockMarket];
+    if (data) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.rowVCShowingDetail updateViewWithData:data];
+        });
     }
-
-    return savedContent;
 }
 
-- (void)saveContents
+#pragma mark - ExtensionTodayListRowViewControllerDelegate
+
+- (void)didClickRowVC:(ListRowViewController *)listRowVC toOpen:(BOOL)open
 {
-    NSMutableArray *toSaveArray = [NSMutableArray array];
+    if (!self.listViewController.editing) {
+        if (open) {
+            [self stopStockRefresher];
 
-    for (SDStockMarket *stockMarket in self.listViewController.contents) {
-        NSDictionary *stockDic = @{@"code": stockMarket.stockCode,
-                                   @"name": stockMarket.stockName,
-                                   @"type": stockMarket.stockType,
-                                   @"abbr": stockMarket.stockAbbr};
-        [toSaveArray addObject:stockDic];
+            [self.rowVCShowingDetail closeDetailView];
+
+            self.rowVCShowingDetail = listRowVC;
+
+            [self startStockRefresher];
+
+        } else {
+            self.rowVCShowingDetail = nil;
+        }
     }
-
-    [[NSUserDefaults standardUserDefaults] setObject:toSaveArray forKey:kExtensionTodayListSavedStocks];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - NCWidgetProviding
@@ -146,7 +163,10 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     NSArray *savedContent = [self readSavedContents];
     self.listViewController.contents = savedContent.count > 0 ? savedContent : @[[[SDStockMarket alloc] initDaPan]];
 
-    [self manuallyUpdateWidget];
+//    [self startStockRefresher];
+    // show the 1st stock by default
+    ListRowViewController *rowVC = (ListRowViewController *)[self.listViewController viewControllerAtRow:0 makeIfNecessary:YES];
+    [rowVC didClickTitleBar:nil];
 
     completionHandler(NCUpdateResultNoData);
 }
@@ -182,7 +202,7 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
 
     [self saveContents];
 
-    [self manuallyUpdateWidget];
+    [self startStockRefresher];
 }
 
 #pragma mark - NCWidgetListViewDelegate
@@ -192,9 +212,19 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     // content. The NCWidgetListViewController will set the representedObject
     // of this view controller to one of the objects in its contents array.
 
-    ListRowViewController *viewController = [[ListRowViewController alloc] init];
+    ListRowViewController *viewController = [[ListRowViewController alloc] initWithOwner:self];
 
     return viewController;
+}
+
+- (BOOL)widgetList:(NCWidgetListViewController *)list shouldReorderRow:(NSUInteger)row {
+    // Return YES to allow the item to be reordered in the list by the user.
+    return YES;
+}
+
+- (BOOL)widgetList:(NCWidgetListViewController *)list shouldRemoveRow:(NSUInteger)row {
+    // Return YES to allow the item to be removed from the list by the user.
+    return YES;
 }
 
 - (void)widgetListPerformAddAction:(NCWidgetListViewController *)list {
@@ -207,24 +237,6 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     // Implement dismissViewController to observe when the view controller
     // has been dismissed and is no longer needed.
     [self presentViewControllerInWidget:self.searchController];
-}
-
-- (BOOL)widgetList:(NCWidgetListViewController *)list shouldReorderRow:(NSUInteger)row {
-    // Return YES to allow the item to be reordered in the list by the user.
-    return YES;
-}
-
-- (void)widgetList:(NCWidgetListViewController *)list didReorderRow:(NSUInteger)row toRow:(NSUInteger)newIndex {
-    // The user has reordered an item in the list.
-}
-
-- (BOOL)widgetList:(NCWidgetListViewController *)list shouldRemoveRow:(NSUInteger)row {
-    // Return YES to allow the item to be removed from the list by the user.
-    return YES;
-}
-
-- (void)widgetList:(NCWidgetListViewController *)list didRemoveRow:(NSUInteger)row {
-    // The user has removed an item from the list.
 }
 
 #pragma mark - NCWidgetSearchViewDelegate
@@ -273,9 +285,47 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
         }
     }
 
+    // only add a new one
     if (!existed) {
         self.listViewController.contents = [self.listViewController.contents arrayByAddingObject:selectedStockMarket];
     }
 }
+
+#pragma mark - NSUserDefaults
+
+- (NSArray *)readSavedContents
+{
+    NSArray *savedArray = [[NSUserDefaults standardUserDefaults] arrayForKey:kExtensionTodayListSavedStocks];
+
+    NSMutableArray *savedContent = [NSMutableArray array];
+
+    for (NSDictionary *stockDic in savedArray) {
+        SDStockMarket *stockMarket = [[SDStockMarket alloc] init];
+        stockMarket.stockCode = stockDic[@"code"];
+        stockMarket.stockName = stockDic[@"name"];
+        stockMarket.stockType = stockDic[@"type"];
+        stockMarket.stockAbbr = stockDic[@"abbr"];
+        [savedContent addObject:stockMarket];
+    }
+
+    return savedContent;
+}
+
+- (void)saveContents
+{
+    NSMutableArray *toSaveArray = [NSMutableArray array];
+
+    for (SDStockMarket *stockMarket in self.listViewController.contents) {
+        NSDictionary *stockDic = @{@"code": stockMarket.stockCode,
+                                   @"name": stockMarket.stockName,
+                                   @"type": stockMarket.stockType,
+                                   @"abbr": stockMarket.stockAbbr};
+        [toSaveArray addObject:stockDic];
+    }
+
+    [[NSUserDefaults standardUserDefaults] setObject:toSaveArray forKey:kExtensionTodayListSavedStocks];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 @end

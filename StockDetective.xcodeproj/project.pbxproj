@@ -59,6 +59,8 @@
 		E5F43E1E1B639035000D2AB8 /* SDMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43E1C1B639035000D2AB8 /* SDMainWindowController.xib */; };
 		E5F43E261B63A9BC000D2AB8 /* SDGraphMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43E241B63A9BC000D2AB8 /* SDGraphMarkerViewController.m */; };
 		E5F43E271B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43E251B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib */; };
+		E5F6C4181B7B80D800020114 /* Yuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; };
+		E5F6C41C1B7B811200020114 /* Yuba.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,13 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = Yuba;
 		};
+		E5F6C4191B7B80F100020114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = Yuba;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,6 +146,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E5F43DFE1B638AF1000D2AB8 /* Yuba.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5F6C41B1B7B810800020114 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E5F6C41C1B7B811200020114 /* Yuba.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EBFDE71B7B0EBA0078F93B /* libPods.a in Frameworks */,
+				E5F6C4181B7B80D800020114 /* Yuba.framework in Frameworks */,
 				84EBFDBB1B79C6B40078F93B /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,10 +487,12 @@
 				84EBFDB71B79C6B40078F93B /* Frameworks */,
 				84EBFDB81B79C6B40078F93B /* Resources */,
 				84EBFDEE1B7B0F6B0078F93B /* Copy Pods Resources */,
+				E5F6C41B1B7B810800020114 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E5F6C41A1B7B80F100020114 /* PBXTargetDependency */,
 			);
 			name = ExtensionTodayList;
 			productName = ExtensionTodayList;
@@ -772,6 +795,11 @@
 			name = Yuba;
 			targetProxy = E5F43DFF1B638AF1000D2AB8 /* PBXContainerItemProxy */;
 		};
+		E5F6C41A1B7B80F100020114 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Yuba;
+			targetProxy = E5F6C4191B7B80F100020114 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -882,6 +910,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionTodayList/ExtensionTodayList.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -921,6 +950,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionTodayList/ExtensionTodayList.entitlements;
 				CODE_SIGN_IDENTITY = "-";

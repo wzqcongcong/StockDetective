@@ -7,7 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SDRefreshDataTask.h"
+#import "ListRowViewController.h"
 
-@interface TodayViewController : NSViewController
+@interface TodayViewController : NSViewController <SDRefreshDataTaskManagerProtocol, ExtensionTodayListRowViewControllerDelegate>
+
+@property (atomic, strong) NSDate *lastRefreshedByDataTaskStartDate;
 
 @end
