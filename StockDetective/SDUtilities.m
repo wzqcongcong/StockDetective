@@ -28,7 +28,7 @@ static NSString * const kCacheTypeStockMarket = @"CacheTypeStockMarket";
 
     } else {
         NSDate *today9 = [calendar dateBySettingHour:9
-                                              minute:0
+                                              minute:30
                                               second:0
                                               ofDate:today
                                              options:NSCalendarMatchStrictly];

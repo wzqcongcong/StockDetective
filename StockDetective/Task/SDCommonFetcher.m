@@ -13,9 +13,10 @@
 static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.com/suggest/default.aspx?name=sData&input=%@&type=1,2,3";
 static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stock/quote.json?code=%@"; // by full code, like SH000001.
 
+// no need real account, just use guest user to access the login url and then will get a valid cookie.
 static NSString * const kXueQiuLoginURL = @"http://xueqiu.com/user/login";
-static NSString * const kXueQiuLoginUsername = @"wzqcongcong@sina.com";
-static NSString * const kXueQiuLoginPassword = @"wzq424327";
+static NSString * const kXueQiuLoginUsername = @"";
+static NSString * const kXueQiuLoginPassword = @"";
 
 @interface SDCommonFetcher ()
 
