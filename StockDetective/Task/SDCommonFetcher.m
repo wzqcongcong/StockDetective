@@ -200,7 +200,7 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
     }
 
 
-    NSString *fullCode = [stockInfo.stockType stringByAppendingString:stockInfo.stockCode];
+    NSString *fullCode = [stockInfo fullStockCode];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:kFetchStockMarketFormatURL, fullCode]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.mainDocumentURL = [NSURL URLWithString:url.host];

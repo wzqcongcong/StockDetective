@@ -78,7 +78,7 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
         SDStockMarket *stockMarket = self.rowVCShowingDetail.representedObject;
 
         NSString *searchCode = stockMarket.stockCode;
-        if ([[stockMarket.stockType stringByAppendingString:stockMarket.stockCode] isEqualToString:kSDStockDaPanFullCode]) {
+        if ([[stockMarket fullStockCode] isEqualToString:kSDStockDaPanFullCode]) {
             searchCode = kSDStockDaPanFullCode;
         }
 
@@ -92,7 +92,7 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
 
                                   // check if returned data is of current showing stock
                                   if ([searchCode isEqualToString:showingStockMarket.stockCode] ||
-                                      [searchCode isEqualToString:[showingStockMarket.stockType stringByAppendingString:showingStockMarket.stockCode]]) {
+                                      [searchCode isEqualToString:[showingStockMarket fullStockCode]]) {
                                       [self updateViewWithData:data];
                                   }
                               }

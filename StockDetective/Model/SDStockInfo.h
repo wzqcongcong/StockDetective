@@ -28,6 +28,7 @@ extern NSString * const kSDStockTypeSZ;
 - (instancetype)initDaPan;
 
 - (BOOL)isValidStock;
+- (NSString *)fullStockCode;
 - (NSString *)stockShortDisplayInfo;
 - (NSString *)stockShortDisplayInfoV2;
 

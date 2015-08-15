@@ -42,6 +42,9 @@
 		84EBFE131B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */; };
 		84EBFE141B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */; };
 		84EBFE151B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */; };
+		E560CBF21B7F027B00B19A1B /* SDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E560CBF11B7F027B00B19A1B /* SDUtilities.m */; };
+		E560CBF31B7F027B00B19A1B /* SDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E560CBF11B7F027B00B19A1B /* SDUtilities.m */; };
+		E560CBF41B7F027B00B19A1B /* SDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E560CBF11B7F027B00B19A1B /* SDUtilities.m */; };
 		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
@@ -188,6 +191,8 @@
 		84EBFE111B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockMarketPriceChangeTransformer.h; path = Model/SDStockMarketPriceChangeTransformer.h; sourceTree = "<group>"; };
 		84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockMarketPriceChangeTransformer.m; path = Model/SDStockMarketPriceChangeTransformer.m; sourceTree = "<group>"; };
 		8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E560CBF01B7F027B00B19A1B /* SDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUtilities.h; sourceTree = "<group>"; };
+		E560CBF11B7F027B00B19A1B /* SDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUtilities.m; sourceTree = "<group>"; };
 		E58551F21B710A870037E7F4 /* SDStockMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockMarket.h; path = Model/SDStockMarket.h; sourceTree = "<group>"; };
 		E58551F31B710A870037E7F4 /* SDStockMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockMarket.m; path = Model/SDStockMarket.m; sourceTree = "<group>"; };
 		E5A6CC3C1B6C96C100FD6565 /* SDColorBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDColorBackgroundView.h; path = View/SDColorBackgroundView.h; sourceTree = "<group>"; };
@@ -368,6 +373,8 @@
 			children = (
 				E5F43CC01B632BE5000D2AB8 /* SDAppDelegate.h */,
 				E5F43CC11B632BE5000D2AB8 /* SDAppDelegate.m */,
+				E560CBF01B7F027B00B19A1B /* SDUtilities.h */,
+				E560CBF11B7F027B00B19A1B /* SDUtilities.m */,
 				E5F43E191B638FF4000D2AB8 /* ViewController */,
 				E5A6CC3B1B6C969300FD6565 /* View */,
 				E5F43CDE1B6337BB000D2AB8 /* Task */,
@@ -715,6 +722,7 @@
 				84EBFDDC1B79E73D0078F93B /* SDCommonFetcher.m in Sources */,
 				84EBFE0F1B7B53BB0078F93B /* SDStockMarketPriceColorTransformer.m in Sources */,
 				84EBFE141B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */,
+				E560CBF31B7F027B00B19A1B /* SDUtilities.m in Sources */,
 				84EBFDDD1B79E73D0078F93B /* SDStockInfo.m in Sources */,
 				84EBFDDE1B79E73D0078F93B /* SDStockMarket.m in Sources */,
 				84EBFDDF1B79E73D0078F93B /* SDUserInfo.m in Sources */,
@@ -733,6 +741,7 @@
 				84EBFDEB1B7B0F260078F93B /* SDStockMarket.m in Sources */,
 				84EBFDEC1B7B0F260078F93B /* SDUserInfo.m in Sources */,
 				84EBFDC51B79C6B40078F93B /* TodayViewController.m in Sources */,
+				E560CBF41B7F027B00B19A1B /* SDUtilities.m in Sources */,
 				84EBFDC81B79C6B40078F93B /* ListRowViewController.m in Sources */,
 				84EBFE101B7B53BB0078F93B /* SDStockMarketPriceColorTransformer.m in Sources */,
 			);
@@ -750,6 +759,7 @@
 				E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */,
 				84EBFE0E1B7B53BB0078F93B /* SDStockMarketPriceColorTransformer.m in Sources */,
 				E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */,
+				E560CBF21B7F027B00B19A1B /* SDUtilities.m in Sources */,
 				E5E9D4071B6E1CAB00DCC7C0 /* SDCommonFetcher.m in Sources */,
 				E5F43CC21B632BE5000D2AB8 /* SDAppDelegate.m in Sources */,
 				E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */,

@@ -177,7 +177,7 @@ static NSString * const kStockDataUnitWan     = @"万";
                                                                     NSLog(@"%@", [stockMarket currentPriceDescription]);
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                                         self.leftBoardLabel.stringValue = self.stockInfo.stockName;
-                                                                        self.leftBoardSubLabel.stringValue = [self.stockInfo.stockType stringByAppendingString:self.stockInfo.stockCode];
+                                                                        self.leftBoardSubLabel.stringValue = [self.stockInfo fullStockCode];
                                                                         self.rightBoardLabel.stringValue = stockMarket.currentPrice;
                                                                         self.rightBoardSubLabel.stringValue = [stockMarket.changePercentage stringByAppendingString:@"%"];
 

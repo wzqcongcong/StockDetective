@@ -46,19 +46,24 @@ NSString * const kSDStockDaPanFullCode  = @"SH000001";
     return (self.stockCode && self.stockName && self.stockAbbr && self.stockType);
 }
 
+- (NSString *)fullStockCode
+{
+    return [self.stockType stringByAppendingString:self.stockCode];
+}
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ (%@) [%@%@]", self.stockName, self.stockAbbr, self.stockType, self.stockCode];
+    return [NSString stringWithFormat:@"%@ (%@) [%@]", self.stockName, self.stockAbbr, [self fullStockCode]];
 }
 
 - (NSString *)stockShortDisplayInfo
 {
-    return [NSString stringWithFormat:@"%@ [%@%@]", self.stockName, self.stockType, self.stockCode];
+    return [NSString stringWithFormat:@"%@ [%@]", self.stockName, [self fullStockCode]];
 }
 
 - (NSString *)stockShortDisplayInfoV2
 {
-    return [NSString stringWithFormat:@"[%@%@] %@", self.stockType, self.stockCode, self.stockName];
+    return [NSString stringWithFormat:@"[%@] %@", [self fullStockCode], self.stockName];
 }
 
 @end
