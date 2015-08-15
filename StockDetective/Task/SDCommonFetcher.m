@@ -8,6 +8,7 @@
 
 #import "AFNetworking.h"
 #import "SDCommonFetcher.h"
+#import "SDUtilities.h"
 
 static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.com/suggest/default.aspx?name=sData&input=%@&type=1,2,3";
 static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stock/quote.json?code=%@"; // by full code, like SH000001.
@@ -112,6 +113,16 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
 {
     if (![stockInfo isValidStock]) {
         return;
+    }
+
+    if (![SDUtilities isStockMarketOnBusiness]) {
+        SDStockMarket *cachedStockMarket = [SDUtilities loadCachedStockMarketForFullStockCode:[stockInfo fullStockCode]];
+        if (cachedStockMarket) {
+            NSLog(@"using cached stock market");
+            successHandler(cachedStockMarket);
+
+            return;
+        }
     }
 
     if ([self validXueQiuCookie]) {
@@ -220,6 +231,9 @@ static NSString * const kXueQiuLoginPassword = @"wzq424327";
                                                                                      stockMarket.currentPrice = stockDic[@"current"];
                                                                                      stockMarket.changeValue = stockDic[@"change"];
                                                                                      stockMarket.changePercentage = stockDic[@"percentage"];
+
+                                                                                     [SDUtilities cacheStockMarket:([SDUtilities isStockMarketOnBusiness] ? nil : stockMarket)
+                                                                                                  forFullStockCode:[stockMarket fullStockCode]];
 
                                                                                      if (successHandler) {
                                                                                          successHandler(stockMarket);

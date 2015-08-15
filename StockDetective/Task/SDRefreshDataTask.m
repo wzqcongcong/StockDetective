@@ -9,6 +9,7 @@
 #import "AFNetworking.h"
 #import "SDRefreshDataTask.h"
 #import "SDStockInfo.h"
+#import "SDUtilities.h"
 
 static NSString * const kQueryDaPanRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/index.xml";
 static NSString * const kQueryDaPanHistoryFormatURL = @"http://s1.dfcfw.com/History/index.xml";
@@ -100,6 +101,16 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
         return;
     }
 
+    if (![SDUtilities isStockMarketOnBusiness]) {
+        NSData *refreshData = [SDUtilities loadCachedRefreshDataForURL:url.absoluteString];
+        if (refreshData) {
+            NSLog(@"using cached refresh data");
+            successHandler(refreshData);
+
+            return;
+        }
+    }
+
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     configuration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
 
@@ -115,8 +126,14 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
                                                                          completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                                                                              if (error) {
                                                                                  failureHandler(error);
+
                                                                              } else {
-                                                                                 successHandler((NSData *)responseObject);
+                                                                                 NSData *data = (NSData *)responseObject;
+
+                                                                                 [SDUtilities cacheRefreshData:([SDUtilities isStockMarketOnBusiness] ? nil : data)
+                                                                                                        forURL:url.absoluteString];
+
+                                                                                 successHandler(data);
                                                                              }
                                                                          }];
     [dataTask resume];

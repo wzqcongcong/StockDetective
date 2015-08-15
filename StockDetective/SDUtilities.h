@@ -7,9 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SDStockMarket.h"
 
 @interface SDUtilities : NSObject
 
 + (BOOL)isStockMarketOnBusiness;
+
++ (NSData *)loadCachedRefreshDataForURL:(NSString *)url;
++ (void)cacheRefreshData:(NSData *)data forURL:(NSString *)url;
+
++ (SDStockMarket *)loadCachedStockMarketForFullStockCode:(NSString *)fullStockCode;
++ (void)cacheStockMarket:(SDStockMarket *)stockMarket forFullStockCode:(NSString *)fullStockCode;
 
 @end
