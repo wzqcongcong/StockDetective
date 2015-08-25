@@ -13,6 +13,7 @@
 static NSUInteger const kDataRefreshInterval  = 5;
 
 static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSavedStocks";
+static NSString * const kExtensionTodayListSavedFullStockCodeToShowDetail = @"ExtensionTodayListSavedFullStockCodeToShowDetail";
 
 @interface TodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, NCWidgetSearchViewDelegate>
 
@@ -140,6 +141,7 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
             [self.rowVCShowingDetail closeDetailView];
 
             self.rowVCShowingDetail = listRowVC;
+            [self saveFullStockCodeToShowDetail];
 
             [self startStockRefresher];
 
@@ -160,19 +162,24 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
 
     [self stopStockRefresher];
 
-    self.rowVCShowingDetail = nil;
-
     NSArray *savedContent = [self readSavedContents];
     self.listViewController.contents = savedContent.count > 0 ? savedContent : @[[[SDStockMarket alloc] initDaPan]];
 
     [self startStockRefresher];
 
-    // after 2s, show the 1st stock if needed
+    // after 2s, show the saved stock if needed
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!self.rowVCShowingDetail) {
-            ListRowViewController *rowVC = (ListRowViewController *)[self.listViewController viewControllerAtRow:0 makeIfNecessary:YES];
-            [rowVC didClickTitleBar:nil];
+        self.rowVCShowingDetail = (ListRowViewController *)[self.listViewController viewControllerAtRow:0 makeIfNecessary:YES];
+
+        NSString *savedFullStockCodeToShowDetail = [self readSavedFullStockCodeToShowDetail];
+        for (NSUInteger i = 0; i < self.listViewController.contents.count; ++i) {
+            SDStockMarket *stockMarket = self.listViewController.contents[i];
+            if ([savedFullStockCodeToShowDetail isEqualToString:[stockMarket fullStockCode]]) {
+                self.rowVCShowingDetail = (ListRowViewController *)[self.listViewController viewControllerAtRow:i makeIfNecessary:YES];
+                break;
+            }
         }
+        [self.rowVCShowingDetail didClickTitleBar:nil];
     });
 
     completionHandler(NCUpdateResultNoData);
@@ -334,5 +341,23 @@ static NSString * const kExtensionTodayListSavedStocks = @"ExtensionTodayListSav
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (NSString *)readSavedFullStockCodeToShowDetail
+{
+    NSString *fullStockCode = [[NSUserDefaults standardUserDefaults] stringForKey:kExtensionTodayListSavedFullStockCodeToShowDetail];
+    return fullStockCode;
+}
+
+- (void)saveFullStockCodeToShowDetail
+{
+    NSString *fullStockCode = @"";
+
+    if (self.rowVCShowingDetail) {
+        SDStockMarket *showingStockMarket = self.rowVCShowingDetail.representedObject;
+        fullStockCode = [showingStockMarket fullStockCode];
+    }
+
+    [[NSUserDefaults standardUserDefaults] setObject:fullStockCode forKey:kExtensionTodayListSavedFullStockCodeToShowDetail];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 @end
