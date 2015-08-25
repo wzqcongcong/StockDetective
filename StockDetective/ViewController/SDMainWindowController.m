@@ -80,6 +80,7 @@ static NSString * const kStockDataUnitWan     = @"万";
     self.window.titlebarAppearsTransparent = YES;
     self.window.movableByWindowBackground = YES;
 
+    self.errorBar.hidden = NO;
     self.errorBarConstraint.constant = -self.errorBar.frame.size.height - 2;
     self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height;
     self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height;
