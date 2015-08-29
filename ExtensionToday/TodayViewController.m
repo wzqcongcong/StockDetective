@@ -10,6 +10,7 @@
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "SDCommonFetcher.h"
+//#import "LogFormatter.h"
 
 static NSUInteger const kDataRefreshInterval  = 5;
 
@@ -152,7 +153,7 @@ static NSUInteger const kDataRefreshInterval  = 5;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:self.stockInfo
                                                                 successHandler:^(SDStockMarket *stockMarket) {
-//                                                                    NSLog(@"%@", [stockMarket currentPriceDescription]);
+//                                                                    DDLogDebug(@"%@", [stockMarket currentPriceDescription]);
 
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                                         self.titleStock.stringValue = self.stockInfo.stockName;

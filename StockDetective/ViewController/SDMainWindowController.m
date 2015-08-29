@@ -12,6 +12,7 @@
 #import "SDGraphMarkerViewController.h"
 #import "SDCommonFetcher.h"
 #import <pop/POP.h>
+#import "LogFormatter.h"
 
 static NSUInteger const kDataRefreshInterval  = 5;
 static NSUInteger const kErrorBarDurationTime = 3;
@@ -175,7 +176,7 @@ static NSString * const kStockDataUnitWan     = @"万";
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:self.stockInfo
                                                                 successHandler:^(SDStockMarket *stockMarket) {
-                                                                    NSLog(@"%@", [stockMarket currentPriceDescription]);
+                                                                    DDLogDebug(@"%@", [stockMarket currentPriceDescription]);
                                                                     dispatch_async(dispatch_get_main_queue(), ^{
                                                                         self.leftBoardLabel.stringValue = self.stockInfo.stockName;
                                                                         self.leftBoardSubLabel.stringValue = [self.stockInfo fullStockCode];
@@ -291,7 +292,7 @@ static NSString * const kStockDataUnitWan     = @"万";
     self.needToReshowBoard = YES;
     [self stopStockRefresher];
 
-    NSLog(@"{input: \"%@\", type: %@}", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
+    DDLogDebug(@"{input: \"%@\", type: %@}", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
 
     NSString *inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     self.inputStockCode = (inputStockCode.length == 0) ? kSDStockDaPanFullCode : inputStockCode;
@@ -344,7 +345,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 
 - (void)showErrorMessage:(NSString *)errorMessage
 {
-    NSLog(@"%@", errorMessage);
+    DDLogError(@"%@", errorMessage);
 
     self.btnErrorMessage.title = [@" " stringByAppendingString:errorMessage];
     self.errorBarConstraint.animator.constant = 0;

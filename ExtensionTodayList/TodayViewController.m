@@ -9,6 +9,7 @@
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "SDCommonFetcher.h"
+//#import "LogFormatter.h"
 
 static NSUInteger const kDataRefreshInterval  = 5;
 
@@ -107,7 +108,7 @@ static NSString * const kExtensionTodayListSavedFullStockCodeToShowDetail = @"Ex
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             [[SDCommonFetcher sharedSDCommonFetcher] fetchStockMarketWithStockInfo:theStockMarket
                                                                     successHandler:^(SDStockMarket *stockMarket) {
-//                                                                        NSLog(@"%@", [stockMarket currentPriceDescription]);
+//                                                                        DDLogDebug(@"%@", [stockMarket currentPriceDescription]);
 
                                                                         dispatch_async(dispatch_get_main_queue(), ^{
                                                                             theStockMarket.currentPrice = stockMarket.currentPrice;

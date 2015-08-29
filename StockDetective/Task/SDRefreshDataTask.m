@@ -10,6 +10,7 @@
 #import "SDRefreshDataTask.h"
 #import "SDStockInfo.h"
 #import "SDUtilities.h"
+#import "LogFormatter.h"
 
 static NSString * const kQueryDaPanRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/index.xml";
 static NSString * const kQueryDaPanHistoryFormatURL = @"http://s1.dfcfw.com/History/index.xml";
@@ -79,10 +80,10 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
                       if (successHandler) {
                           successHandler(data);
                       }
-                      NSLog(@"data refreshed");
+                      DDLogDebug(@"data refreshed");
 
                   } else {
-                      NSLog(@"ignore old task");
+                      DDLogDebug(@"ignore old task");
                   }
               }
               failureHandler:^(NSError *error) {
@@ -104,7 +105,7 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
     if (![SDUtilities isStockMarketOnBusiness]) {
         NSData *refreshData = [SDUtilities loadCachedRefreshDataForURL:url.absoluteString];
         if (refreshData) {
-            NSLog(@"using cached refresh data");
+            DDLogDebug(@"using cached refresh data");
             successHandler(refreshData);
 
             return;

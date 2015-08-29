@@ -9,6 +9,7 @@
 #import "AFNetworking.h"
 #import "SDCommonFetcher.h"
 #import "SDUtilities.h"
+#import "LogFormatter.h"
 
 static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.com/suggest/default.aspx?name=sData&input=%@&type=1,2,3";
 static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stock/quote.json?code=%@"; // by full code, like SH000001.
@@ -86,7 +87,7 @@ static NSString * const kXueQiuLoginPassword = @"";
                                                                                        stockInfo.stockAbbr = array[3];
                                                                                        stockInfo.stockType = [array[5] isEqualToString:@"1"] ? kSDStockTypeSH : kSDStockTypeSZ;
 
-                                                                                       NSLog(@"%@", [stockInfo description]);
+                                                                                       DDLogDebug(@"%@", [stockInfo description]);
 
                                                                                        if (successHandler) {
                                                                                            successHandler(stockInfo);
@@ -119,7 +120,7 @@ static NSString * const kXueQiuLoginPassword = @"";
     if (![SDUtilities isStockMarketOnBusiness]) {
         SDStockMarket *cachedStockMarket = [SDUtilities loadCachedStockMarketForFullStockCode:[stockInfo fullStockCode]];
         if (cachedStockMarket) {
-            NSLog(@"using cached stock market");
+            DDLogDebug(@"using cached stock market");
             successHandler(cachedStockMarket);
 
             return;
@@ -132,7 +133,7 @@ static NSString * const kXueQiuLoginPassword = @"";
                                          successHandler(stockMarket);
                                      }
                                      failureHandler:^(NSError *error) {
-                                         NSLog(@"Failed to fetch stock market from XueQiu: %@", error);
+                                         DDLogError(@"Failed to fetch stock market from XueQiu: %@", error);
                                          if (failureHandler) {
                                              failureHandler(error);
                                          }
@@ -150,14 +151,14 @@ static NSString * const kXueQiuLoginPassword = @"";
                                                             successHandler(stockMarket);
                                                         }
                                                         failureHandler:^(NSError *error) {
-                                                            NSLog(@"Failed to fetch stock market from XueQiu: %@", error);
+                                                            DDLogError(@"Failed to fetch stock market from XueQiu: %@", error);
                                                             if (failureHandler) {
                                                                 failureHandler(error);
                                                             }
                                                         }];
                        }
                        failureHandler:^(NSError *error) {
-                           NSLog(@"Failed to login XueQiu: %@", error);
+                           DDLogError(@"Failed to login XueQiu: %@", error);
                            if (failureHandler) {
                                failureHandler(error);
                            }

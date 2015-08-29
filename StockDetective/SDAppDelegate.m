@@ -8,6 +8,7 @@
 
 #import "SDAppDelegate.h"
 #import "SDMainWindowController.h"
+#import "LogFormatter.h"
 
 @interface SDAppDelegate ()
 
@@ -19,6 +20,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+
+    [LogFormatter setupLog];
 
     self.mainWindowController = [[SDMainWindowController alloc] init];
     [self.mainWindowController showWindow:self];

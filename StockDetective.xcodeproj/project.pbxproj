@@ -47,6 +47,9 @@
 		E560CBF41B7F027B00B19A1B /* SDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E560CBF11B7F027B00B19A1B /* SDUtilities.m */; };
 		E58551F41B710A870037E7F4 /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		E5A6CC3E1B6C96C100FD6565 /* SDColorBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */; };
+		E5C578E51B917F200035AE03 /* LogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C578E41B917F200035AE03 /* LogFormatter.m */; };
+		E5C578E61B917F200035AE03 /* LogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C578E41B917F200035AE03 /* LogFormatter.m */; };
+		E5C578E71B917F200035AE03 /* LogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C578E41B917F200035AE03 /* LogFormatter.m */; };
 		E5E9D4041B6E1BA200DCC7C0 /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
 		E5E9D4071B6E1CAB00DCC7C0 /* SDCommonFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4061B6E1CAB00DCC7C0 /* SDCommonFetcher.m */; };
 		E5F43CC21B632BE5000D2AB8 /* SDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC11B632BE5000D2AB8 /* SDAppDelegate.m */; };
@@ -197,6 +200,8 @@
 		E58551F31B710A870037E7F4 /* SDStockMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockMarket.m; path = Model/SDStockMarket.m; sourceTree = "<group>"; };
 		E5A6CC3C1B6C96C100FD6565 /* SDColorBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDColorBackgroundView.h; path = View/SDColorBackgroundView.h; sourceTree = "<group>"; };
 		E5A6CC3D1B6C96C100FD6565 /* SDColorBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDColorBackgroundView.m; path = View/SDColorBackgroundView.m; sourceTree = "<group>"; };
+		E5C578E31B917F200035AE03 /* LogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogFormatter.h; sourceTree = "<group>"; };
+		E5C578E41B917F200035AE03 /* LogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogFormatter.m; sourceTree = "<group>"; };
 		E5E9D4021B6E1BA200DCC7C0 /* SDStockInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockInfo.h; path = Model/SDStockInfo.h; sourceTree = "<group>"; };
 		E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockInfo.m; path = Model/SDStockInfo.m; sourceTree = "<group>"; };
 		E5E9D4051B6E1CAB00DCC7C0 /* SDCommonFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDCommonFetcher.h; path = Task/SDCommonFetcher.h; sourceTree = "<group>"; };
@@ -375,6 +380,8 @@
 				E5F43CC11B632BE5000D2AB8 /* SDAppDelegate.m */,
 				E560CBF01B7F027B00B19A1B /* SDUtilities.h */,
 				E560CBF11B7F027B00B19A1B /* SDUtilities.m */,
+				E5C578E31B917F200035AE03 /* LogFormatter.h */,
+				E5C578E41B917F200035AE03 /* LogFormatter.m */,
 				E5F43E191B638FF4000D2AB8 /* ViewController */,
 				E5A6CC3B1B6C969300FD6565 /* View */,
 				E5F43CDE1B6337BB000D2AB8 /* Task */,
@@ -725,6 +732,7 @@
 				E560CBF31B7F027B00B19A1B /* SDUtilities.m in Sources */,
 				84EBFDDD1B79E73D0078F93B /* SDStockInfo.m in Sources */,
 				84EBFDDE1B79E73D0078F93B /* SDStockMarket.m in Sources */,
+				E5C578E61B917F200035AE03 /* LogFormatter.m in Sources */,
 				84EBFDDF1B79E73D0078F93B /* SDUserInfo.m in Sources */,
 				84478F801B78902F00B766AF /* TodayViewController.m in Sources */,
 			);
@@ -739,6 +747,7 @@
 				84EBFDEA1B7B0F260078F93B /* SDStockInfo.m in Sources */,
 				84EBFE151B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */,
 				84EBFDEB1B7B0F260078F93B /* SDStockMarket.m in Sources */,
+				E5C578E71B917F200035AE03 /* LogFormatter.m in Sources */,
 				84EBFDEC1B7B0F260078F93B /* SDUserInfo.m in Sources */,
 				84EBFDC51B79C6B40078F93B /* TodayViewController.m in Sources */,
 				E560CBF41B7F027B00B19A1B /* SDUtilities.m in Sources */,
@@ -764,6 +773,7 @@
 				E5F43CC21B632BE5000D2AB8 /* SDAppDelegate.m in Sources */,
 				E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */,
 				848D8CDE1B71C71B001D7A8A /* SDUserInfo.m in Sources */,
+				E5C578E51B917F200035AE03 /* LogFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
