@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
@@ -99,7 +99,7 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kec-NF-dd1" userLabel="graph" customClass="YBGraphView">
-                    <rect key="frame" x="-20" y="10" width="370" height="240"/>
+                    <rect key="frame" x="-16" y="10" width="368" height="240"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="240" id="p0B-jn-gn9"/>
                     </constraints>
@@ -114,8 +114,8 @@
                 <constraint firstItem="dq8-WT-ddQ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="9mP-J7-7mR"/>
                 <constraint firstItem="Kec-NF-dd1" firstAttribute="top" secondItem="dq8-WT-ddQ" secondAttribute="bottom" id="AyZ-XD-i4m"/>
                 <constraint firstItem="dq8-WT-ddQ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="JuH-2D-xss"/>
-                <constraint firstAttribute="trailing" secondItem="Kec-NF-dd1" secondAttribute="trailing" constant="-30" id="Xqe-8y-xps"/>
-                <constraint firstItem="Kec-NF-dd1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="-20" id="rCl-R9-dD1"/>
+                <constraint firstAttribute="trailing" secondItem="Kec-NF-dd1" secondAttribute="trailing" constant="-32" id="Xqe-8y-xps"/>
+                <constraint firstItem="Kec-NF-dd1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="-16" id="rCl-R9-dD1"/>
                 <constraint firstAttribute="bottom" secondItem="Kec-NF-dd1" secondAttribute="bottom" constant="10" id="vlW-vb-XWX"/>
             </constraints>
             <point key="canvasLocation" x="286" y="317"/>
