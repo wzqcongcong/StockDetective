@@ -331,6 +331,17 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		E5C578E81B9183D80035AE03 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E560CBF01B7F027B00B19A1B /* SDUtilities.h */,
+				E560CBF11B7F027B00B19A1B /* SDUtilities.m */,
+				E5C578E31B917F200035AE03 /* LogFormatter.h */,
+				E5C578E41B917F200035AE03 /* LogFormatter.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		E5E9D4011B6E1B8500DCC7C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,10 +389,7 @@
 			children = (
 				E5F43CC01B632BE5000D2AB8 /* SDAppDelegate.h */,
 				E5F43CC11B632BE5000D2AB8 /* SDAppDelegate.m */,
-				E560CBF01B7F027B00B19A1B /* SDUtilities.h */,
-				E560CBF11B7F027B00B19A1B /* SDUtilities.m */,
-				E5C578E31B917F200035AE03 /* LogFormatter.h */,
-				E5C578E41B917F200035AE03 /* LogFormatter.m */,
+				E5C578E81B9183D80035AE03 /* Common */,
 				E5F43E191B638FF4000D2AB8 /* ViewController */,
 				E5A6CC3B1B6C969300FD6565 /* View */,
 				E5F43CDE1B6337BB000D2AB8 /* Task */,
