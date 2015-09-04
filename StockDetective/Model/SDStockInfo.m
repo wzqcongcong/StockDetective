@@ -11,12 +11,17 @@
 NSString * const kSDStockTypeSH         = @"SH";
 NSString * const kSDStockTypeSZ         = @"SZ";
 
-NSString * const kSDStockDaPanName      = @"上证指数";
-NSString * const kSDStockDaPanCode      = @"000001";
-NSString * const kSDStockDaPanAbbr      = @"SZZS";
-NSString * const kSDStockDaPanType      = @"SH";
+NSString * const kSDStockHuZhiName      = @"上证指数";
+NSString * const kSDStockHuZhiCode      = @"000001";
+NSString * const kSDStockHuZhiAbbr      = @"SZZS";
+NSString * const kSDStockHuZhiType      = @"SH";
+NSString * const kSDStockHuZhiFullCode  = @"SH000001";
 
-NSString * const kSDStockDaPanFullCode  = @"SH000001";
+NSString * const kSDStockShenZhiName      = @"深证成指";
+NSString * const kSDStockShenZhiCode      = @"399001";
+NSString * const kSDStockShenZhiAbbr      = @"SZCZ";
+NSString * const kSDStockShenZhiType      = @"SZ";
+NSString * const kSDStockShenZhiFullCode  = @"SZ399001";
 
 @implementation SDStockInfo
 
@@ -29,14 +34,26 @@ NSString * const kSDStockDaPanFullCode  = @"SH000001";
     return self;
 }
 
-- (instancetype)initDaPan
+- (instancetype)initHuZhi
 {
     self = [super init];
     if (self) {
-        _stockCode = kSDStockDaPanCode;
-        _stockName = kSDStockDaPanName;
-        _stockAbbr = kSDStockDaPanAbbr;
-        _stockType = kSDStockDaPanType;
+        _stockCode = kSDStockHuZhiCode;
+        _stockName = kSDStockHuZhiName;
+        _stockAbbr = kSDStockHuZhiAbbr;
+        _stockType = kSDStockHuZhiType;
+    }
+    return self;
+}
+
+- (instancetype)initShenZhi
+{
+    self = [super init];
+    if (self) {
+        _stockCode = kSDStockShenZhiCode;
+        _stockName = kSDStockShenZhiName;
+        _stockAbbr = kSDStockShenZhiAbbr;
+        _stockType = kSDStockShenZhiType;
     }
     return self;
 }

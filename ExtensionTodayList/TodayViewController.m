@@ -78,23 +78,18 @@ static NSString * const kExtensionTodayListSavedFullStockCodeToShowDetail = @"Ex
     // query stock data for showing stock
     if (self.rowVCShowingDetail) {
         SDStockMarket *stockMarket = self.rowVCShowingDetail.representedObject;
-
-        NSString *searchCode = stockMarket.stockCode;
-        if ([[stockMarket fullStockCode] isEqualToString:kSDStockDaPanFullCode]) {
-            searchCode = kSDStockDaPanFullCode;
-        }
+        NSString *fullStockCode = stockMarket.fullStockCode;
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
             refreshDataTask.taskManager = self;
             [refreshDataTask refreshDataTask:self.queryTaskType
-                                   stockCode:searchCode
+                                   stockInfo:stockMarket
                               successHandler:^(NSData *data) {
                                   SDStockMarket *showingStockMarket = self.rowVCShowingDetail.representedObject;
 
                                   // check if returned data is of current showing stock
-                                  if ([searchCode isEqualToString:showingStockMarket.stockCode] ||
-                                      [searchCode isEqualToString:[showingStockMarket fullStockCode]]) {
+                                  if ([fullStockCode isEqualToString:[showingStockMarket fullStockCode]]) {
                                       [self updateViewWithData:data];
                                   }
                               }
@@ -164,7 +159,7 @@ static NSString * const kExtensionTodayListSavedFullStockCodeToShowDetail = @"Ex
     [self stopStockRefresher];
 
     NSArray *savedContent = [self readSavedContents];
-    self.listViewController.contents = savedContent.count > 0 ? savedContent : @[[[SDStockMarket alloc] initDaPan]];
+    self.listViewController.contents = savedContent.count > 0 ? savedContent : @[[[SDStockMarket alloc] initHuZhi]];
 
     [self startStockRefresher];
 
@@ -264,7 +259,7 @@ static NSString * const kExtensionTodayListSavedFullStockCodeToShowDetail = @"Ex
 
     NSString *trimmedSearchTerm = [searchTerm stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmedSearchTerm.length == 0) {
-        searchController.searchResults = @[[[SDStockInfo alloc] initDaPan]];
+        searchController.searchResults = @[[[SDStockInfo alloc] initHuZhi]];
 
     } else {
         [[SDCommonFetcher sharedSDCommonFetcher] fetchStockInfoWithCode:trimmedSearchTerm

@@ -11,7 +11,7 @@
 #import "SDUtilities.h"
 #import "LogFormatter.h"
 
-static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.com/suggest/default.aspx?name=sData&input=%@&type=1,2,3";
+static NSString * const kFetchStockInfoFormatURL = @"http://suggest.eastmoney.com/suggest/default.aspx?name=sData&input=%@&type=";
 static NSString * const kFetchStockMarketFormatURL = @"http://xueqiu.com/v4/stock/quote.json?code=%@"; // by full code, like SH000001.
 
 // no need real account, just use guest user to access the login url and then will get a valid cookie.

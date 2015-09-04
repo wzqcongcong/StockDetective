@@ -23,8 +23,8 @@ static NSString * const kStockDataUnitWan     = @"万";
 @property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
 @property (nonatomic, assign) BOOL forbiddenToRefresh;
 
-@property (nonatomic, strong) NSString *inputStockCode; // stock code or pinyin abbr.
 @property (nonatomic, assign) TaskType queryTaskType;
+@property (nonatomic, strong) NSString *inputStockCode; // stock code or pinyin abbr.
 @property (nonatomic, strong) SDStockInfo *stockInfo;
 
 @property (nonatomic, strong) NSString *dataUnit;
@@ -66,9 +66,9 @@ static NSString * const kStockDataUnitWan     = @"万";
 {
     self = [super initWithWindowNibName:@"SDMainWindowController"];
     if (self) {
-        _inputStockCode = kSDStockDaPanFullCode; // specific stock should use its own stock code without type, like 平安银行 uses "000001".
         _queryTaskType = TaskTypeRealtime;
-        _stockInfo = [[SDStockInfo alloc] initDaPan];
+        _stockInfo = [[SDStockInfo alloc] initHuZhi];
+        _inputStockCode = _stockInfo.stockCode;
     }
     return self;
 }
@@ -160,13 +160,14 @@ static NSString * const kStockDataUnitWan     = @"万";
         SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
         refreshDataTask.taskManager = self;
         [refreshDataTask refreshDataTask:self.queryTaskType
-                               stockCode:self.inputStockCode
+                               stockInfo:self.stockInfo
                           successHandler:^(NSData *data) {
                               [self updateViewWithData:data];
                           }
                           failureHandler:^(NSError *error) {
                               dispatch_async(dispatch_get_main_queue(), ^{
                                   [self busyWithQuery:NO];
+                                  [self showEmptyGraphDueToError];
                                   [self showErrorMessage:@"Failed to refresh stock data"];
                               });
                           }];
@@ -227,33 +228,11 @@ static NSString * const kStockDataUnitWan     = @"万";
     });
 }
 
-- (void)reshowBoardWithAnimation
-{
-    self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height;
-    self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height;
-
-//    [NSAnimationContext beginGrouping];
-//    [[NSAnimationContext currentContext] setDuration:0.5]; // default 0.25
-//    self.leftBoardConstraint.animator.constant = -self.leftBoard.frame.size.height/2;
-//    self.rightBoardConstraint.animator.constant = -self.rightBoard.frame.size.height/2;
-//    [NSAnimationContext endGrouping];
-
-    POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
-    animation.toValue = @(-self.rightBoard.frame.size.height/2);
-    animation.springBounciness = 16;
-    animation.springSpeed = 8;
-    animation.dynamicsFriction = 10;
-    animation.dynamicsMass = 1;
-    animation.dynamicsTension = 300;
-    [self.leftBoardConstraint pop_addAnimation:animation forKey:@"leftSpring"];
-    [self.rightBoardConstraint pop_addAnimation:animation forKey:@"rightSpring"];
-}
-
 - (void)parseData:(NSData *)data
 {
     self.series = nil;
     self.values = nil;
-    
+
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *array = [string componentsSeparatedByString:@"\r\n"];
 
@@ -286,6 +265,47 @@ static NSString * const kStockDataUnitWan     = @"万";
     self.graphView.info = [NSString stringWithFormat:@"%@ (%@)", [self.stockInfo stockShortDisplayInfo], array[0]];
 }
 
+- (void)showErrorMessage:(NSString *)errorMessage
+{
+    DDLogError(@"%@", errorMessage);
+
+    self.btnErrorMessage.title = [@" " stringByAppendingString:errorMessage];
+    self.errorBarConstraint.animator.constant = 0;
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kErrorBarDurationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.errorBarConstraint.animator.constant = -self.errorBar.frame.size.height - 2;
+    });
+}
+
+- (void)showEmptyGraphDueToError
+{
+    self.series = nil;
+
+    [self.graphView draw];
+}
+
+- (void)reshowBoardWithAnimation
+{
+    self.leftBoardConstraint.constant = -self.leftBoard.frame.size.height;
+    self.rightBoardConstraint.constant = -self.rightBoard.frame.size.height;
+
+//    [NSAnimationContext beginGrouping];
+//    [[NSAnimationContext currentContext] setDuration:0.5]; // default 0.25
+//    self.leftBoardConstraint.animator.constant = -self.leftBoard.frame.size.height/2;
+//    self.rightBoardConstraint.animator.constant = -self.rightBoard.frame.size.height/2;
+//    [NSAnimationContext endGrouping];
+
+    POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayoutConstraintConstant];
+    animation.toValue = @(-self.rightBoard.frame.size.height/2);
+    animation.springBounciness = 16;
+    animation.springSpeed = 8;
+    animation.dynamicsFriction = 10;
+    animation.dynamicsMass = 1;
+    animation.dynamicsTension = 300;
+    [self.leftBoardConstraint pop_addAnimation:animation forKey:@"leftSpring"];
+    [self.rightBoardConstraint pop_addAnimation:animation forKey:@"rightSpring"];
+}
+
 #pragma mark - UI action
 
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
@@ -293,14 +313,11 @@ static NSString * const kStockDataUnitWan     = @"万";
     [self stopStockRefresher];
 
     DDLogDebug(@"{input: \"%@\", type: %@}", self.labelStockCode.stringValue, self.popupGraphType.selectedItem.title);
-
-    NSString *inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    self.inputStockCode = (inputStockCode.length == 0) ? kSDStockDaPanFullCode : inputStockCode;
-
     self.queryTaskType = (self.popupGraphType.indexOfSelectedItem == 0) ? TaskTypeRealtime : TaskTypeHistory;
+    self.inputStockCode = [self.labelStockCode.stringValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-    if ([self.inputStockCode isEqualToString:kSDStockDaPanFullCode]) {
-        self.stockInfo = [[SDStockInfo alloc] initDaPan];
+    if (self.inputStockCode.length == 0) {
+        self.stockInfo = [[SDStockInfo alloc] initHuZhi];
 
         self.forbiddenToRefresh = NO;
         [self startStockRefresher];
@@ -341,18 +358,6 @@ static NSString * const kStockDataUnitWan     = @"万";
         self.btnManuallyRefresh.image = [NSImage imageNamed:NSImageNameRevealFreestandingTemplate];
         [self.progressForQuery stopAnimation:self];
     }
-}
-
-- (void)showErrorMessage:(NSString *)errorMessage
-{
-    DDLogError(@"%@", errorMessage);
-
-    self.btnErrorMessage.title = [@" " stringByAppendingString:errorMessage];
-    self.errorBarConstraint.animator.constant = 0;
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kErrorBarDurationTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.errorBarConstraint.animator.constant = -self.errorBar.frame.size.height - 2;
-    });
 }
 
 #pragma mark - text field delegate

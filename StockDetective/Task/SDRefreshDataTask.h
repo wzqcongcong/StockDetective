@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SDStockInfo.h"
 
 typedef NS_ENUM(NSUInteger, TaskType) {
     TaskTypeRealtime,
@@ -24,7 +25,7 @@ typedef NS_ENUM(NSUInteger, TaskType) {
 @property (nonatomic, weak) id<SDRefreshDataTaskManagerProtocol> taskManager;
 
 - (void)refreshDataTask:(TaskType)taskType
-              stockCode:(NSString *)stockCode
+              stockInfo:(SDStockInfo *)stockInfo
          successHandler:(void (^)(NSData *data))successHandler
          failureHandler:(void (^)(NSError *error))failureHandler;
 

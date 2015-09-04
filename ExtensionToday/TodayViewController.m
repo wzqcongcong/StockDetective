@@ -19,8 +19,8 @@ static NSUInteger const kDataRefreshInterval  = 5;
 @property (nonatomic, strong) NSTimer *refreshDataTaskTimer;
 @property (nonatomic, assign) BOOL forbiddenToRefresh;
 
-@property (nonatomic, strong) NSString *inputStockCode; // stock code or pinyin abbr.
 @property (nonatomic, assign) TaskType queryTaskType;
+@property (nonatomic, strong) NSString *inputStockCode; // stock code or pinyin abbr.
 @property (nonatomic, strong) SDStockInfo *stockInfo;
 
 @property (nonatomic, strong) NSString *dataUnit;
@@ -40,9 +40,9 @@ static NSUInteger const kDataRefreshInterval  = 5;
 
 - (void)awakeFromNib
 {
-    self.inputStockCode = kSDStockDaPanFullCode; // specific stock should use its own stock code without type, like 平安银行 uses "000001".
     self.queryTaskType = TaskTypeRealtime;
-    self.stockInfo = [[SDStockInfo alloc] initDaPan];
+    self.stockInfo = [[SDStockInfo alloc] initHuZhi];
+    self.inputStockCode = self.stockInfo.stockCode;
 }
 
 - (void)viewDidLoad
@@ -85,11 +85,11 @@ static NSUInteger const kDataRefreshInterval  = 5;
     self.needToReshowBoard = YES;
     [self stopStockRefresher];
 
-    self.inputStockCode = kSDStockDaPanFullCode;
     self.queryTaskType = TaskTypeRealtime;
+    self.inputStockCode = @"";
 
-    if ([self.inputStockCode isEqualToString:kSDStockDaPanFullCode]) {
-        self.stockInfo = [[SDStockInfo alloc] initDaPan];
+    if (self.inputStockCode.length == 0) {
+        self.stockInfo = [[SDStockInfo alloc] initHuZhi];
 
         self.forbiddenToRefresh = NO;
         [self startStockRefresher];
@@ -141,7 +141,7 @@ static NSUInteger const kDataRefreshInterval  = 5;
         SDRefreshDataTask *refreshDataTask = [[SDRefreshDataTask alloc] init];
         refreshDataTask.taskManager = self;
         [refreshDataTask refreshDataTask:self.queryTaskType
-                               stockCode:self.inputStockCode
+                               stockInfo:self.stockInfo
                           successHandler:^(NSData *data) {
                               [self updateViewWithData:data];
                           }

@@ -8,14 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const kSDStockDaPanName;
-extern NSString * const kSDStockDaPanCode;
-extern NSString * const kSDStockDaPanAbbr;
-extern NSString * const kSDStockDaPanType;
-extern NSString * const kSDStockDaPanFullCode;
-
 extern NSString * const kSDStockTypeSH;
 extern NSString * const kSDStockTypeSZ;
+
+extern NSString * const kSDStockHuZhiName;
+extern NSString * const kSDStockHuZhiCode;
+extern NSString * const kSDStockHuZhiAbbr;
+extern NSString * const kSDStockHuZhiType;
+extern NSString * const kSDStockHuZhiFullCode;
+
+extern NSString * const kSDStockShenZhiName;
+extern NSString * const kSDStockShenZhiCode;
+extern NSString * const kSDStockShenZhiAbbr;
+extern NSString * const kSDStockShenZhiType;
+extern NSString * const kSDStockShenZhiFullCode;
 
 @interface SDStockInfo : NSObject
 
@@ -25,7 +31,8 @@ extern NSString * const kSDStockTypeSZ;
 @property (nonatomic, strong) NSString *stockType;
 
 - (instancetype)init;
-- (instancetype)initDaPan;
+- (instancetype)initHuZhi;
+- (instancetype)initShenZhi;
 
 - (BOOL)isValidStock;
 - (NSString *)fullStockCode;

@@ -8,12 +8,11 @@
 
 #import "AFNetworking.h"
 #import "SDRefreshDataTask.h"
-#import "SDStockInfo.h"
 #import "SDUtilities.h"
 #import "LogFormatter.h"
 
-static NSString * const kQueryDaPanRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/index.xml";
-static NSString * const kQueryDaPanHistoryFormatURL = @"http://s1.dfcfw.com/History/index.xml";
+static NSString * const kQueryZhiShuRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/zs%@.xml";
+static NSString * const kQueryZhiShuHistoryFormatURL = @"http://s1.dfcfw.com/History/zs%@.xml";
 
 static NSString * const kQueryRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/%@.xml";
 static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjlx/graph/his_%@.html";
@@ -38,7 +37,7 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
 }
 
 - (void)refreshDataTask:(TaskType)taskType
-              stockCode:(NSString *)stockCode
+              stockInfo:(SDStockInfo *)stockInfo
          successHandler:(void (^)(NSData *data))successHandler
          failureHandler:(void (^)(NSError *error))failureHandler
 {
@@ -48,19 +47,21 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
         switch (taskType) {
             case TaskTypeRealtime:
             {
-                if ([stockCode isEqualToString:kSDStockDaPanFullCode]) {
-                    url = [NSURL URLWithString:kQueryDaPanRealtimeFormatURL];
+                if ([[stockInfo fullStockCode] isEqualToString:kSDStockHuZhiFullCode] ||
+                    [[stockInfo fullStockCode] isEqualToString:kSDStockShenZhiFullCode]) {
+                    url = [NSURL URLWithString:[NSString stringWithFormat:kQueryZhiShuRealtimeFormatURL, stockInfo.stockCode]];
                 } else {
-                    url = [NSURL URLWithString:[NSString stringWithFormat:kQueryRealtimeFormatURL, stockCode]];
+                    url = [NSURL URLWithString:[NSString stringWithFormat:kQueryRealtimeFormatURL, stockInfo.stockCode]];
                 }
                 break;
             }
             case TaskTypeHistory:
             {
-                if ([stockCode isEqualToString:kSDStockDaPanFullCode]) {
-                    url = [NSURL URLWithString:kQueryDaPanHistoryFormatURL];
+                if ([[stockInfo fullStockCode] isEqualToString:kSDStockHuZhiFullCode] ||
+                    [[stockInfo fullStockCode] isEqualToString:kSDStockShenZhiFullCode]) {
+                    url = [NSURL URLWithString:[NSString stringWithFormat:kQueryZhiShuHistoryFormatURL, stockInfo.stockCode]];
                 } else {
-                    url = [NSURL URLWithString:[NSString stringWithFormat:kQueryHistoryFormatURL, stockCode]];
+                    url = [NSURL URLWithString:[NSString stringWithFormat:kQueryHistoryFormatURL, stockInfo.stockCode]];
                 }
                 break;
             }
