@@ -17,11 +17,11 @@ static NSString * const kQueryZhiShuHistoryFormatURL = @"http://s1.dfcfw.com/His
 static NSString * const kQueryRealtimeFormatURL = @"http://s1.dfcfw.com/allXML/%@.xml";
 static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjlx/graph/his_%@.html";
 
+static AFURLSessionManager *sessionManagerToRefreshData = nil; // shared by all instances of SDRefreshDataTask
+
 @interface SDRefreshDataTask ()
 
 @property (nonatomic, strong) NSDate *refreshDataTaskStartDate;
-
-@property (nonatomic, strong) AFURLSessionManager *sessionManagerToRefreshData;
 
 @end
 
@@ -113,31 +113,31 @@ static NSString * const kQueryHistoryFormatURL = @"http://data.eastmoney.com/zjl
         }
     }
 
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    configuration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
+    if (!sessionManagerToRefreshData) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        configuration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData;
 
-    if (!self.sessionManagerToRefreshData) {
-        self.sessionManagerToRefreshData = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-        self.sessionManagerToRefreshData.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
-        self.sessionManagerToRefreshData.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
+        sessionManagerToRefreshData = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+        sessionManagerToRefreshData.completionQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+        sessionManagerToRefreshData.responseSerializer = [AFHTTPResponseSerializer serializer]; // non json
     }
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
-    NSURLSessionDataTask *dataTask = [self.sessionManagerToRefreshData dataTaskWithRequest:request
-                                                                         completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                                                                             if (error) {
-                                                                                 failureHandler(error);
+    NSURLSessionDataTask *dataTask = [sessionManagerToRefreshData dataTaskWithRequest:request
+                                                                    completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                                                                        if (error) {
+                                                                            failureHandler(error);
 
-                                                                             } else {
-                                                                                 NSData *data = (NSData *)responseObject;
+                                                                        } else {
+                                                                            NSData *data = (NSData *)responseObject;
 
-                                                                                 [SDUtilities cacheRefreshData:([SDUtilities isStockMarketOnBusiness] ? nil : data)
-                                                                                                        forURL:url.absoluteString];
+                                                                            [SDUtilities cacheRefreshData:([SDUtilities isStockMarketOnBusiness] ? nil : data)
+                                                                                                   forURL:url.absoluteString];
 
-                                                                                 successHandler(data);
-                                                                             }
-                                                                         }];
+                                                                            successHandler(data);
+                                                                        }
+                                                                    }];
     [dataTask resume];
 }
 
