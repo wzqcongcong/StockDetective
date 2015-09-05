@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
@@ -22,7 +22,7 @@
                     <rect key="frame" x="0.0" y="240" width="320" height="48"/>
                     <subviews>
                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UuI-kV-5z1" userLabel="stock">
-                            <rect key="frame" x="22" y="12" width="246" height="25"/>
+                            <rect key="frame" x="22" y="11" width="246" height="25"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="-.-" id="NK9-u9-LIj">
                                 <font key="font" size="20" name="HelveticaNeue-Bold"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -30,7 +30,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="nc5-u1-e9d" userLabel="price">
-                            <rect key="frame" x="272" y="12" width="26" height="25"/>
+                            <rect key="frame" x="272" y="11" width="26" height="25"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="-.-" id="zc4-bZ-0oH">
                                 <font key="font" size="20" name="HelveticaNeue-Bold"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -61,7 +61,7 @@
                         <constraint firstItem="nc5-u1-e9d" firstAttribute="leading" secondItem="UuI-kV-5z1" secondAttribute="trailing" constant="8" id="mFh-WK-hRo"/>
                     </constraints>
                 </customView>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Dhd-HS-FZV" customClass="YBGraphView">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Dhd-HS-FZV" customClass="CCGraphView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="240" id="zGb-tr-4gH"/>

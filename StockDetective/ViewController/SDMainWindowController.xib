@@ -153,7 +153,7 @@
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="RaU-L2-eZC" userLabel="content" customClass="SDColorBackgroundView">
                         <rect key="frame" x="0.0" y="48" width="800" height="404"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="graph" customClass="YBGraphView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="awK-z4-DP8" userLabel="graph" customClass="CCGraphView">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="356"/>
                                 <connections>
                                     <outlet property="dataSource" destination="-2" id="N6k-FP-rlS"/>

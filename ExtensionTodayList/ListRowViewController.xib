@@ -98,7 +98,7 @@
                         <constraint firstAttribute="bottom" secondItem="b6z-0P-avG" secondAttribute="bottom" id="z9S-lc-g7e"/>
                     </constraints>
                 </customView>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kec-NF-dd1" userLabel="graph" customClass="YBGraphView">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kec-NF-dd1" userLabel="graph" customClass="CCGraphView">
                     <rect key="frame" x="-16" y="10" width="368" height="240"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="240" id="p0B-jn-gn9"/>

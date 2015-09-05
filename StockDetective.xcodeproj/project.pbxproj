@@ -28,8 +28,6 @@
 		84EBFDDD1B79E73D0078F93B /* SDStockInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4031B6E1BA200DCC7C0 /* SDStockInfo.m */; };
 		84EBFDDE1B79E73D0078F93B /* SDStockMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = E58551F31B710A870037E7F4 /* SDStockMarket.m */; };
 		84EBFDDF1B79E73D0078F93B /* SDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 848D8CDD1B71C71B001D7A8A /* SDUserInfo.m */; };
-		84EBFDE01B79E7870078F93B /* Yuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; };
-		84EBFDE21B79E7AF0078F93B /* Yuba.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84EBFDE71B7B0EBA0078F93B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A93A3B282686A0A247209F /* libPods.a */; };
 		84EBFDE81B7B0F260078F93B /* SDRefreshDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */; };
 		84EBFDE91B7B0F260078F93B /* SDCommonFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E9D4061B6E1CAB00DCC7C0 /* SDCommonFetcher.m */; };
@@ -42,6 +40,12 @@
 		84EBFE131B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */; };
 		84EBFE141B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */; };
 		84EBFE151B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */; };
+		E525CEB41B9B57DD003C3AE7 /* CoreChart2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */; };
+		E525CEB51B9B57ED003C3AE7 /* CoreChart2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E525CEB81B9B5821003C3AE7 /* CoreChart2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */; };
+		E525CEB91B9B5826003C3AE7 /* CoreChart2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E525CEBC1B9B582F003C3AE7 /* CoreChart2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */; };
+		E525CEBD1B9B5835003C3AE7 /* CoreChart2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E560CBF21B7F027B00B19A1B /* SDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E560CBF11B7F027B00B19A1B /* SDUtilities.m */; };
 		E560CBF31B7F027B00B19A1B /* SDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E560CBF11B7F027B00B19A1B /* SDUtilities.m */; };
 		E560CBF41B7F027B00B19A1B /* SDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = E560CBF11B7F027B00B19A1B /* SDUtilities.m */; };
@@ -56,16 +60,11 @@
 		E5F43CC41B632BE5000D2AB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CC31B632BE5000D2AB8 /* main.m */; };
 		E5F43CC61B632BE5000D2AB8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC51B632BE5000D2AB8 /* Images.xcassets */; };
 		E5F43CC91B632BE5000D2AB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43CC71B632BE5000D2AB8 /* MainMenu.xib */; };
-		E5F43CD51B632BE5000D2AB8 /* StockDetectiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CD41B632BE5000D2AB8 /* StockDetectiveTests.m */; };
 		E5F43CE11B63380D000D2AB8 /* SDRefreshDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */; };
-		E5F43DFD1B638AF1000D2AB8 /* Yuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; };
-		E5F43DFE1B638AF1000D2AB8 /* Yuba.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E5F43E1D1B639035000D2AB8 /* SDMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43E1B1B639035000D2AB8 /* SDMainWindowController.m */; };
 		E5F43E1E1B639035000D2AB8 /* SDMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43E1C1B639035000D2AB8 /* SDMainWindowController.xib */; };
 		E5F43E261B63A9BC000D2AB8 /* SDGraphMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F43E241B63A9BC000D2AB8 /* SDGraphMarkerViewController.m */; };
 		E5F43E271B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5F43E251B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib */; };
-		E5F6C4181B7B80D800020114 /* Yuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; };
-		E5F6C41C1B7B811200020114 /* Yuba.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,40 +82,33 @@
 			remoteGlobalIDString = 84EBFDB91B79C6B40078F93B;
 			remoteInfo = ExtensionTodayList;
 		};
-		84EBFDD71B79E6EB0078F93B /* PBXContainerItemProxy */ = {
+		E525CEB01B9B57BC003C3AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = Yuba;
-		};
-		E5F43CCF1B632BE5000D2AB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E5F43CB31B632BE5000D2AB8 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E5F43CBA1B632BE5000D2AB8;
-			remoteInfo = StockDetective;
-		};
-		E5F43DFB1B638AC6000D2AB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+			containerPortal = E525CEAC1B9B57BC003C3AE7 /* CoreChart2D.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = Yuba;
+			remoteGlobalIDString = E525CE761B9B2227003C3AE7;
+			remoteInfo = CoreChart2D;
 		};
-		E5F43DFF1B638AF1000D2AB8 /* PBXContainerItemProxy */ = {
+		E525CEB21B9B57CA003C3AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+			containerPortal = E525CEAC1B9B57BC003C3AE7 /* CoreChart2D.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = Yuba;
+			remoteGlobalIDString = E525CE751B9B2227003C3AE7;
+			remoteInfo = CoreChart2D;
 		};
-		E5F6C4191B7B80F100020114 /* PBXContainerItemProxy */ = {
+		E525CEB61B9B581D003C3AE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+			containerPortal = E525CEAC1B9B57BC003C3AE7 /* CoreChart2D.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = Yuba;
+			remoteGlobalIDString = E525CE751B9B2227003C3AE7;
+			remoteInfo = CoreChart2D;
+		};
+		E525CEBA1B9B582C003C3AE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E525CEAC1B9B57BC003C3AE7 /* CoreChart2D.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E525CE751B9B2227003C3AE7;
+			remoteInfo = CoreChart2D;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -138,7 +130,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				84EBFDE21B79E7AF0078F93B /* Yuba.framework in Embed Frameworks */,
+				E525CEB91B9B5826003C3AE7 /* CoreChart2D.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,7 +141,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E5F43DFE1B638AF1000D2AB8 /* Yuba.framework in Embed Frameworks */,
+				E525CEB51B9B57ED003C3AE7 /* CoreChart2D.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,7 +152,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E5F6C41C1B7B811200020114 /* Yuba.framework in Embed Frameworks */,
+				E525CEBD1B9B5835003C3AE7 /* CoreChart2D.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +186,7 @@
 		84EBFE111B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockMarketPriceChangeTransformer.h; path = Model/SDStockMarketPriceChangeTransformer.h; sourceTree = "<group>"; };
 		84EBFE121B7B5AFE0078F93B /* SDStockMarketPriceChangeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDStockMarketPriceChangeTransformer.m; path = Model/SDStockMarketPriceChangeTransformer.m; sourceTree = "<group>"; };
 		8708CD6C50CEC715405FD86F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E525CEAC1B9B57BC003C3AE7 /* CoreChart2D.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CoreChart2D.xcodeproj; path = ../../Tools/CoreChart2D/CoreChart2D.xcodeproj; sourceTree = "<group>"; };
 		E560CBF01B7F027B00B19A1B /* SDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDUtilities.h; sourceTree = "<group>"; };
 		E560CBF11B7F027B00B19A1B /* SDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDUtilities.m; sourceTree = "<group>"; };
 		E58551F21B710A870037E7F4 /* SDStockMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDStockMarket.h; path = Model/SDStockMarket.h; sourceTree = "<group>"; };
@@ -213,12 +206,8 @@
 		E5F43CC31B632BE5000D2AB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E5F43CC51B632BE5000D2AB8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E5F43CC81B632BE5000D2AB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		E5F43CCE1B632BE5000D2AB8 /* StockDetectiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StockDetectiveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5F43CD31B632BE5000D2AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5F43CD41B632BE5000D2AB8 /* StockDetectiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StockDetectiveTests.m; sourceTree = "<group>"; };
 		E5F43CDF1B63380D000D2AB8 /* SDRefreshDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDRefreshDataTask.h; path = Task/SDRefreshDataTask.h; sourceTree = "<group>"; };
 		E5F43CE01B63380D000D2AB8 /* SDRefreshDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDRefreshDataTask.m; path = Task/SDRefreshDataTask.m; sourceTree = "<group>"; };
-		E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Yuba.xcodeproj; path = ../../Tools/Yuba/Yuba.xcodeproj; sourceTree = "<group>"; };
 		E5F43E1A1B639035000D2AB8 /* SDMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDMainWindowController.h; path = ViewController/SDMainWindowController.h; sourceTree = "<group>"; };
 		E5F43E1B1B639035000D2AB8 /* SDMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDMainWindowController.m; path = ViewController/SDMainWindowController.m; sourceTree = "<group>"; };
 		E5F43E1C1B639035000D2AB8 /* SDMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SDMainWindowController.xib; path = ViewController/SDMainWindowController.xib; sourceTree = "<group>"; };
@@ -233,9 +222,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84EBFDDA1B79E7250078F93B /* libPods.a in Frameworks */,
-				84EBFDE01B79E7870078F93B /* Yuba.framework in Frameworks */,
+				E525CEB81B9B5821003C3AE7 /* CoreChart2D.framework in Frameworks */,
 				84478F761B78902F00B766AF /* NotificationCenter.framework in Frameworks */,
+				84EBFDDA1B79E7250078F93B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,9 +232,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84EBFDE71B7B0EBA0078F93B /* libPods.a in Frameworks */,
-				E5F6C4181B7B80D800020114 /* Yuba.framework in Frameworks */,
+				E525CEBC1B9B582F003C3AE7 /* CoreChart2D.framework in Frameworks */,
 				84EBFDBB1B79C6B40078F93B /* NotificationCenter.framework in Frameworks */,
+				84EBFDE71B7B0EBA0078F93B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,15 +242,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E525CEB41B9B57DD003C3AE7 /* CoreChart2D.framework in Frameworks */,
 				1787E72DD526A2A226460C1C /* libPods.a in Frameworks */,
-				E5F43DFD1B638AF1000D2AB8 /* Yuba.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E5F43CCB1B632BE5000D2AB8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +304,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E525CEAD1B9B57BC003C3AE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E5A6CC3B1B6C969300FD6565 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,7 +354,6 @@
 			children = (
 				E5F43D5F1B638262000D2AB8 /* 3rdParty */,
 				E5F43CBD1B632BE5000D2AB8 /* StockDetective */,
-				E5F43CD11B632BE5000D2AB8 /* StockDetectiveTests */,
 				84478F771B78902F00B766AF /* ExtensionToday */,
 				84EBFDBC1B79C6B40078F93B /* ExtensionTodayList */,
 				EA4F27AFF5EDF99923C34D14 /* Pods */,
@@ -377,7 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */,
-				E5F43CCE1B632BE5000D2AB8 /* StockDetectiveTests.xctest */,
 				84478F741B78902F00B766AF /* ExtensionToday.appex */,
 				84EBFDBA1B79C6B40078F93B /* ExtensionTodayList.appex */,
 			);
@@ -410,23 +398,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E5F43CD11B632BE5000D2AB8 /* StockDetectiveTests */ = {
-			isa = PBXGroup;
-			children = (
-				E5F43CD41B632BE5000D2AB8 /* StockDetectiveTests.m */,
-				E5F43CD21B632BE5000D2AB8 /* Supporting Files */,
-			);
-			path = StockDetectiveTests;
-			sourceTree = "<group>";
-		};
-		E5F43CD21B632BE5000D2AB8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E5F43CD31B632BE5000D2AB8 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		E5F43CDE1B6337BB000D2AB8 /* Task */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,17 +412,9 @@
 		E5F43D5F1B638262000D2AB8 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
-				E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */,
+				E525CEAC1B9B57BC003C3AE7 /* CoreChart2D.xcodeproj */,
 			);
 			name = 3rdParty;
-			sourceTree = "<group>";
-		};
-		E5F43DF81B638AC6000D2AB8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		E5F43E191B638FF4000D2AB8 /* ViewController */ = {
@@ -492,7 +455,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				84EBFDD81B79E6EB0078F93B /* PBXTargetDependency */,
+				E525CEB71B9B581D003C3AE7 /* PBXTargetDependency */,
 			);
 			name = ExtensionToday;
 			productName = ExtensionToday;
@@ -512,7 +475,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				E5F6C41A1B7B80F100020114 /* PBXTargetDependency */,
+				E525CEBB1B9B582C003C3AE7 /* PBXTargetDependency */,
 			);
 			name = ExtensionTodayList;
 			productName = ExtensionTodayList;
@@ -534,7 +497,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				E5F43E001B638AF1000D2AB8 /* PBXTargetDependency */,
+				E525CEB31B9B57CA003C3AE7 /* PBXTargetDependency */,
 				84478F841B78902F00B766AF /* PBXTargetDependency */,
 				84EBFDCE1B79C6B40078F93B /* PBXTargetDependency */,
 			);
@@ -542,24 +505,6 @@
 			productName = StockDetective;
 			productReference = E5F43CBB1B632BE5000D2AB8 /* StockDetective.app */;
 			productType = "com.apple.product-type.application";
-		};
-		E5F43CCD1B632BE5000D2AB8 /* StockDetectiveTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E5F43CDB1B632BE5000D2AB8 /* Build configuration list for PBXNativeTarget "StockDetectiveTests" */;
-			buildPhases = (
-				E5F43CCA1B632BE5000D2AB8 /* Sources */,
-				E5F43CCB1B632BE5000D2AB8 /* Frameworks */,
-				E5F43CCC1B632BE5000D2AB8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E5F43CD01B632BE5000D2AB8 /* PBXTargetDependency */,
-			);
-			name = StockDetectiveTests;
-			productName = StockDetectiveTests;
-			productReference = E5F43CCE1B632BE5000D2AB8 /* StockDetectiveTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -579,10 +524,6 @@
 					E5F43CBA1B632BE5000D2AB8 = {
 						CreatedOnToolsVersion = 6.4;
 					};
-					E5F43CCD1B632BE5000D2AB8 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = E5F43CBA1B632BE5000D2AB8;
-					};
 				};
 			};
 			buildConfigurationList = E5F43CB61B632BE5000D2AB8 /* Build configuration list for PBXProject "StockDetective" */;
@@ -599,14 +540,13 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E5F43DF81B638AC6000D2AB8 /* Products */;
-					ProjectRef = E5F43DF71B638AC6000D2AB8 /* Yuba.xcodeproj */;
+					ProductGroup = E525CEAD1B9B57BC003C3AE7 /* Products */;
+					ProjectRef = E525CEAC1B9B57BC003C3AE7 /* CoreChart2D.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
 				E5F43CBA1B632BE5000D2AB8 /* StockDetective */,
-				E5F43CCD1B632BE5000D2AB8 /* StockDetectiveTests */,
 				84478F731B78902F00B766AF /* ExtensionToday */,
 				84EBFDB91B79C6B40078F93B /* ExtensionTodayList */,
 			);
@@ -614,11 +554,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E5F43DFC1B638AC6000D2AB8 /* Yuba.framework */ = {
+		E525CEB11B9B57BC003C3AE7 /* CoreChart2D.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = Yuba.framework;
-			remoteRef = E5F43DFB1B638AC6000D2AB8 /* PBXContainerItemProxy */;
+			path = CoreChart2D.framework;
+			remoteRef = E525CEB01B9B57BC003C3AE7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -653,13 +593,6 @@
 				E5F43CC61B632BE5000D2AB8 /* Images.xcassets in Resources */,
 				E5F43E271B63A9BC000D2AB8 /* SDGraphMarkerViewController.xib in Resources */,
 				E5F43CC91B632BE5000D2AB8 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E5F43CCC1B632BE5000D2AB8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,14 +718,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5F43CCA1B632BE5000D2AB8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E5F43CD51B632BE5000D2AB8 /* StockDetectiveTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -806,25 +731,20 @@
 			target = 84EBFDB91B79C6B40078F93B /* ExtensionTodayList */;
 			targetProxy = 84EBFDCD1B79C6B40078F93B /* PBXContainerItemProxy */;
 		};
-		84EBFDD81B79E6EB0078F93B /* PBXTargetDependency */ = {
+		E525CEB31B9B57CA003C3AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Yuba;
-			targetProxy = 84EBFDD71B79E6EB0078F93B /* PBXContainerItemProxy */;
+			name = CoreChart2D;
+			targetProxy = E525CEB21B9B57CA003C3AE7 /* PBXContainerItemProxy */;
 		};
-		E5F43CD01B632BE5000D2AB8 /* PBXTargetDependency */ = {
+		E525CEB71B9B581D003C3AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E5F43CBA1B632BE5000D2AB8 /* StockDetective */;
-			targetProxy = E5F43CCF1B632BE5000D2AB8 /* PBXContainerItemProxy */;
+			name = CoreChart2D;
+			targetProxy = E525CEB61B9B581D003C3AE7 /* PBXContainerItemProxy */;
 		};
-		E5F43E001B638AF1000D2AB8 /* PBXTargetDependency */ = {
+		E525CEBB1B9B582C003C3AE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Yuba;
-			targetProxy = E5F43DFF1B638AF1000D2AB8 /* PBXContainerItemProxy */;
-		};
-		E5F6C41A1B7B80F100020114 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Yuba;
-			targetProxy = E5F6C4191B7B80F100020114 /* PBXContainerItemProxy */;
+			name = CoreChart2D;
+			targetProxy = E525CEBA1B9B582C003C3AE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -863,7 +783,6 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionToday/ExtensionToday.entitlements;
-				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -907,7 +826,6 @@
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ExtensionToday/ExtensionToday.entitlements;
-				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "COCOAPODS=1";
 				HEADER_SEARCH_PATHS = (
@@ -1111,6 +1029,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = StockDetective/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(CONFIGURATION_BUILD_DIR)";
@@ -1124,46 +1043,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = StockDetective/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(CONFIGURATION_BUILD_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		E5F43CDC1B632BE5000D2AB8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = StockDetectiveTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockDetective.app/Contents/MacOS/StockDetective";
-			};
-			name = Debug;
-		};
-		E5F43CDD1B632BE5000D2AB8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = StockDetectiveTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StockDetective.app/Contents/MacOS/StockDetective";
 			};
 			name = Release;
 		};
@@ -1202,15 +1086,6 @@
 			buildConfigurations = (
 				E5F43CD91B632BE5000D2AB8 /* Debug */,
 				E5F43CDA1B632BE5000D2AB8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E5F43CDB1B632BE5000D2AB8 /* Build configuration list for PBXNativeTarget "StockDetectiveTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E5F43CDC1B632BE5000D2AB8 /* Debug */,
-				E5F43CDD1B632BE5000D2AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

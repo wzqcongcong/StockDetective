@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 
-@import Yuba;
+@import CoreChart2D;
 #import "SDMainWindowController.h"
 #import "SDColorBackgroundView.h"
 #import "SDGraphMarkerViewController.h"
@@ -51,7 +51,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 @property (weak) IBOutlet NSLayoutConstraint *rightBoardConstraint;
 
 // graph
-@property (weak) IBOutlet YBGraphView *graphView;
+@property (weak) IBOutlet CCGraphView *graphView;
 
 // error message bar
 @property (weak) IBOutlet SDColorBackgroundView *errorBar;
@@ -369,32 +369,32 @@ static NSString * const kStockDataUnitWan     = @"万";
 
 #pragma mark - graph view delegate
 
-- (NSInteger)numberOfGraphsInGraphView:(YBGraphView *)graph {
+- (NSInteger)numberOfGraphsInGraphView:(CCGraphView *)graph {
     return self.values.count;
 }
 
-- (NSArray *)seriesForGraphView:(YBGraphView *)graph {
+- (NSArray *)seriesForGraphView:(CCGraphView *)graph {
     return self.series;
 }
 
-- (NSArray *)graphView:(YBGraphView *)graph valuesForGraph:(NSInteger)index {
+- (NSArray *)graphView:(CCGraphView *)graph valuesForGraph:(NSInteger)index {
     return (NSArray *)(self.values[index]);
 }
 
-- (NSString *)graphView:(YBGraphView *)graph legendTitleForGraph:(NSInteger)index
+- (NSString *)graphView:(CCGraphView *)graph legendTitleForGraph:(NSInteger)index
 {
     return self.legend[index];
 }
 
-- (NSString *)graphView:(YBGraphView *)graph markerTitleForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
+- (NSString *)graphView:(CCGraphView *)graph markerTitleForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
     return [NSString stringWithFormat:@"%ld %@", [[(NSArray *)(self.values[graphIndex]) objectAtIndex:elementIndex] integerValue], self.dataUnit];
 }
 
-- (NSView *)graphView:(YBGraphView *)graph markerViewForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
+- (NSView *)graphView:(CCGraphView *)graph markerViewForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
     SDGraphMarkerViewController *graphMarkerViewController = [[SDGraphMarkerViewController alloc] init];
     graphMarkerViewController.view.hidden = NO;
     graphMarkerViewController.label.attributedStringValue = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld %@", [[(NSArray *)(self.values[graphIndex]) objectAtIndex:elementIndex] integerValue], self.dataUnit]
-                                                                                            attributes:@{NSForegroundColorAttributeName: [YBGraphView colorByIndex:graphIndex]}];
+                                                                                            attributes:@{NSForegroundColorAttributeName: [CCGraphView colorByIndex:graphIndex]}];
     return graphMarkerViewController.view;
 }
 

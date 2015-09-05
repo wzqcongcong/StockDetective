@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 
-@import Yuba;
+@import CoreChart2D;
 #import "TodayViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "SDCommonFetcher.h"
@@ -31,7 +31,7 @@ static NSUInteger const kDataRefreshInterval  = 5;
 @property (atomic, assign) BOOL needToReshowBoard;
 @property (weak) IBOutlet NSTextField *titleStock;
 @property (weak) IBOutlet NSTextField *titlePrice;
-@property (weak) IBOutlet YBGraphView *graphView;
+@property (weak) IBOutlet CCGraphView *graphView;
 @property (weak) IBOutlet NSLayoutConstraint *constraintGraph;
 
 @end
@@ -243,24 +243,24 @@ static NSUInteger const kDataRefreshInterval  = 5;
 
 #pragma mark - graph view delegate
 
-- (NSInteger)numberOfGraphsInGraphView:(YBGraphView *)graph {
+- (NSInteger)numberOfGraphsInGraphView:(CCGraphView *)graph {
     return self.values.count;
 }
 
-- (NSArray *)seriesForGraphView:(YBGraphView *)graph {
+- (NSArray *)seriesForGraphView:(CCGraphView *)graph {
     return self.series;
 }
 
-- (NSArray *)graphView:(YBGraphView *)graph valuesForGraph:(NSInteger)index {
+- (NSArray *)graphView:(CCGraphView *)graph valuesForGraph:(NSInteger)index {
     return (NSArray *)(self.values[index]);
 }
 
-- (NSString *)graphView:(YBGraphView *)graph legendTitleForGraph:(NSInteger)index
+- (NSString *)graphView:(CCGraphView *)graph legendTitleForGraph:(NSInteger)index
 {
     return self.legend[index];
 }
 
-- (NSString *)graphView:(YBGraphView *)graph markerTitleForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
+- (NSString *)graphView:(CCGraphView *)graph markerTitleForGraph:(NSInteger)graphIndex forElement:(NSInteger)elementIndex {
     return [NSString stringWithFormat:@"%ld %@", [[(NSArray *)(self.values[graphIndex]) objectAtIndex:elementIndex] integerValue], self.dataUnit];
 }
 
