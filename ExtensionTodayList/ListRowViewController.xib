@@ -99,7 +99,7 @@
                     </constraints>
                 </customView>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kec-NF-dd1" userLabel="graph" customClass="CCGraphView">
-                    <rect key="frame" x="-16" y="10" width="368" height="240"/>
+                    <rect key="frame" x="-14" y="10" width="366" height="240"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="240" id="p0B-jn-gn9"/>
                     </constraints>
@@ -115,7 +115,7 @@
                 <constraint firstItem="Kec-NF-dd1" firstAttribute="top" secondItem="dq8-WT-ddQ" secondAttribute="bottom" id="AyZ-XD-i4m"/>
                 <constraint firstItem="dq8-WT-ddQ" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="JuH-2D-xss"/>
                 <constraint firstAttribute="trailing" secondItem="Kec-NF-dd1" secondAttribute="trailing" constant="-32" id="Xqe-8y-xps"/>
-                <constraint firstItem="Kec-NF-dd1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="-16" id="rCl-R9-dD1"/>
+                <constraint firstItem="Kec-NF-dd1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="-14" id="rCl-R9-dD1"/>
                 <constraint firstAttribute="bottom" secondItem="Kec-NF-dd1" secondAttribute="bottom" constant="10" id="vlW-vb-XWX"/>
             </constraints>
             <point key="canvasLocation" x="286" y="317"/>

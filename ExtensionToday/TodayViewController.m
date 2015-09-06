@@ -63,7 +63,8 @@ static NSUInteger const kDataRefreshInterval  = 5;
     [formatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [formatter setNumberStyle:NSNumberFormatterNoStyle];
     self.graphView.formatter = formatter;
-    self.graphView.lineWidth = 1.6;
+    self.graphView.lineWidth = 1.2;
+    self.graphView.font = [NSFont fontWithName:@"Helvetica Neue" size:10];
     self.graphView.backgroundColor = [NSColor clearColor];
     self.graphView.textColor = [NSColor labelColor];
 
