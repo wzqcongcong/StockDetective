@@ -52,6 +52,7 @@ static NSUInteger const kDataRefreshInterval  = 5;
 
 - (void)setupGraphConfig
 {
+    self.dataUnit = @"";
     self.legend = @[@"主力",
                     @"巨单",
                     @"大单",

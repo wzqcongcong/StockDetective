@@ -16,7 +16,9 @@
 
 static NSUInteger const kDataRefreshInterval  = 5;
 static NSUInteger const kErrorBarDurationTime = 3;
-static NSString * const kStockDataUnitWan     = @"万";
+
+static NSString * const kStockDataUnitWan   = @"万";
+static NSString * const kStockDataUnitYi    = @"亿";
 
 @interface SDMainWindowController ()
 
@@ -102,7 +104,7 @@ static NSString * const kStockDataUnitWan     = @"万";
 
 - (void)setupGraphConfig
 {
-    self.dataUnit = kStockDataUnitWan;
+    self.dataUnit = @"";
     self.legend = @[@"主力",
                     @"巨单",
                     @"大单",
@@ -270,6 +272,7 @@ static NSString * const kStockDataUnitWan     = @"万";
                     littleForce];
 
     self.graphView.info = [NSString stringWithFormat:@"%@ (%@)", [self.stockInfo stockShortDisplayInfo], array[0]];
+    self.dataUnit = ([[self.stockInfo fullStockCode] isEqualToString:kSDStockHuZhiFullCode] || [[self.stockInfo fullStockCode] isEqualToString:kSDStockShenZhiFullCode]) ? kStockDataUnitYi : kStockDataUnitWan;
 }
 
 - (void)showErrorMessage:(NSString *)errorMessage
