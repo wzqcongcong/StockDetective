@@ -113,19 +113,26 @@ static NSString * const kStockDataUnitWan     = @"万";
     [formatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [formatter setNumberStyle:NSNumberFormatterNoStyle];
     self.graphView.formatter = formatter;
-    self.graphView.drawLegend = YES;
-    self.graphView.drawInfo = YES;
     self.graphView.lineWidth = 1.6;
-    self.graphView.showMarker = YES;
-    self.graphView.showMarkerNearPoint = NO;
-    self.graphView.drawBullets = NO;
-    self.graphView.highlightBullet = YES;
+
     self.graphView.useMinValue = NO;
+
     self.graphView.gridYCount = 10;
     self.graphView.isRoundGridY = YES;
     self.graphView.roundGridYTo = self.graphView.gridYCount * 10;
+
     self.graphView.drawBaseline = YES;
     self.graphView.baselineValue = 0.0;
+
+    self.graphView.drawLegend = YES;
+    self.graphView.drawInfo = YES;
+
+    self.graphView.showMarker = YES;
+    self.graphView.showMarkerNearPoint = NO;
+
+    self.graphView.drawBullets = NO;
+    self.graphView.highlightBullet = YES;
+
     self.graphView.showMouseOverLineX = YES;
 }
 

@@ -61,22 +61,29 @@ static NSUInteger const kDataRefreshInterval  = 5;
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [formatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
     [formatter setNumberStyle:NSNumberFormatterNoStyle];
+    self.graphView.formatter = formatter;
+    self.graphView.lineWidth = 1.6;
     self.graphView.backgroundColor = [NSColor clearColor];
     self.graphView.textColor = [NSColor labelColor];
-    self.graphView.formatter = formatter;
-    self.graphView.drawLegend = YES;
-    self.graphView.drawInfo = YES;
-    self.graphView.lineWidth = 1.6;
-    self.graphView.showMarker = NO;
-    self.graphView.showMarkerNearPoint = NO;
-    self.graphView.drawBullets = NO;
-    self.graphView.highlightBullet = NO;
+
     self.graphView.useMinValue = NO;
+
     self.graphView.gridYCount = 10;
     self.graphView.isRoundGridY = YES;
     self.graphView.roundGridYTo = self.graphView.gridYCount * 10;
+
     self.graphView.drawBaseline = YES;
     self.graphView.baselineValue = 0.0;
+    
+    self.graphView.drawLegend = YES;
+    self.graphView.drawInfo = YES;
+
+    self.graphView.showMarker = NO;
+    self.graphView.showMarkerNearPoint = NO;
+
+    self.graphView.drawBullets = NO;
+    self.graphView.highlightBullet = NO;
+
     self.graphView.showMouseOverLineX = NO;
 }
 
