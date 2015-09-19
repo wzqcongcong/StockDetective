@@ -25,7 +25,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
-  - pop (1.0.7)
+  - pop (1.0.8)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
@@ -35,6 +35,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
-  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
 
 COCOAPODS: 0.38.2
