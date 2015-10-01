@@ -35,5 +35,10 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2015 GoKuStudio. All rights reserved.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
