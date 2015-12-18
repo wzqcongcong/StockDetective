@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 GoKuStudio. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import "SDStockMarket.h"
 
 @interface SDUtilities : NSObject
@@ -18,5 +18,8 @@
 
 + (SDStockMarket *)loadCachedStockMarketForFullStockCode:(NSString *)fullStockCode;
 + (void)cacheStockMarket:(SDStockMarket *)stockMarket forFullStockCode:(NSString *)fullStockCode;
+
++ (NSDateFormatter *)cachedDateFormatterForChartshot;
++ (void)saveScreenshotForView:(NSView *)view withTitle:(NSString *)title;
 
 @end

@@ -59,7 +59,6 @@ static NSString * const kCacheTypeStockMarket = @"CacheTypeStockMarket";
     return sharedCache;
 }
 
-
 + (NSData *)loadCachedRefreshDataForURL:(NSString *)url
 {
     return [[SDUtilities sharedStockDataCache] objectForKey:[kCacheTypeRefreshData stringByAppendingString:url]];
@@ -88,6 +87,46 @@ static NSString * const kCacheTypeStockMarket = @"CacheTypeStockMarket";
     } else {
         [[SDUtilities sharedStockDataCache] removeObjectForKey:[kCacheTypeStockMarket stringByAppendingString:fullStockCode]];
     }
+}
+
+#pragma mark - screenshot
+
++ (NSDateFormatter *)cachedDateFormatterForChartshot
+{
+    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *dateFormatter = [threadDictionary objectForKey:@"cachedDateFormatterForChartshot"];
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setLocale:[NSLocale currentLocale]];
+        [dateFormatter setDateFormat: @"YYYY-MM-dd HH:mm:ss"];
+        [threadDictionary setObject:dateFormatter forKey:@"cachedDateFormatterForChartshot"];
+    }
+    return dateFormatter;
+}
+
++ (void)saveScreenshotForView:(NSView *)view withTitle:(NSString *)title
+{
+    if (!view || !title) {
+        return;
+    }
+    
+    [NSGraphicsContext saveGraphicsState];
+    
+    NSPDFImageRep *imageRep = [NSPDFImageRep imageRepWithData:[view dataWithPDFInsideRect:view.bounds]];
+    NSImage *image = [[NSImage alloc] initWithSize:view.bounds.size];
+    [image addRepresentation:imageRep];
+    
+    NSURL *imageURL = [[NSFileManager defaultManager] URLForDirectory:NSDownloadsDirectory
+                                                             inDomain:NSUserDomainMask
+                                                    appropriateForURL:nil
+                                                               create:NO
+                                                                error:NULL];
+    NSString *fileName = [NSString stringWithFormat:@"%@ %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"], title];
+    imageURL = [imageURL URLByAppendingPathComponent:fileName];
+    imageURL = [imageURL URLByAppendingPathExtension:@"png"];
+    [[image TIFFRepresentationUsingCompression:NSTIFFCompressionLZW factor:0] writeToURL:imageURL atomically:YES];
+    
+    [NSGraphicsContext restoreGraphicsState];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "SDAppDelegate.h"
 #import "SDMainWindowController.h"
 #import "LogFormatter.h"
+#import "SDUtilities.h"
 
 @interface SDAppDelegate ()
 
@@ -46,6 +47,20 @@
     }
 
     return YES;
+}
+
+- (IBAction)takeChartshot:(id)sender {
+    NSString *title = [self.mainWindowController stringForChartshot];
+    if (!title || title.length == 0) {
+        title = [[SDUtilities cachedDateFormatterForChartshot] stringFromDate:[NSDate date]];
+    }
+    
+    [SDUtilities saveScreenshotForView:[self.mainWindowController viewForChartshot] withTitle:title];
+}
+
+- (IBAction)goToHelp:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"http://hi.zongquan.wang"];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 @end

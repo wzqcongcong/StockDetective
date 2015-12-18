@@ -11,6 +11,9 @@
 
 @interface SDMainWindowController : NSWindowController <NSWindowDelegate, SDRefreshDataTaskManagerProtocol>
 
+- (NSView *)viewForChartshot;
+- (NSString *)stringForChartshot;
+
 - (void)startStockRefresher;
 - (void)stopStockRefresher;
 

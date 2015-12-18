@@ -318,6 +318,16 @@ static NSString * const kStockDataUnitYi    = @"亿";
 
 #pragma mark - UI action
 
+- (NSView *)viewForChartshot
+{
+    return self.graphView.superview;
+}
+
+- (NSString *)stringForChartshot
+{
+    return self.graphView.info;
+}
+
 - (IBAction)btnManuallyRefreshDidClick:(id)sender {
     self.needToReshowBoard = YES;
     [self stopStockRefresher];
