@@ -1,0 +1,388 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84EFD31A1B9D2CB400F55232 /* CCPieView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EFD3181B9D2CB400F55232 /* CCPieView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84EFD31B1B9D2CB400F55232 /* CCPieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EFD3191B9D2CB400F55232 /* CCPieView.m */; };
+		84EFD3221B9D690000F55232 /* CCBasicView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EFD3201B9D690000F55232 /* CCBasicView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84EFD3231B9D690000F55232 /* CCBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EFD3211B9D690000F55232 /* CCBasicView.m */; };
+		84EFD32D1B9DBD9100F55232 /* CCMapView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EFD32B1B9DBD9100F55232 /* CCMapView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84EFD32E1B9DBD9100F55232 /* CCMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EFD32C1B9DBD9100F55232 /* CCMapView.m */; };
+		84F05AD91B9C177600C8D232 /* CCBarGraphView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F05AD71B9C177600C8D232 /* CCBarGraphView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84F05ADA1B9C177600C8D232 /* CCBarGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F05AD81B9C177600C8D232 /* CCBarGraphView.m */; };
+		E525CE7C1B9B2227003C3AE7 /* CoreChart2D.h in Headers */ = {isa = PBXBuildFile; fileRef = E525CE7B1B9B2227003C3AE7 /* CoreChart2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E525CE971B9B233D003C3AE7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E525CE921B9B22F9003C3AE7 /* Cocoa.framework */; };
+		E525CE981B9B2345003C3AE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E525CE941B9B2300003C3AE7 /* QuartzCore.framework */; };
+		E525CE9B1B9B245B003C3AE7 /* CCPointInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = E525CE991B9B245B003C3AE7 /* CCPointInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E525CE9C1B9B245B003C3AE7 /* CCPointInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E525CE9A1B9B245B003C3AE7 /* CCPointInfo.m */; };
+		E525CEA11B9B24F2003C3AE7 /* CCMarker.h in Headers */ = {isa = PBXBuildFile; fileRef = E525CE9F1B9B24F2003C3AE7 /* CCMarker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E525CEA21B9B24F2003C3AE7 /* CCMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = E525CEA01B9B24F2003C3AE7 /* CCMarker.m */; };
+		E525CEA51B9B332A003C3AE7 /* CCBullet.h in Headers */ = {isa = PBXBuildFile; fileRef = E525CEA31B9B332A003C3AE7 /* CCBullet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E525CEA61B9B332A003C3AE7 /* CCBullet.m in Sources */ = {isa = PBXBuildFile; fileRef = E525CEA41B9B332A003C3AE7 /* CCBullet.m */; };
+		E525CEA91B9B35C8003C3AE7 /* CCGraphView.h in Headers */ = {isa = PBXBuildFile; fileRef = E525CEA71B9B35C8003C3AE7 /* CCGraphView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E525CEAA1B9B35C8003C3AE7 /* CCGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = E525CEA81B9B35C8003C3AE7 /* CCGraphView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		84EFD3181B9D2CB400F55232 /* CCPieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPieView.h; sourceTree = "<group>"; };
+		84EFD3191B9D2CB400F55232 /* CCPieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPieView.m; sourceTree = "<group>"; };
+		84EFD3201B9D690000F55232 /* CCBasicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBasicView.h; sourceTree = "<group>"; };
+		84EFD3211B9D690000F55232 /* CCBasicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBasicView.m; sourceTree = "<group>"; };
+		84EFD32B1B9DBD9100F55232 /* CCMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMapView.h; sourceTree = "<group>"; };
+		84EFD32C1B9DBD9100F55232 /* CCMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMapView.m; sourceTree = "<group>"; };
+		84F05AD71B9C177600C8D232 /* CCBarGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBarGraphView.h; sourceTree = "<group>"; };
+		84F05AD81B9C177600C8D232 /* CCBarGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBarGraphView.m; sourceTree = "<group>"; };
+		E525CE761B9B2227003C3AE7 /* CoreChart2D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreChart2D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E525CE7A1B9B2227003C3AE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E525CE7B1B9B2227003C3AE7 /* CoreChart2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreChart2D.h; sourceTree = "<group>"; };
+		E525CE921B9B22F9003C3AE7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E525CE941B9B2300003C3AE7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E525CE991B9B245B003C3AE7 /* CCPointInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPointInfo.h; sourceTree = "<group>"; };
+		E525CE9A1B9B245B003C3AE7 /* CCPointInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPointInfo.m; sourceTree = "<group>"; };
+		E525CE9F1B9B24F2003C3AE7 /* CCMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMarker.h; sourceTree = "<group>"; };
+		E525CEA01B9B24F2003C3AE7 /* CCMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMarker.m; sourceTree = "<group>"; };
+		E525CEA31B9B332A003C3AE7 /* CCBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBullet.h; sourceTree = "<group>"; };
+		E525CEA41B9B332A003C3AE7 /* CCBullet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBullet.m; sourceTree = "<group>"; };
+		E525CEA71B9B35C8003C3AE7 /* CCGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGraphView.h; sourceTree = "<group>"; };
+		E525CEA81B9B35C8003C3AE7 /* CCGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCGraphView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E525CE721B9B2227003C3AE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E525CE981B9B2345003C3AE7 /* QuartzCore.framework in Frameworks */,
+				E525CE971B9B233D003C3AE7 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E525CE6C1B9B2227003C3AE7 = {
+			isa = PBXGroup;
+			children = (
+				E525CE781B9B2227003C3AE7 /* CoreChart2D */,
+				E525CE961B9B2311003C3AE7 /* Framework */,
+				E525CE771B9B2227003C3AE7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E525CE771B9B2227003C3AE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E525CE761B9B2227003C3AE7 /* CoreChart2D.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E525CE781B9B2227003C3AE7 /* CoreChart2D */ = {
+			isa = PBXGroup;
+			children = (
+				E525CE7B1B9B2227003C3AE7 /* CoreChart2D.h */,
+				E525CE9E1B9B24C2003C3AE7 /* Chart */,
+				E525CE9D1B9B24B8003C3AE7 /* Elements */,
+				E525CE791B9B2227003C3AE7 /* Supporting Files */,
+			);
+			path = CoreChart2D;
+			sourceTree = "<group>";
+		};
+		E525CE791B9B2227003C3AE7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E525CE7A1B9B2227003C3AE7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E525CE961B9B2311003C3AE7 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				E525CE941B9B2300003C3AE7 /* QuartzCore.framework */,
+				E525CE921B9B22F9003C3AE7 /* Cocoa.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		E525CE9D1B9B24B8003C3AE7 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				E525CE991B9B245B003C3AE7 /* CCPointInfo.h */,
+				E525CE9A1B9B245B003C3AE7 /* CCPointInfo.m */,
+				E525CE9F1B9B24F2003C3AE7 /* CCMarker.h */,
+				E525CEA01B9B24F2003C3AE7 /* CCMarker.m */,
+				E525CEA31B9B332A003C3AE7 /* CCBullet.h */,
+				E525CEA41B9B332A003C3AE7 /* CCBullet.m */,
+			);
+			name = Elements;
+			sourceTree = "<group>";
+		};
+		E525CE9E1B9B24C2003C3AE7 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				84EFD3201B9D690000F55232 /* CCBasicView.h */,
+				84EFD3211B9D690000F55232 /* CCBasicView.m */,
+				E525CEA71B9B35C8003C3AE7 /* CCGraphView.h */,
+				E525CEA81B9B35C8003C3AE7 /* CCGraphView.m */,
+				84F05AD71B9C177600C8D232 /* CCBarGraphView.h */,
+				84F05AD81B9C177600C8D232 /* CCBarGraphView.m */,
+				84EFD3181B9D2CB400F55232 /* CCPieView.h */,
+				84EFD3191B9D2CB400F55232 /* CCPieView.m */,
+				84EFD32B1B9DBD9100F55232 /* CCMapView.h */,
+				84EFD32C1B9DBD9100F55232 /* CCMapView.m */,
+			);
+			name = Chart;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E525CE731B9B2227003C3AE7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E525CE7C1B9B2227003C3AE7 /* CoreChart2D.h in Headers */,
+				E525CE9B1B9B245B003C3AE7 /* CCPointInfo.h in Headers */,
+				E525CEA51B9B332A003C3AE7 /* CCBullet.h in Headers */,
+				E525CEA11B9B24F2003C3AE7 /* CCMarker.h in Headers */,
+				84EFD3221B9D690000F55232 /* CCBasicView.h in Headers */,
+				E525CEA91B9B35C8003C3AE7 /* CCGraphView.h in Headers */,
+				84F05AD91B9C177600C8D232 /* CCBarGraphView.h in Headers */,
+				84EFD31A1B9D2CB400F55232 /* CCPieView.h in Headers */,
+				84EFD32D1B9DBD9100F55232 /* CCMapView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E525CE751B9B2227003C3AE7 /* CoreChart2D */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E525CE8C1B9B2227003C3AE7 /* Build configuration list for PBXNativeTarget "CoreChart2D" */;
+			buildPhases = (
+				E525CE711B9B2227003C3AE7 /* Sources */,
+				E525CE721B9B2227003C3AE7 /* Frameworks */,
+				E525CE731B9B2227003C3AE7 /* Headers */,
+				E525CE741B9B2227003C3AE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreChart2D;
+			productName = CoreChart2D;
+			productReference = E525CE761B9B2227003C3AE7 /* CoreChart2D.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E525CE6D1B9B2227003C3AE7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CC;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = GoKuStudio;
+				TargetAttributes = {
+					E525CE751B9B2227003C3AE7 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = E525CE701B9B2227003C3AE7 /* Build configuration list for PBXProject "CoreChart2D" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E525CE6C1B9B2227003C3AE7;
+			productRefGroup = E525CE771B9B2227003C3AE7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E525CE751B9B2227003C3AE7 /* CoreChart2D */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E525CE741B9B2227003C3AE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E525CE711B9B2227003C3AE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E525CEA61B9B332A003C3AE7 /* CCBullet.m in Sources */,
+				E525CE9C1B9B245B003C3AE7 /* CCPointInfo.m in Sources */,
+				E525CEA21B9B24F2003C3AE7 /* CCMarker.m in Sources */,
+				E525CEAA1B9B35C8003C3AE7 /* CCGraphView.m in Sources */,
+				84EFD3231B9D690000F55232 /* CCBasicView.m in Sources */,
+				84EFD32E1B9DBD9100F55232 /* CCMapView.m in Sources */,
+				84F05ADA1B9C177600C8D232 /* CCBarGraphView.m in Sources */,
+				84EFD31B1B9D2CB400F55232 /* CCPieView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E525CE8A1B9B2227003C3AE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E525CE8B1B9B2227003C3AE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E525CE8D1B9B2227003C3AE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = CoreChart2D/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gokustudio.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E525CE8E1B9B2227003C3AE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = CoreChart2D/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gokustudio.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E525CE701B9B2227003C3AE7 /* Build configuration list for PBXProject "CoreChart2D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E525CE8A1B9B2227003C3AE7 /* Debug */,
+				E525CE8B1B9B2227003C3AE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E525CE8C1B9B2227003C3AE7 /* Build configuration list for PBXNativeTarget "CoreChart2D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E525CE8D1B9B2227003C3AE7 /* Debug */,
+				E525CE8E1B9B2227003C3AE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E525CE6D1B9B2227003C3AE7 /* Project object */;
+}
